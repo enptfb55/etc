@@ -1,5 +1,5 @@
 # Filename:         ~/dotfiles/colorgccrc
-# Last modified:    28 Jun 2011
+# Last modified:    2013 07 12
 
 # colorgcc configuration file
 #
@@ -24,10 +24,13 @@
 
 # Define the paths to the actual location of the various compilers.
 # (Currently, colorgcc only understands these: g++ gcc c++ cc)
-g++: /usr/bin/g++
-gcc: /usr/bin/gcc
 c++: /usr/bin/c++
 cc:  /usr/bin/cc
+g++-4.6: /usr/bin/g++-4.6
+g++-4.7: /usr/bin/g++-4.7
+g++-4.8: /usr/bin/g++-4.8
+g++: /usr/bin/g++-4.8
+gcc: /usr/bin/gcc
 
 # Don't do color if our terminal type ($TERM) is one of these.
 # (List all terminal types on one line, seperated by whitespace.)
