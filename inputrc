@@ -1,0 +1,9 @@
+# Filename:         ~/dotfiles/inputrc
+# Last modified:    2013 06 27
+
+$include /etc/inputrc
+
+set bell-style none
+set meta-flag on
+set convert-meta off
+set output-meta on

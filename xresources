@@ -1,0 +1,38 @@
+! Filename:         ~/dotfiles/xresources
+! Last modified:    2013 07 09
+
+! Default size of new xterm window
+*xterm*geometry: 160x60
+
+! Allow for lots of colors
+*xterm*termName: xterm-256color
+
+! Show scrollbar
+*xterm*scrollBar: true
+
+! Put scrollbar on the right.
+*xterm*rightScrollBar: true
+
+! Scrollback buffer
+*xterm*saveLines: 10000
+
+! Silence bell by making it visible only.
+! *xterm*visualBell: true
+
+! Use the urgent-flag on a bell-event to alert when an xterm has new data.
+*xterm*bellIsUrgent: true
+
+! Background and foreground colors.
+*xterm*foreground: grey90
+*xterm*background: grey25
+
+! Make cursor white
+*xterm*cursorColor: white
+
+Xcursor.size:       0
+Xcursor.theme:      neutral
+Xcursor.theme_core: 1
+Xft.antialias:      1
+Xft.dpi:            96
+Xft.hintstyle:      hintfull
+Xft.rgba:           rgb
