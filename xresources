@@ -8,10 +8,10 @@
 *xterm*termName: xterm-256color
 
 ! Show scrollbar
-*xterm*scrollBar: true
+!*xterm*scrollBar: true
 
 ! Put scrollbar on the right.
-*xterm*rightScrollBar: true
+!*xterm*rightScrollBar: true
 
 ! Scrollback buffer
 *xterm*saveLines: 10000
