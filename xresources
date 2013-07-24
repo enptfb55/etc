@@ -1,17 +1,11 @@
 ! Filename:         ~/dotfiles/xresources
-! Last modified:    2013.07.15
+! Last modified:    2013.07.24
 
 ! Default size of new xterm window
 *xterm*geometry: 165x65
 
 ! Allow for lots of colors
 *xterm*termName: xterm-256color
-
-! Show scrollbar
-!*xterm*scrollBar: true
-
-! Put scrollbar on the right.
-!*xterm*rightScrollBar: true
 
 ! Scrollback buffer
 *xterm*saveLines: 10000
