@@ -25,6 +25,9 @@ Bundle 'L9'
 " Find files easily.
 Bundle 'FuzzyFinder'
 
+" Easy commenting.
+Bundle 'scrooloose/nerdcommenter'
+
 
 filetype plugin indent on       " Required for Vundle
 
@@ -178,7 +181,7 @@ if has("autocmd")
 endif " has("autocmd")
 
 
-" NERD settings
+" NERDCommenter settings
 "
 "
 
