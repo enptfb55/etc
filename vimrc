@@ -29,7 +29,9 @@ Bundle 'FuzzyFinder'
 Bundle 'scrooloose/nerdcommenter'
 
 
-filetype plugin indent on       " Required for Vundle
+filetype on
+filetype plugin indent on
+filetype plugin on
 
 
 
@@ -185,8 +187,8 @@ endif " has("autocmd")
 "
 "
 
-let NERDSpaceDelims=1           " Insert a space after each comment character.
-let NERDDefaultAlign='start'    " Align comments at index 0 on toggle.
+let NERDSpaceDelims=1             " Insert a space after each comment character.
+let NERDDefaultAlign='start'      " Align comments at index 0 on toggle.
 
 
 
