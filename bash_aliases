@@ -38,9 +38,6 @@ alias cdf='cd ~/world/worldfin/src/worldfin/filters'
 alias cdk='cd ~/world/kelvin/src/kelvin'
 alias cdm='cd ~/world/worldfin/src/markets'
 alias cdp='cd ~/world/portal/lib'
-# alias cds='cd ~/world/strategy/src'
-# alias cdt='cd ~/world/testing/lib/worldtest'
-# alias cdw='cd ~/world'
 alias cdwf='cd ~/world/worldfin/src/worldfin'
 
 
