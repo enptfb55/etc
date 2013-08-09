@@ -2,6 +2,7 @@
 # Last modified:    2013.08.02
 
 alias acc='awk '\''{s+=$1} END {print s}'\'''   # Add up all numbers in a column
+alias cp='cp -i'
 alias df='df -h'
 alias egrep='egrep --color=auto --binary-files=without-match'
 alias fgrep='fgrep --color=auto --binary-files=without-match'
@@ -17,8 +18,9 @@ alias ll='ls -lahF --group-directories-first'
 alias l='ls --color=auto --group-directories-first'
 alias loc='locate -d $HOME/mlocate.db:/var/lib/mlocate/mlocate.db'
 alias ls='ls --color=auto --group-directories-first'
-alias m='make'
-alias mc='make clean'
+alias m='time make'
+alias mc='time make clean'
+alias mi='time make install'
 alias mount='mount | column -t'
 alias mv='mv -i'
 alias nsg='sudo netstat -anp | grep --line-number --color=auto'
