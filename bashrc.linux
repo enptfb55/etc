@@ -1,13 +1,6 @@
 # Filename:         ~/dotfiles/bashrc.linux
-# Last modified:    2013 12 05
+# Last modified:    2013 12 06
 
-
-# If the dotfiles/bash.d directory exists, source everything in there.
-if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
-    for d in ${HOME}/dotfiles/bash.linux.d/*; do
-        source ${d}
-    done
-fi
 
 
 # This stuff was taken from the default debian bashrc.
@@ -44,9 +37,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-
 ####################################################################################################
-
 
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
@@ -82,4 +73,10 @@ export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 # TODO: Is this needed? Load custom X config.
 xrdb -merge ~/dotfiles/xresources
 
+# If the dotfiles/bash.d directory exists, source everything in there.
+if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
+    for d in ${HOME}/dotfiles/bash.linux.d/*; do
+        source ${d}
+    done
+fi
 

@@ -1,13 +1,6 @@
 # Filename:         ~/dotfiles/bashrc.linux
-# Last modified:    2013 12 05
+# Last modified:    2013 12 06
 
-
-# If the dotfiles/bash.d directory exists, source everything in there.
-if [[ -d "${HOME}/dotfiles/bash.osx.d" ]]; then
-    for d in ${HOME}/dotfiles/bash.osx.d/*; do
-        source ${d}
-    done
-fi
 
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
@@ -39,3 +32,12 @@ if [[ -d "/opt/local/etc/bash_completion.d" ]]; then
         source ${d}
     done
 fi
+
+# If the dotfiles/bash.d directory exists, source everything in there.
+if [[ -d "${HOME}/dotfiles/bash.osx.d" ]]; then
+    for d in ${HOME}/dotfiles/bash.osx.d/*; do
+        source ${d}
+    done
+fi
+
+
