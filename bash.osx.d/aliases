@@ -1,4 +1,7 @@
 # Filename:         ~/dotfiles/bash.osx.d/aliases
 # Last modified:    2013 12 05
 
-
+alias ll='ls -GlahF'
+alias l='ls -G'
+alias lr='ls -Glatrh'
+alias ls='ls -G'

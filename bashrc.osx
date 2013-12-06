@@ -12,8 +12,9 @@ fi
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
 export EDITOR=vim
-export LS_COLORS=
-export PATH=${HOME}/bin:${HOME}/local/bin:/opt/bin:${PATH}:/sbin
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export PATH=${HOME}/bin:${HOME}/local/bin:/opt/bin:/opt/local/bin:${PATH}:/sbin
 
 # Internationalization variables.
 # export LC_ALL="en_US.UTF-8"     # Set all language vars to UTF-8 US English.
