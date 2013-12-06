@@ -1,5 +1,5 @@
-# Filename:         ~/dotfiles/bash.d/aliases
-# Last modified:    2013.08.14
+# Filename:         ~/dotfiles/bash.linux.d/aliases
+# Last modified:    2013 12 05
 
 alias acc='awk '\''{s+=$1} END {print s}'\'''   # Add up all numbers in a column
 alias cp='cp -i'

@@ -1,10 +1,10 @@
 # Filename:         ~/dotfiles/bashrc.linux
-# Last modified:    2013 12 04
+# Last modified:    2013 12 05
 
 
 # If the dotfiles/bash.d directory exists, source everything in there.
-if [[ -d "${HOME}/dotfiles/bash.d" ]]; then
-    for d in ${HOME}/dotfiles/bash.d/*; do
+if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
+    for d in ${HOME}/dotfiles/bash.linux.d/*; do
         source ${d}
     done
 fi
