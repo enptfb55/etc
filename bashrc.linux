@@ -70,8 +70,10 @@ fi
 # Store python interpreter history.
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
-# TODO: Is this needed? Load custom X config.
-xrdb -merge ~/dotfiles/xresources
+# Only load xresources if we have an X display defined.
+if [[ -n ${DISPLAY} ]]; then
+    xrdb -merge ~/dotfiles/xresources
+fi
 
 # If the dotfiles/bash.d directory exists, source everything in there.
 if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
