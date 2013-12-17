@@ -1,7 +1,9 @@
-# Filename:         ~/dotfiles/bashrc.linux
-# Last modified:    2013 12 06
+# Filename:         ~/dotfiles/bashrc.osx
+# Last modified:    2013 12 17
 
+echo "BASHRC.OSX"
 
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
 export EDITOR=vim
@@ -16,15 +18,10 @@ export LC_COLLATE="C"           # Sort file listings with directories and dotfil
 # Ignore certain file types in tab-completion.
 FIGNORE='.o:.tso:.class:.pyc'
 
-# Allow su to root to use $DISPLAY
-if [[ -n ${DISPLAY} ]]; then
-    xhost local:root > /dev/null
-fi
-
 # Store python interpreter history.
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
-# TODO: Is this needed? Load custom X config.
+# Is this needed? Load custom X config.
 xrdb -merge ~/dotfiles/xresources
 
 if [[ -d "/opt/local/etc/bash_completion.d" ]]; then
@@ -39,5 +36,4 @@ if [[ -d "${HOME}/dotfiles/bash.osx.d" ]]; then
         source ${d}
     done
 fi
-
 
