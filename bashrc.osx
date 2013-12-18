@@ -1,7 +1,6 @@
 # Filename:         ~/dotfiles/bashrc.osx
 # Last modified:    2013 12 17
 
-echo "BASHRC.OSX"
 
 source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
@@ -21,19 +20,22 @@ FIGNORE='.o:.tso:.class:.pyc'
 # Store python interpreter history.
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
-# Is this needed? Load custom X config.
-xrdb -merge ~/dotfiles/xresources
+# Only load xresources if we have an X display defined.
+if [[ -n ${DISPLAY} ]]; then
+    xrdb -merge ~/dotfiles/xresources
+fi
 
+# Load the bash completion scripts if they're available.
 if [[ -d "/opt/local/etc/bash_completion.d" ]]; then
-    for d in /opt/local/etc/bash_completion.d/*; do
-        source ${d}
+    for file in /opt/local/etc/bash_completion.d/*; do
+        source ${file}
     done
 fi
 
 # If the dotfiles/bash.d directory exists, source everything in there.
 if [[ -d "${HOME}/dotfiles/bash.osx.d" ]]; then
-    for d in ${HOME}/dotfiles/bash.osx.d/*; do
-        source ${d}
+    for file in ${HOME}/dotfiles/bash.osx.d/*; do
+        source ${file}
     done
 fi
 
