@@ -1,5 +1,5 @@
 # Filename:         ~/dotfiles/bashrc.osx
-# Last modified:    2013 12 17
+# Last modified:    2014 01 05
 
 source /opt/local/share/git-core/contrib/completion/git-completion.bash
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
@@ -19,10 +19,11 @@ FIGNORE='.o:.tso:.class:.pyc'
 # Store python interpreter history.
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
+# TODO: Fix this.
 # Only load xresources if we have an X display defined.
-if [[ -n ${DISPLAY} ]]; then
-    xrdb -merge ~/dotfiles/xresources
-fi
+# if [[ -n ${DISPLAY} ]]; then
+#     xrdb -merge ~/dotfiles/xresources
+# fi
 
 # Load the bash completion scripts if they're available.
 if [[ -d "/opt/local/etc/bash_completion.d" ]]; then
