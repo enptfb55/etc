@@ -1,5 +1,5 @@
 # Filename:         ~/dotfiles/bashrc.linux
-# Last modified:    2013 12 09
+# Last modified:    2014 04 09
 
 
 
@@ -9,8 +9,12 @@
 # Don't put duplicate lines in the history. See bash(1) for more options. Don't overwrite GNU
 # Midnight Commander's setting of 'ignorespace'.
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
+
 # ... or force ignoredups and ignorespace.
 HISTCONTROL=ignoreboth
+
+# Massively increase the size of the history file.
+HISTSIZE=20000
 
 # Append to the history file, don't overwrite it.
 shopt -s histappend
