@@ -1,5 +1,5 @@
 # Filename:         ~/dotfiles/bash.linux.d/aliases
-# Last modified:    2013 12 05
+# Last modified:    2014.05.01
 
 alias acc='awk '\''{s+=$1} END {print s}'\'''   # Add up all numbers in a column
 alias cp='cp -i'
@@ -21,6 +21,7 @@ alias lr='ls -latrh --color=auto --group-directories-first'
 alias ls='ls --color=auto --group-directories-first'
 alias m='time make'
 alias mc='time make clean'
+alias mcm='make clean && make'
 alias mi='time make install'
 alias mount='mount | column -t'
 alias mp3_info='mediainfo --Output=file:///home/brian/bin/mp3_info'
