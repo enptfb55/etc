@@ -1,0 +1,37 @@
+# steps:
+# 1. augment your ~/.hgrc file with the below
+# 2. run hg Clone
+
+
+[defaults]
+# Pull = -u
+log = -f
+
+[extensions]
+color =
+hgext.extdiff =
+hgk =
+purge =
+rebase =
+shelve =
+subext = /home/bmcguire/world/.lib/subext.py
+hgext.kerberos = /home/bmcguire/world/.lib/kerberos.py
+
+[ui]
+username = bmcguire
+
+[auth]
+wfd.prefix = http://code.wfd/
+# wfd.username = bmcguire
+
+[extdiff]
+cmd.meld =
+
+[color]
+status.modified = cyan
+status.added = green
+status.removed = red
+status.deleted = cyan
+status.unknown = white
+status.ignored = white
+
