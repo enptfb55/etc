@@ -4,8 +4,10 @@
 
 
 [defaults]
-# Pull = -u
 log = -f
+commit = .
+diff = .
+review = -f .
 
 [extensions]
 color =
