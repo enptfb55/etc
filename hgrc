@@ -1,13 +1,8 @@
-# steps:
-# 1. augment your ~/.hgrc file with the below
-# 2. run hg Clone
-
+# Filename:         ~/dotfiles/hgrc
+# Last modified:    2014.06.08
 
 [defaults]
 log = -f
-commit = .
-diff = .
-review = -f .
 
 [extensions]
 color =
