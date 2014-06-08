@@ -86,7 +86,7 @@ set laststatus=2                " Tell vim to always put a status line in, even 
 set showtabline=2               " Show a tabbar on top, always
 
 " Vim behavior
-set history=1000                " Number of commands and search history to remember.
+set history=10000               " Number of commands and search history to remember.
 set modeline                    " Allow files to include a 'mode line' to override vim defaults.
 set modelines=5                 " Check the first 5 lines for a modeline.
 set nobackup                    " Do not keep backup files.
