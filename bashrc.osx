@@ -16,6 +16,9 @@ export LC_COLLATE="C"           # Sort file listings with directories and dotfil
 # Ignore certain file types in tab-completion.
 FIGNORE='.o:.tso:.class:.pyc'
 
+# Increase the size of our history.
+export HISTFILESIZE=10000
+
 # Store python interpreter history.
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
