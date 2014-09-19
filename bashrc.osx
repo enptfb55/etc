@@ -1,7 +1,7 @@
 # Filename:         ~/dotfiles/bashrc.osx
-# Last modified:    2014 01 05
+# Last modified:    2014.09.19
 
-source /opt/local/share/git-core/contrib/completion/git-completion.bash
+source /opt/local/share/git/contrib/completion/git-completion.bash
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
 export EDITOR=vim
