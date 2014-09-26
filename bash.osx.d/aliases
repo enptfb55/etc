@@ -1,6 +1,7 @@
 # Filename:         ~/dotfiles/bash.osx.d/aliases
-# Last modified:    2014 05 08
+# Last modified:    2014.09.26
 
+alias df='df -h'
 alias ll='ls -GlahF'
 alias l='ls -G'
 alias lr='ls -Glatrh'
@@ -15,6 +16,8 @@ alias loc='locate -d $HOME/mlocate.db'
 alias lr='ls -latrh --color=auto --group-directories-first'
 alias m='time make'
 alias mc='time make clean'
+alias mcm='make clean && make'
+alias mcmi='make clean && make install'
 alias mi='time make install'
 alias mount='mount | column -t'
 alias mp3_info='mediainfo --Output=file:///home/brian/bin/mp3_info'
