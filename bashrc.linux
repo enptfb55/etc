@@ -1,6 +1,5 @@
 # Filename:         ~/dotfiles/bashrc.linux
-# Last modified:    2014.06.04
-
+# Last modified:    2014.10.07
 
 
 # This stuff was taken from the default debian bashrc.
@@ -79,10 +78,14 @@ if [[ -n ${DISPLAY} ]]; then
     xrdb -merge ~/dotfiles/xresources
 fi
 
+# Enable core dumps (if not enabled already
+ulimit -c unlimited
+
 # If the dotfiles/bash.d directory exists, source everything in there.
 if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
     for d in ${HOME}/dotfiles/bash.linux.d/*; do
         source ${d}
     done
 fi
+
 
