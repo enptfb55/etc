@@ -1,5 +1,5 @@
 # Filename:         ~/dotfiles/hgrc
-# Last modified:    2014.06.08
+# Last modified:    2014.10.24
 
 [defaults]
 log = -f
@@ -11,15 +11,13 @@ hgk =
 purge =
 rebase =
 shelve =
-subext = /home/bmcguire/world/.lib/subext.py
-hgext.kerberos = /home/bmcguire/world/.lib/kerberos.py
+subext =
+hgext.kerberos =
 
 [ui]
 username = bmcguire
 
 [auth]
-wfd.prefix = http://code.wfd/
-# wfd.username = bmcguire
 
 [extdiff]
 cmd.meld =
