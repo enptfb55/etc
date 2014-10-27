@@ -2,7 +2,7 @@
 " Last modified: 2013 12 17
 
 
-set colorcolumn=101             " Highlight the 101th column.
+set colorcolumn=100             " Highlight the 101th column.
 
 
 " Vundle shit.
