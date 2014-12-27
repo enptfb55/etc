@@ -1,5 +1,5 @@
 " Filename:      ~/dotfiles/vimrc.linux
-" Last modified: 2014 12 26
+" Last modified: 2014 12 27
 
 
 if exists('+colorcolumn')
