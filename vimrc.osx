@@ -19,12 +19,6 @@ Bundle 'gmarik/vundle'
 " Alternate between h and cpp files.
 Bundle 'a.vim'
 
-" Dependency for FuzzyFinder
-Bundle 'L9'
-
-" Find files easily.
-Bundle 'FuzzyFinder'
-
 " Easy commenting.
 Bundle 'scrooloose/nerdcommenter'
 
@@ -141,25 +135,6 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 inoremap jj <Esc>
 inoremap jk <Esc>
 
-
-" FuzzyFinder tweaks.
-"
-"
-" Make a shortcut to the directory-recursing file search.
-nnoremap <Leader>f :FufFile **/<cr>
-
-" limit number of displayed matches
-" (makes response instant even on huge source trees)
-let g:fuf_enumeratingLimit = 60
-
-" Ignore these directories and file extensions.
-let s:slash = '[/\\]'
-let s:startname = '(^|'.s:slash.')'
-let s:endname = '($|'.s:slash.')'
-let s:extension = '\.a|\.bak|\.bin|\.d|\.html|\.jpg|\.o|\.pyc|\.pyx|\.so|\.tsdbo|\.tso|\.ui'
-let s:dirname = 'build|deploy|dist|3rdparty|sandbox|\.git|\.hg|.+\.egg-info'
-let g:fuf_file_exclude = '\v'.'('.s:startname.'('.s:dirname.')'.s:endname.')|(('.s:extension.')$)'
-let g:fuf_dir_exclude = '\v'.s:startname.'('.s:dirname.')'.s:endname
 
 " Filetype specific handling.
 " (Only do this part when compiled with support for autocommands.)
