@@ -56,7 +56,10 @@ set incsearch                   " Show search matches as you type.
 set list                        " Display unprintable characters.
 set listchars=tab:»·,trail:·,extends:#,nbsp:·
 
-set relativenumber              " Always show (relative) line numbers.
+if exists('+relativenumber')
+    set relativenumber              " Always show (relative) line numbers.
+endif
+
 set scrolloff=4                 " Keep 4 lines off the edges of the screen when scrolling.
 
 set showmatch                   " Show matching parentheses.
