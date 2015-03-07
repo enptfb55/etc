@@ -3,7 +3,7 @@
 
 
 # This stuff was taken from the default debian bashrc.
-####################################################################################################
+###################################################################################################
 
 # Don't put duplicate lines in the history. See bash(1) for more options. Don't overwrite GNU
 # Midnight Commander's setting of 'ignorespace'.
@@ -34,13 +34,13 @@ case "$TERM" in
         ;;
 esac
 
-# Enable programmable completion features (you don't need to enable this, if it's already enabled in
-# /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
+# Enable programmable completion features (you don't need to enable this, if it's already enabled
+# in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-####################################################################################################
+###################################################################################################
 
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
@@ -63,22 +63,24 @@ export KDE_SESSION_VERSION=4
 FIGNORE='.o:.tso:.class:.pyc'
 
 # Map caps lock to escape
-/usr/bin/xmodmap ~/dotfiles/xmodmap &> /dev/null
+if [[ -x /usr/bin/xmodmap ]]; then
+    /usr/bin/xmodmap ~/dotfiles/xmodmap &> /dev/null
+fi
 
 # Allow su to root to use $DISPLAY
-if [[ -n ${DISPLAY} ]]; then
-    xhost local:root > /dev/null
+if [[ -n ${DISPLAY} && -x /usr/bin/xhost ]]; then
+    /usr/bin/xhost local:root > /dev/null
 fi
 
 # Store python interpreter history.
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
 # Only load xresources if we have an X display defined.
-if [[ -n ${DISPLAY} ]]; then
-    xrdb -merge ~/dotfiles/xresources
+if [[ -n ${DISPLAY} && -x /usr/bin/xrdb ]]; then
+    /usr/bin/xrdb -merge ~/dotfiles/xresources
 fi
 
-# Enable core dumps (if not enabled already
+# Enable core dumps (if not enabled already)
 ulimit -c unlimited
 
 # If the dotfiles/bash.d directory exists, source everything in there.
@@ -87,5 +89,3 @@ if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
         source ${d}
     done
 fi
-
-
