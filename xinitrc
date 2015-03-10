@@ -1,19 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Filename:          ~/dotfiles/xinitrc
-# Last modified:     2013 06 27
+# Last modified:     2015 03 09
 
-user_resources=$HOME/dotfiles/xresources
-user_modmap=$HOME/dotfiles/xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
+user_resources=${HOME}/.Xresources
+user_modmap=${HOME}/.xmodmap
+sys_resources=/etc/X11/xinit/.Xresources
+sys_modmap=/etc/X11/xinit/.Xmodmap
 
-xrdb -merge $user_resources
-xmodmap $user_modmap
+xrdb -merge ${user_resources}
+xmodmap ${user_modmap}
 
-case "$1" in
-    kde)        exec startkde ;;
-    openbox)    exec openbox-session ;;
-    xfce*)      exec xfce4-session ;;
-    *)          exec xfce4-session ;;
-esac
+exec xfce4-session
