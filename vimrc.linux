@@ -1,12 +1,17 @@
 " Filename:      ~/dotfiles/vimrc.linux
-" Last modified: 2014 12 27
+" Last modified: 2015.05.08
 
 
 if exists('+colorcolumn')
     set colorcolumn=100
-else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
 endif
+
+
+" Set up utf-8 encoding so that certain characters in listchars can be used.
+"
+"
+scriptencoding utf-8
+set encoding=utf-8
 
 
 " Vundle shit.
@@ -21,7 +26,7 @@ call vundle#rc()                " Some kind of Vundle magic.
 Bundle 'gmarik/vundle'
 
 " Alternate between h and cpp files.
-Bundle 'a.vim'
+Bundle 'alternate'
 
 " Easy commenting.
 Bundle 'scrooloose/nerdcommenter'
@@ -59,6 +64,7 @@ if exists('+relativenumber')
     set relativenumber              " Always show (relative) line numbers.
 endif
 
+set numberwidth=3               " Reduce the size of the gutter column (where line numbers show up).
 set scrolloff=4                 " Keep 4 lines off the edges of the screen when scrolling.
 
 set showmatch                   " Show matching parentheses.
@@ -151,11 +157,6 @@ if has("autocmd")
     " Turn off 'spaces instead of tabs' for editing makefiles
     autocmd FileType make setlocal noexpandtab
 
-    " Support Google Protocol Buffer syntax highlighting
-    augroup filetype
-        au! BufRead,BufNewFile *.proto setfiletype proto
-    augroup end
-
     " Wrap text to 80 chars in *.txt files.
     autocmd BufRead,BufNewFile *.txt set textwidth=80
 
@@ -201,4 +202,7 @@ if &term =~ '^xterm' || &term =~ '^screen'
 
 endif
 
-"eof
+
+" Fix for weird iskeyword settings.
+set iskeyword-=-
+set iskeyword-=+
