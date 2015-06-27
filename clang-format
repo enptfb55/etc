@@ -1,0 +1,147 @@
+# Filename:     .clang_format
+# Last Updated: 2014.10.27
+
+
+# The extra indent or outdent of access modifiers, e.g. public:.
+AccessModifierOffset: -4
+
+# If true, aligns escaped newlines as far left as possible. Otherwise puts them into the right-most
+# column.
+AlignEscapedNewlinesLeft: false
+
+# If true, aligns trailing comments.
+AlignTrailingComments: true
+
+# Allow putting all parameters of a function declaration onto the next line even if
+# BinPackParameters is false.
+AllowAllParametersOfDeclarationOnNextLine: false
+
+# Allows contracting simple braced statements to a single line.
+AllowShortBlocksOnASingleLine: false
+
+# If true, short case labels will be contracted to a single line.
+# AllowShortCaseLabelsOnASingleLine: true
+
+# If true, while (true) continue; can be put on a single line.
+AllowShortIfStatementsOnASingleLine: true
+
+# Dependent on the value, int f() { return 0; } can be put on a single line.
+AllowShortFunctionsOnASingleLine: Inline
+
+# If true, while (true) continue; can be put on a single line.
+AllowShortLoopsOnASingleLine: false
+
+# If true, always break after function definition return types.
+# AlwaysBreakAfterDefinitionReturnType: false
+
+# If true, always break before multiline string literals.
+AlwaysBreakBeforeMultilineStrings: true
+
+# If true, always break after the template<...> of a template declaration.
+AlwaysBreakTemplateDeclarations: true
+
+# If false, a function call’s arguments will either be all on the same line or will have one line
+# each.
+# BinPackArguments: false
+
+# If false, a function declaration’s or function definition’s parameters will either all be on the
+# same line or will have one line each.
+BinPackParameters: false
+
+# The way to wrap binary operators.
+BreakBeforeBinaryOperators: false
+
+# If true, ternary operators will be placed after line breaks.
+BreakBeforeTernaryOperators: true
+
+# Always break before braces.
+BreakBeforeBraces: Allman
+
+# Always break constructor initializers before commas and align the commas with the colon.
+BreakConstructorInitializersBeforeComma: false
+
+# The column limit.
+ColumnLimit: 99
+
+# A regular expression that describes comments with special meaning, which should not be split into
+# lines or otherwise changed.
+CommentPragmas: ""
+
+# If the constructor initializers don’t fit on a line, put each initializer on its own line.
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
+# The number of characters to use for indentation of constructor initializer lists.
+ConstructorInitializerIndentWidth: 4
+
+# Indent width for line continuations.
+ContinuationIndentWidth: 4
+
+# If true, format braced lists as best suited for C++11 braced lists.
+Cpp11BracedListStyle: true
+
+# If true, analyze the formatted file for the most common alignment of & and *. PointerAlignment is
+# then used only as fallback.
+DerivePointerAlignment: false
+
+# Disables formatting at all.
+DisableFormat: false
+
+# Indent case labels one level from the switch statement.
+IndentCaseLabels: false
+
+# The number of columns to use for indentation.
+IndentWidth: 4
+
+# Indent if a function definition or declaration is wrapped after the type.
+IndentWrappedFunctionNames: true
+
+# If true, empty lines at the start of blocks are kept.
+KeepEmptyLinesAtTheStartOfBlocks: false
+
+# Language, this format style is targeted at.
+Language: Cpp
+
+# The maximum number of consecutive empty lines to keep.
+MaxEmptyLinesToKeep: 2
+
+# The indentation used for namespaces.
+NamespaceIndentation: All
+
+# Pointer and reference alignment style.
+PointerAlignment: Left
+
+# If true, a space may be inserted after C style casts.
+# SpaceAfterCStyleCast: false
+
+# If false, spaces will be removed before assignment operators.
+SpaceBeforeAssignmentOperators: true
+
+# Defines in which cases to put a space before opening parentheses.
+SpaceBeforeParens: true
+
+# If true, spaces may be inserted into ‘()’.
+SpaceInEmptyParentheses: false
+
+# The number of spaces before trailing line comments (// - comments).
+SpacesBeforeTrailingComments: 1
+
+# If true, spaces will be inserted after ‘<’ and before ‘>’ in template argument lists
+SpacesInAngles: false
+
+# If true, spaces may be inserted into C style casts.
+SpacesInCStyleCastParentheses: false
+
+# If true, spaces will be inserted after ‘(‘ and before ‘)’.
+SpacesInParentheses: true
+
+# If true, spaces will be inserted after ‘[‘ and before ‘]’.
+# SpacesInSquareBrackets: false
+
+# Format compatible with this standard, e.g. use A<A<int> > instead of A<A<int>> for LS_Cpp03.
+Standard: Cpp11
+
+# The number of columns used for tab stops.
+TabWidth: 4
+
+# Tabs instead of spaces.
+UseTab: Never
