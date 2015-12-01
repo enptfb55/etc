@@ -71,7 +71,6 @@ set showmatch                   " Show matching parentheses.
 set pastetoggle=<F2>            " When in insert mode, press <F2> to go to paste mode, where you can paste mass data that won't be autoindented.
 set mouse=a                     " Enable the mouse if the terminal supports it.
 set noerrorbells visualbell t_vb=       " Don't beep or flash when error message is printed.
-autocmd GUIEnter * set visualbell t_vb= " Don't flash when running gvim.
 
 
 " Speed up scrolling of the viewport slightly.
@@ -108,14 +107,7 @@ set splitright                  " New vertical-split window appears on right.
 syntax enable
 syntax on
 
-" Gvim settings
-if has("gui_running")
-    colorscheme brians_cs                           " Color scheme.
-    set guifont=Fixed\ Medium\ Semi-Condensed\ 10   " Font.
-    set guioptions-=T                               " No toolbar.
-else
-    colorscheme my_inkpot
-endif
+colorscheme my_inkpot
 
 " Adjust "TODO" colors.
 highlight Todo guifg=#40ffff guibg=#606060
