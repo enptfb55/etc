@@ -40,7 +40,6 @@ set wrap                        " Wrap lines at window edge.
 
 set expandtab                   " Insert spaces instead of tabs.
 set tabstop=4                   " Tabs are replaced by 4 spaces.
-set smarttab                    " Treat 4 spaces as a tab when deleting.
 set autoindent                  " Copy indent size from current line to new line.
 set copyindent                  " Copy previous line's indent characters.
 set shiftwidth=4                " Number of spaces to use for autoindenting.
@@ -56,11 +55,11 @@ set list                        " Display unprintable characters.
 set listchars=tab:»·,trail:·,extends:#,nbsp:·
 
 if exists('+relativenumber')
-    set relativenumber              " Always show (relative) line numbers.
+    set relativenumber          " Always show (relative) line numbers.
 endif
 
 if exists('+colorcolumn')
-    set colorcolumn=100             " Draw a line down a specific column
+    set colorcolumn=100         " Draw a line down a specific column
 endif
 
 set numberwidth=3               " Reduce the size of the gutter column (where line numbers show up).
@@ -69,7 +68,6 @@ set scrolloff=4                 " Keep 4 lines off the edges of the screen when 
 set showmatch                   " Show matching parentheses.
 set pastetoggle=<F2>            " When in insert mode, press <F2> to go to paste mode, where you can paste mass data that won't be autoindented.
 set mouse=a                     " Enable the mouse if the terminal supports it.
-set noerrorbells visualbell t_vb=       " Don't beep or flash when error message is printed.
 
 
 " Speed up scrolling of the viewport slightly.
@@ -95,7 +93,7 @@ set title                       " Show the filename in the window title.
 set undolevels=1000             " Lots of undo history.
 set viminfo='20,\"80            " Read/write a .viminfo file, but don't store more than 80 lines of registers.
 set wildmenu                    " Use enhanced command line completion.
-set wildignore=*.bak,*.o,*.a    " Ignore these files in file completion.
+set wildignore=*.a,*.o,*.pyc,*.so " Ignore these files in file completion.
 set wildmode=longest,list       " Make tab completion for files/buffers act like bash.
 set splitbelow                  " New horizontal-split window appears on bottom.
 set splitright                  " New vertical-split window appears on right.
@@ -125,12 +123,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Clears the search register
+" Clears the search register by typing ',' then '/'
 nmap <silent> <leader>/ :nohlsearch<CR>
 
-" Quickly get out of insert mode without your fingers having to leave the
-" home row (either use 'jj' or 'jk')
-inoremap jj <Esc>
+" Quickly get out of insert mode by typing 'jk'
 inoremap jk <Esc>
 
 
@@ -139,10 +135,6 @@ inoremap jk <Esc>
 "
 "
 if has("autocmd")
-
-    augroup vim_files
-        au!
-    augroup end
 
     " Turn off 'spaces instead of tabs' for editing makefiles
     autocmd FileType make setlocal noexpandtab
