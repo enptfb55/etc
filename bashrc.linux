@@ -62,7 +62,7 @@ export KDE_FULL_SESSION=true
 export KDE_SESSION_VERSION=4
 
 # Ignore certain file types in tab-completion.
-FIGNORE='.o:.tso:.class:.pyc'
+FIGNORE='.o:.pyc'
 
 # Map caps lock to escape
 if [[ -x /usr/bin/xmodmap ]]; then
@@ -91,3 +91,6 @@ if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
         source ${d}
     done
 fi
+
+# enable colors in gcc
+export GCC_COLORS='error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10'
