@@ -40,6 +40,7 @@ set wrap                        " Wrap lines at window edge.
 
 set expandtab                   " Insert spaces instead of tabs.
 set tabstop=4                   " Tabs are replaced by 4 spaces.
+set smarttab                    " Treat 4 spaces as a tab when deleting.
 set autoindent                  " Copy indent size from current line to new line.
 set copyindent                  " Copy previous line's indent characters.
 set shiftwidth=4                " Number of spaces to use for autoindenting.
