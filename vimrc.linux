@@ -12,24 +12,24 @@ set encoding=utf-8
 " Vundle shit.
 "
 "
-set nocompatible                " This must be first because it changes other options as side effect
-filetype off                    " Disable filetype detection.
-set rtp+=~/.vim/bundle/vundle   " Add Vundle to the path.
-call vundle#rc()                " Some kind of Vundle magic.
+set nocompatible                  " This must be first because it changes other options as side effect
+filetype off                      " Disable filetype detection.
+set rtp+=~/.vim/bundle/Vundle.vim " Add Vundle to the path.
+call vundle#begin()               " Some kind of Vundle magic.
 
 " Let Vundle manage Vundle (required).
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Alternate between h and cpp files.
-Bundle 'alternate'
+Plugin 'a.vim'
 
 " Easy commenting.
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'The-NERD-Commenter'
 
+call vundle#end()
 
 filetype on
 filetype plugin indent on
-filetype plugin on
 
 
 " Editing behavior
@@ -119,7 +119,7 @@ highlight Todo guifg=#40ffff guibg=#606060
 nnoremap ; :
 
 " Change the mapleader from \ to ,
-let mapleader=","
+let g:mapleader=","
 
 " Easy window navigation
 map <C-h> <C-w>h
@@ -147,14 +147,6 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.txt set textwidth=80
 
 endif " has("autocmd")
-
-
-" NERDCommenter settings
-"
-"
-let NERDSpaceDelims=1             " Insert a space after each comment character.
-let NERDDefaultAlign='start'      " Align comments at index 0 on toggle.
-
 
 
 " This is here so that tmux will send xterm-style keys when its xterm-keys option is on.
