@@ -1,0 +1,10 @@
+[color]
+    ui = true
+[diff]
+[user]
+    email = btmcg@users.noreply.github.com
+    name = btmcg
+[credential]
+    helper = cache --timeout=3600
+[push]
+    default = simple
