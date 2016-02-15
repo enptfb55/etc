@@ -1,5 +1,5 @@
-# Filename:         ~/dotfiles/bashrc.linux
-# Last modified:    2015.12.05
+# Filename:      ~/dotfiles/bashrc.linux
+# Last modified: 2016.02.15
 
 
 # This stuff was taken from the default debian bashrc.
@@ -25,15 +25,6 @@ shopt -s checkwinsize
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-    xterm*|rxvt*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-        ;;
-    *)
-        ;;
-esac
-
 # Enable programmable completion features (you don't need to enable this, if it's already enabled
 # in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
@@ -53,13 +44,6 @@ export PATH=${HOME}/local/bin:/opt/bin:${PATH}:/sbin
 # Internationalization variables.
 # export LC_ALL="en_US.UTF-8"     # Set all language vars to UTF-8 US English.
 export LC_COLLATE="C"           # Sort file listings with directories and dotfiles first.
-
-# Enable Oxygen (and other) themes in Qt.
-export QT_PLUGIN_PATH=${HOME}/.kde/lib/kde4/plugins:/usr/lib/kde4/plugins:/usr/lib/qt/plugins:/usr/lib/qt4/plugins
-
-# Hack to get download icons in chromium
-export KDE_FULL_SESSION=true
-export KDE_SESSION_VERSION=4
 
 # Ignore certain file types in tab-completion.
 FIGNORE='.o:.pyc'
