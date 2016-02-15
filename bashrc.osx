@@ -2,16 +2,11 @@
 # Last modified:    2014.09.19
 
 source /opt/local/share/git/contrib/completion/git-completion.bash
-export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
+PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
-export EDITOR=vim
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export PATH=${HOME}/bin:${HOME}/local/bin:/opt/bin:/opt/local/bin:${PATH}:/sbin
-
-# Internationalization variables.
-# export LC_ALL="en_US.UTF-8"     # Set all language vars to UTF-8 US English.
-export LC_COLLATE="C"           # Sort file listings with directories and dotfiles first.
 
 # Ignore certain file types in tab-completion.
 FIGNORE='.o:.tso:.class:.pyc'
