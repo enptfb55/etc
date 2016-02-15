@@ -3,10 +3,10 @@
 
 
 # This stuff was taken from the default debian bashrc.
-###################################################################################################
+###############################################################################
 
-# Don't put duplicate lines in the history. See bash(1) for more options. Don't overwrite GNU
-# Midnight Commander's setting of 'ignorespace'.
+# Don't put duplicate lines in the history. See bash(1) for more options. Don't
+# overwrite GNU Midnight Commander's setting of 'ignorespace'.
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
 
 # ... or force ignoredups and ignorespace.
@@ -18,20 +18,21 @@ HISTSIZE=20000
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
-# Check the window size after each command and, if necessary, update the values of LINES and
-# COLUMNS.
+# Check the window size after each command and, if necessary, update the values
+# of LINES and COLUMNS.
 shopt -s checkwinsize
 
 # Make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Enable programmable completion features (you don't need to enable this, if it's already enabled
-# in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
+# Enable programmable completion features (you don't need to enable this, if
+# it's already enabled in /etc/bash.bashrc and /etc/profile sources
+# /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-###################################################################################################
+###############################################################################
 
 export PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
@@ -42,8 +43,8 @@ export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd
 export PATH=${HOME}/local/bin:/opt/bin:${PATH}:/sbin
 
 # Internationalization variables.
-# export LC_ALL="en_US.UTF-8"     # Set all language vars to UTF-8 US English.
-export LC_COLLATE="C"           # Sort file listings with directories and dotfiles first.
+# export LC_ALL="en_US.UTF-8" # Set all language vars to UTF-8 US English.
+export LC_COLLATE="C" # Sort file listings with directories and dotfiles first.
 
 # Ignore certain file types in tab-completion.
 FIGNORE='.o:.pyc'
