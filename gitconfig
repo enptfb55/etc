@@ -1,3 +1,6 @@
+[alias]
+    st = status
+    unstage = reset HEAD --
 [color]
     ui = true
 [diff]
@@ -8,3 +11,4 @@
     helper = cache --timeout=3600
 [push]
     default = simple
+
