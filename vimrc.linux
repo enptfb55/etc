@@ -17,14 +17,17 @@ filetype off                      " Disable filetype detection.
 set rtp+=~/.vim/bundle/Vundle.vim " Add Vundle to the path.
 call vundle#begin()               " Some kind of Vundle magic.
 
-" Let Vundle manage Vundle (required).
+" let Vundle manage Vundle (required).
 Plugin 'VundleVim/Vundle.vim'
 
-" Alternate between h and cpp files.
+" alternate between h and cpp files.
 Plugin 'a.vim'
 
-" Easy commenting.
+" easy commenting.
 Plugin 'The-NERD-Commenter'
+
+" c++11/14 syntax highlighting
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 call vundle#end()
 

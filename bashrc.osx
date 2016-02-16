@@ -1,21 +1,27 @@
 # Filename:      ~/dotfiles/bashrc.osx
 # Last modified: 2016.02.15
 
-source /opt/local/share/git/contrib/completion/git-completion.bash
+
+export PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/bin:/opt/local/bin:${PATH}:/sbin
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+
+# increase the size of our history
+HISTFILESIZE=10000
+
+
 PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
-export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-export PATH=${HOME}/local/bin:/opt/bin:/opt/local/bin:${PATH}:/sbin
+export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xpm=00;35:*.png=00;35:"
 
-# Ignore certain file types in tab-completion.
-FIGNORE='.o:.tso:.class:.pyc'
 
-# Increase the size of our history.
-export HISTFILESIZE=10000
+# ignore certain file types in tab-completion
+FIGNORE='.o:.pyc'
 
-# Store python interpreter history.
+# store python interpreter history
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
+
+# store a homebrew personal access token
+export HOMEBREW_GITHUB_API_TOKEN=f5c8d00364fe1f9208df4aeba3c2dad1a8cd7899
 
 # TODO: Fix this.
 # Only load xresources if we have an X display defined.
@@ -30,6 +36,9 @@ if [[ -d "/opt/local/etc/bash_completion.d" ]]; then
     done
 fi
 
+# bash completion for homebrew
+source $(brew --repository)/Library/Contributions/brew_bash_completion.sh
+
 # If the dotfiles/bash.d directory exists, source everything in there.
 if [[ -d "${HOME}/dotfiles/bash.osx.d" ]]; then
     for file in ${HOME}/dotfiles/bash.osx.d/*; do
@@ -37,3 +46,5 @@ if [[ -d "${HOME}/dotfiles/bash.osx.d" ]]; then
     done
 fi
 
+# enable colors in gcc
+export GCC_COLORS='error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10'
