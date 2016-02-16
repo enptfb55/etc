@@ -1,0 +1,6 @@
+set ftp:ssl-allow yes
+set net:max-retries 5
+set net:reconnect-interval-base 10
+set net:timeout 10
+set pget:default-n 20
+set xfer:verify true
