@@ -1,5 +1,5 @@
-# Filename:         ~/dotfiles/bash.osx.d/00_aliases
-# Last modified:    2015.03.01
+# Filename:      ~/dotfiles/bash.osx.d/00_aliases
+# Last modified: 2016.02.15
 
 alias df='df -h'
 alias findx='find . -type d \( -name ".svn" -o -name ".git" \) -prune -o -type f -print0 | xargs -0 grep --binary-files=without-match --color=auto'
@@ -8,12 +8,12 @@ alias findxpy='find . -type d \( -name ".svn" -o -name ".git" \) -prune -o -type
 alias g='grep --binary-files=without-match --color=always --line-number'
 alias gerp='grep --binary-files=without-match --color=always'
 alias grep='grep --binary-files=without-match --color=always'
-alias l='ls -G'
-alias ll='ls -GlahF'
-alias ll='ls -lah'
-alias lr='ls -Glatrh'
-alias lr='ls -latrh'
-alias ls='ls -G'
+alias l='ls --color=auto --group-directories-first'
+alias ll='ls -la --classify --color=auto --group-directories-first --human-readable'
+alias loc='locate --database ${HOME}/local/cache/mlocate/mlocate.db'
+alias lr='ls -lat --color=auto --group-directories-first --human-readable --reverse'
+alias ls='ls --color=auto --group-directories-first'
+alias lsof_net='lsof -P -i 4 -n'
 alias m='make'
 alias mc='make clean'
 alias mcm='make clean && make'
@@ -22,7 +22,7 @@ alias mi='make install'
 alias mv='mv -i'
 alias nsg='sudo netstat -anp | grep --color=always --line-number'
 alias psg='ps -Lef | grep -v grep | grep --color=always --line-number'
-alias sl='ls -G'
+alias sl='ls --color=auto --group-directories-first'
 alias vi='vim -O'
 alias vim='vim -O'
 alias vmi='vim -O'
