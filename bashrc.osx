@@ -2,7 +2,7 @@
 # Last modified: 2016.02.16
 
 
-export PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/bin:/opt/local/bin:${PATH}:/sbin
+export PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/sbin:${PATH}
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 
 # don't put duplicate lines in the history
