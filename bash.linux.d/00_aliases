@@ -2,6 +2,7 @@
 # Last modified:    2016.02.15
 
 alias acc='awk '\''{s+=$1} END {print s}'\'''   # Add up all numbers in a column
+alias chromium='chromium --password-store=basic --user-data-dir=${HOME}/.chromium'
 alias cp='cp --interactive'
 alias dc='cd'
 alias df='df --human-readable'
