@@ -1,21 +1,11 @@
-# Filename:         ~/dotfiles/bash.linux.d/01_functions
-# Last modified:    2016.02.15
+# Filename:      ~/dotfiles/bash.osx.d/01_functions
+# Last modified: 2016.02.16
 
 
 # calculator
 function ?()
 {
     echo "$*" | bc --mathlib
-}
-
-
-# show bash colors
-function colors()
-{
-    for i in {0..255}; do
-        echo -e "\e[38;05;${i}m${i}"
-    done | column -c 80 -s "  "
-    echo -e "\e[m"
 }
 
 
@@ -30,11 +20,4 @@ function man()
         LESS_TERMCAP_ue=$'\E[0m' \
         LESS_TERMCAP_us=$'\E[04;38;5;146m' \
         man "$@"
-}
-
-
-# prints the largest debs installed
-function installed()
-{
-    dpkg-query --show --showformat='${Installed-Size}\t${Package}\n' | sort --numeric-sort
 }
