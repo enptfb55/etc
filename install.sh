@@ -2,6 +2,9 @@
 # Filename:      ~/dotfiles/install.sh
 # Last modified: 2016.02.16
 
+mkdir -p ${HOME}/.config/htop
+mkdir -p ${HOME}/.i3
+
 ln -sf ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
 ln -sf ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
 ln -sf ${HOME}/dotfiles/gdbinit ${HOME}/.gdbinit
