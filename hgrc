@@ -1,5 +1,5 @@
-# Filename:         ~/dotfiles/hgrc
-# Last modified:    2014.10.24
+# Filename:      ~/dotfiles/hgrc
+# Last modified: 2015.02.15
 
 [defaults]
 log = -f
@@ -15,7 +15,7 @@ subext =
 hgext.kerberos =
 
 [ui]
-username = bmcguire
+username = btmcg
 
 [auth]
 
