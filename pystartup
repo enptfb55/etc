@@ -1,9 +1,11 @@
+#!/usr/bin/env python
+
 import atexit
 import os
 import readline
 import rlcompleter
 
-historyPath = os.path.expanduser("~/.pyhistory")
+historyPath = os.path.expanduser("~/.history/pyhistory")
 
 def save_history(historyPath=historyPath):
     import readline

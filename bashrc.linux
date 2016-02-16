@@ -2,9 +2,6 @@
 # Last modified: 2016.02.15
 
 
-# This stuff was taken from the default debian bashrc.
-###############################################################################
-
 # Don't put duplicate lines in the history. See bash(1) for more options. Don't
 # overwrite GNU Midnight Commander's setting of 'ignorespace'.
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
@@ -12,8 +9,14 @@ HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
 # ... or force ignoredups and ignorespace.
 HISTCONTROL=ignoreboth
 
+# change location of bash_history file
+HISTFILE=${HOME}/.history/bash_history
+
 # Massively increase the size of the history file.
 HISTSIZE=20000
+
+# change location of less history file
+export LESSHISTFILE=${HOME}/.history/less_history
 
 # Append to the history file, don't overwrite it.
 shopt -s histappend
