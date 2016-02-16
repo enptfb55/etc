@@ -1,36 +1,36 @@
 # Filename:      ~/dotfiles/bashrc.linux
-# Last modified: 2016.02.15
+# Last modified: 2016.02.16
 
 
-# Don't put duplicate lines in the history. See bash(1) for more options. Don't
-# overwrite GNU Midnight Commander's setting of 'ignorespace'.
+# don't put duplicate lines in the history
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
 
-# ... or force ignoredups and ignorespace.
+# ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
 
 # change location of bash_history file
 HISTFILE=${HOME}/.history/bash_history
 
-# Massively increase the size of the history file.
+# massively increase the size of the history file
 HISTSIZE=20000
+HISTFILESIZE=100000
 
 # change location of less history file
 export LESSHISTFILE=${HOME}/.history/less_history
 
-# Append to the history file, don't overwrite it.
+# append to the history file, don't overwrite it
 shopt -s histappend
 
-# Check the window size after each command and, if necessary, update the values
-# of LINES and COLUMNS.
+# check the window size after each command and, if necessary, update the values
+# of LINES and COLUMNS
 shopt -s checkwinsize
 
-# Make less more friendly for non-text input files, see lesspipe(1).
+# make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Enable programmable completion features (you don't need to enable this, if
+# enable programmable completion features (you don't need to enable this, if
 # it's already enabled in /etc/bash.bashrc and /etc/profile sources
-# /etc/bash.bashrc).
+# /etc/bash.bashrc)
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
@@ -42,31 +42,31 @@ PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xpm=00;35:*.png=00;35:"
 
 
-# Ignore certain file types in tab-completion.
+# ignore certain file types in tab-completion
 FIGNORE='.o:.pyc'
 
-# Map caps lock to escape
+# map caps lock to escape
 if [[ -x /usr/bin/xmodmap ]]; then
     /usr/bin/xmodmap ~/dotfiles/xmodmap &> /dev/null
 fi
 
-# Allow su to root to use $DISPLAY
+# allow su to root to use $DISPLAY
 if [[ -n ${DISPLAY} && -x /usr/bin/xhost ]]; then
     /usr/bin/xhost local:root > /dev/null
 fi
 
-# Store python interpreter history.
+# store python interpreter history
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
-# Only load xresources if we have an X display defined.
+# only load xresources if we have an X display defined
 if [[ -n ${DISPLAY} && -x /usr/bin/xrdb ]]; then
     /usr/bin/xrdb -merge ~/dotfiles/xresources
 fi
 
-# Enable core dumps (if not enabled already)
+# enable core dumps (if not enabled already)
 ulimit -c unlimited
 
-# If the dotfiles/bash.d directory exists, source everything in there.
+# if the dotfiles/bash.d directory exists, source everything in there
 if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
     for d in ${HOME}/dotfiles/bash.linux.d/*; do
         source ${d}

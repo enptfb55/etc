@@ -1,13 +1,44 @@
 # Filename:      ~/dotfiles/bashrc.osx
-# Last modified: 2016.02.15
+# Last modified: 2016.02.16
 
 
 export PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/bin:/opt/local/bin:${PATH}:/sbin
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 
-# increase the size of our history
-HISTFILESIZE=10000
+# don't put duplicate lines in the history
+HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
 
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoreboth
+
+# change location of bash_history file
+HISTFILE=${HOME}/.history/bash_history
+
+# massively increase the size of the history file
+HISTSIZE=20000
+HISTFILESIZE=100000
+
+# change location of less history file
+export LESSHISTFILE=${HOME}/.history/less_history
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary, update the values
+# of LINES and COLUMNS
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# enable programmable completion features (you don't need to enable this, if
+# it's already enabled in /etc/bash.bashrc and /etc/profile sources
+# /etc/bash.bashrc)
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+###############################################################################
 
 PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
