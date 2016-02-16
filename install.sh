@@ -6,7 +6,7 @@ ln -sf ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
 ln -sf ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
 ln -sf ${HOME}/dotfiles/gdbinit ${HOME}/.gdbinit
 ln -sf ${HOME}/dotfiles/gitconfig ${HOME}/.gitconfig
-ln -sf ${HOME}/dotfiles/htoprc ${HOME}/.htoprc
+ln -sf ${HOME}/dotfiles/htoprc ${HOME}/.config/htop/htoprc
 ln -sf ${HOME}/dotfiles/i3config ${HOME}/.i3/config
 ln -sf ${HOME}/dotfiles/i3status.conf ${HOME}/.i3status.conf
 ln -sf ${HOME}/dotfiles/inputrc ${HOME}/.inputrc
