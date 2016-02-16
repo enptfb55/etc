@@ -6,8 +6,12 @@
 # set vim as default editor
 export EDITOR=vim
 
+# sort file listings with directories and dotfiles first.
+export LC_COLLATE="C"
+
 # set up default path
 export PATH=${HOME}/local/bin:/opt/bin:${PATH}:/sbin
 
-# sort file listings with directories and dotfiles first.
-export LC_COLLATE="C"
+# change default location of the Xauthority file
+export XAUTHORITY=/tmp/xauthority-${USER}
+
