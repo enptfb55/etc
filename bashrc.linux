@@ -2,14 +2,14 @@
 # Last modified: 2016.02.16
 
 
+# change location of bash_history file
+HISTFILE=${HOME}/.history/bash_history
+
 # don't put duplicate lines in the history
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
 
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
-
-# change location of bash_history file
-HISTFILE=${HOME}/.history/bash_history
 
 # massively increase the size of the history file
 HISTSIZE=20000
@@ -25,9 +25,6 @@ shopt -s histappend
 # of LINES and COLUMNS
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # enable programmable completion features (you don't need to enable this, if
 # it's already enabled in /etc/bash.bashrc and /etc/profile sources
 # /etc/bash.bashrc)
@@ -37,10 +34,7 @@ fi
 
 ###############################################################################
 
-PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
-
 export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xpm=00;35:*.png=00;35:"
-
 
 # ignore certain file types in tab-completion
 FIGNORE='.o:.pyc'
@@ -68,10 +62,13 @@ ulimit -c unlimited
 
 # if the dotfiles/bash.d directory exists, source everything in there
 if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
-    for d in ${HOME}/dotfiles/bash.linux.d/*; do
-        source ${d}
+    for file in ${HOME}/dotfiles/bash.linux.d/*; do
+        source ${file}
     done
 fi
 
 # enable colors in gcc
 export GCC_COLORS='error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10'
+
+PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
+
