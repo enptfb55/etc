@@ -1,5 +1,5 @@
-# Filename:         ~/dotfiles/bash.linux.d/00_aliases
-# Last modified:    2016.02.15
+# Filename:      ~/dotfiles/bash.linux.d/00_aliases
+# Last modified: 2016.02.16
 
 alias acc='awk '\''{s+=$1} END {print s}'\'''   # Add up all numbers in a column
 alias cp='cp --interactive'
@@ -24,8 +24,6 @@ alias lsof_net='lsof -P -i 4 -n'
 alias m='make'
 alias mc='make clean'
 alias mcm='make clean && make'
-alias mcmi='make clean && make install'
-alias mdc='make distclean'
 alias mi='make install'
 alias mount='mount | column -t'
 alias mp3_info='mediainfo --Output=file:///home/brian/bin/mp3_info'
