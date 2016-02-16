@@ -31,19 +31,7 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# enable programmable completion features (you don't need to enable this, if
-# it's already enabled in /etc/bash.bashrc and /etc/profile sources
-# /etc/bash.bashrc)
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-###############################################################################
-
-PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
-
 export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xpm=00;35:*.png=00;35:"
-
 
 # ignore certain file types in tab-completion
 FIGNORE='.o:.pyc'
@@ -53,6 +41,13 @@ export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
 # store a homebrew personal access token
 export HOMEBREW_GITHUB_API_TOKEN=f5c8d00364fe1f9208df4aeba3c2dad1a8cd7899
+
+# enable programmable completion features (you don't need to enable this, if
+# it's already enabled in /etc/bash.bashrc and /etc/profile sources
+# /etc/bash.bashrc)
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
 
 # load the bash completion scripts if they're available
 if [[ -d "/opt/local/etc/bash_completion.d" ]]; then
@@ -64,6 +59,10 @@ fi
 # bash completion for homebrew
 source $(brew --repository)/Library/Contributions/brew_bash_completion.sh
 
+# bash completion for git
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+
 # if the dotfiles/bash.d directory exists, source everything in there
 if [[ -d "${HOME}/dotfiles/bash.osx.d" ]]; then
     for file in ${HOME}/dotfiles/bash.osx.d/*; do
@@ -73,3 +72,5 @@ fi
 
 # enable colors in gcc
 export GCC_COLORS='error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10'
+
+PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
