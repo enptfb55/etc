@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Filename:      ~/dotfiles/install.sh
+# Filename:      ~/dotfiles/bootstrap.sh
 # Last modified: 2016.02.16
 
 mkdir --parents ${HOME}/.config/htop
