@@ -55,8 +55,12 @@ set ignorecase                  " Ignore case when searching.
 set smartcase                   " Ignore case if search pattern is all lowercase, case-sensitive otherwise.
 set incsearch                   " Show search matches as you type.
 
-set list                        " Display unprintable characters.
-set listchars=tab:»·,trail:·,extends:>,precedes:<,nbsp:·
+set list                        " display unprintable characters
+set listchars=tab:»·
+set listchars+=trail:·
+set listchars+=extends:>
+set listchars+=precedes:<
+set listchars+=nbsp:·
 
 if exists('+relativenumber')
     set relativenumber          " Always show (relative) line numbers.
