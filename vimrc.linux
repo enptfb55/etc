@@ -56,7 +56,7 @@ set smartcase                   " Ignore case if search pattern is all lowercase
 set incsearch                   " Show search matches as you type.
 
 set list                        " Display unprintable characters.
-set listchars=tab:»·,trail:·,extends:#,nbsp:·
+set listchars=tab:»·,trail:·,extends:>,precedes:<,nbsp:·
 
 if exists('+relativenumber')
     set relativenumber          " Always show (relative) line numbers.
@@ -73,6 +73,7 @@ set showmatch                   " Show matching parentheses.
 set pastetoggle=<F2>            " When in insert mode, press <F2> to go to paste mode, where you can paste mass data that won't be autoindented.
 set mouse=a                     " Enable the mouse if the terminal supports it.
 
+set formatoptions+=j            " delete comment character when joining commented lines
 
 " Speed up scrolling of the viewport slightly.
 nnoremap <C-e> 2<C-e>
