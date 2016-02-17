@@ -23,11 +23,11 @@ Plugin 'VundleVim/Vundle.vim'
 " alternate between h and cpp files.
 Plugin 'a.vim'
 
-" easy commenting.
-Plugin 'The-NERD-Commenter'
-
 " c++11/14 syntax highlighting
 Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" easy commenting
+Plugin 'tpope/vim-commentary'
 
 call vundle#end()
 
@@ -144,11 +144,11 @@ inoremap jk <Esc>
 "
 if has("autocmd")
 
-    " Turn off 'spaces instead of tabs' for editing makefiles
+    " turn off 'spaces instead of tabs' for editing makefiles
     autocmd FileType make setlocal noexpandtab
 
-    " Wrap text to 80 chars in *.txt files.
-    autocmd BufRead,BufNewFile *.txt set textwidth=80
+    " use c++-style comments for c++ files (for vim commentary plugin)
+    autocmd FileType cpp setlocal commentstring=//\ %s
 
 endif " has("autocmd")
 
