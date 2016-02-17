@@ -111,8 +111,13 @@ syntax on
 
 colorscheme my_inkpot
 
-" Adjust "TODO" colors.
+" adjust "TODO" colors
 highlight Todo guifg=#40ffff guibg=#606060
+
+" (experimental) allow color schemes to do bright colors without forcing bold
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+    set t_Co=16
+endif
 
 
 " Shortcuts
