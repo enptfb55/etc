@@ -70,5 +70,8 @@ fi
 # enable colors in gcc
 export GCC_COLORS='error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10'
 
+# don't clear the screen after quitting a man page
+export MANPAGER='less -X'
+
 PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
 
