@@ -12,6 +12,7 @@ ln --force --symbolic ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
 ln --force --symbolic ${HOME}/dotfiles/gdbinit ${HOME}/.gdbinit
 ln --force --symbolic ${HOME}/dotfiles/gitconfig ${HOME}/.gitconfig
 ln --force --symbolic ${HOME}/dotfiles/htoprc ${HOME}/.config/htop/htoprc
+ln --force --symbolic ${HOME}/dotfiles/hushlogin ${HOME}/.hushlogin
 ln --force --symbolic ${HOME}/dotfiles/i3config ${HOME}/.i3/config
 ln --force --symbolic ${HOME}/dotfiles/i3status.conf ${HOME}/.i3status.conf
 ln --force --symbolic ${HOME}/dotfiles/inputrc ${HOME}/.inputrc
