@@ -78,6 +78,7 @@ set pastetoggle=<F2>            " When in insert mode, press <F2> to go to paste
 set mouse=a                     " Enable the mouse if the terminal supports it.
 
 set formatoptions+=j            " delete comment character when joining commented lines
+set nojoinspaces                " only insert single space after joining lines
 
 " Speed up scrolling of the viewport slightly.
 nnoremap <C-e> 2<C-e>
