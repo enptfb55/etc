@@ -4,6 +4,8 @@
 
 mkdir --parents ${HOME}/.config/htop
 mkdir --parents ${HOME}/.i3
+mkdir --parents ${HOME}/dotfiles/tmux/plugins
+mkdir --parents ${HOME}/dotfiles/vim/bundle
 
 ln --force --symbolic ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
 ln --force --symbolic ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
