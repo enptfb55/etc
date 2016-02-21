@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # Filename:      ~/dotfiles/bootstrap.sh
-# Last modified: 2016.02.16
+# Last modified: 2016.02.21
 
 mkdir --parents ${HOME}/.config/htop
 mkdir --parents ${HOME}/.i3
 mkdir --parents ${HOME}/dotfiles/tmux/plugins
 mkdir --parents ${HOME}/dotfiles/vim/bundle
+mkdir --parents ${HOME}/local
 
 ln --force --symbolic ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
 ln --force --symbolic ${HOME}/dotfiles/bashrc ${HOME}/.bashrc
