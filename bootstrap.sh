@@ -21,6 +21,7 @@ ln --force --symbolic ${HOME}/dotfiles/lftprc ${HOME}/.lftprc
 ln --force --symbolic ${HOME}/dotfiles/profile ${HOME}/.profile
 ln --force --symbolic ${HOME}/dotfiles/tmux.conf ${HOME}/.tmux.conf
 ln --force --no-dereference --symbolic ${HOME}/dotfiles/tmux ${HOME}/.tmux
+ln --force --symbolic ${HOME}/dotfiles/toprc ${HOME}/.toprc
 ln --force --no-dereference --symbolic ${HOME}/dotfiles/vim ${HOME}/.vim
 ln --force --symbolic ${HOME}/dotfiles/vimrc ${HOME}/.vimrc
 ln --force --symbolic ${HOME}/dotfiles/xinitrc ${HOME}/.xinitrc
