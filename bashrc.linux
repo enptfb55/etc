@@ -1,5 +1,5 @@
 # Filename:      ~/dotfiles/bashrc.linux
-# Last modified: 2016.02.16
+# Last modified: 2016.02.21
 
 
 # change location of bash_history file
@@ -41,7 +41,7 @@ FIGNORE='.o:.pyc'
 
 # map caps lock to escape
 if [[ -x /usr/bin/xmodmap ]]; then
-    /usr/bin/xmodmap ~/dotfiles/xmodmap &> /dev/null
+    /usr/bin/xmodmap ${HOME}/.Xmodmap &> /dev/null
 fi
 
 # allow su to root to use $DISPLAY
@@ -54,7 +54,7 @@ export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
 
 # only load xresources if we have an X display defined
 if [[ -n ${DISPLAY} && -x /usr/bin/xrdb ]]; then
-    /usr/bin/xrdb -merge ~/dotfiles/xresources
+    /usr/bin/xrdb -merge ${HOME}/.Xresources
 fi
 
 # enable core dumps (if not enabled already)
