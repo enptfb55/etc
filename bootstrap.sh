@@ -3,10 +3,11 @@
 # Last modified: 2016.02.21
 
 mkdir --parents ${HOME}/.config/htop
+mkdir --mode=0700 --parents ${HOME}/.history
 mkdir --parents ${HOME}/.i3
 mkdir --parents ${HOME}/dotfiles/tmux/plugins
 mkdir --parents ${HOME}/dotfiles/vim/bundle
-mkdir --parents ${HOME}/local
+mkdir --mode=0700 --parents ${HOME}/local/cache/mlocate
 
 ln --force --symbolic ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile
 ln --force --symbolic ${HOME}/dotfiles/bashrc ${HOME}/.bashrc

@@ -3,17 +3,17 @@
 
 
 # change location of bash_history file
-HISTFILE=${HOME}/.history/bash_history
+export HISTFILE=${HOME}/.history/bash_history
 
 # don't put duplicate lines in the history
-HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
+export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
 
 # ... or force ignoredups and ignorespace
-HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth
 
 # massively increase the size of the history file
-HISTSIZE=20000
-HISTFILESIZE=100000
+export HISTSIZE=20000
+export HISTFILESIZE=100000
 
 # change location of less history file
 export LESSHISTFILE=${HOME}/.history/less_history
