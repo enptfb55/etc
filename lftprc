@@ -1,3 +1,4 @@
+set dns:order inet # only do dns look-ups in ipv4
 set ftp:ssl-allow yes
 set net:max-retries 5
 set net:reconnect-interval-base 10
