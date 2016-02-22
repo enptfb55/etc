@@ -20,7 +20,7 @@ case $(uname -s) in
         ;;
     "Darwin")
         PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:${PATH}
-        MANPATH=${HOME}/local/man:/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+        MANPATH=${HOME}/local/man:/usr/local/opt/coreutils/libexec/gnuman:/usr/local/share/man:${MANPATH}
         ;;
     *)
         echo ".profile: Unknown OS"
