@@ -19,7 +19,7 @@ case $(uname -s) in
         MANPATH=${HOME}/local/man:${MANPATH}
         ;;
     "Darwin")
-        PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/sbin:${PATH}
+        PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:${PATH}
         MANPATH=${HOME}/local/man:/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
         ;;
     *)
