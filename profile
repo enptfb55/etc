@@ -1,7 +1,10 @@
+#!/usr/bin/env sh
+
 # Filename:      ~/dotfiles/profile
 # Last modified: 2016.02.21
 # This should contain environment variables not specific to any shell.
 
+echo "+++ .profile"
 
 # set vim as default editor
 export EDITOR=vim
@@ -10,9 +13,22 @@ export EDITOR=vim
 export LC_COLLATE="C"
 
 # set up default path and manpath
-export PATH=${HOME}/local/bin:${PATH}:/sbin
-export MANPATH=${HOME}/local/man:${MANPATH}
+case $(uname -s) in
+    "Linux")
+        PATH=${HOME}/local/bin:${PATH}:/sbin
+        MANPATH=${HOME}/local/man:${MANPATH}
+        ;;
+    "Darwin")
+        PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/sbin:${PATH}
+        MANPATH=${HOME}/local/man:/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+        ;;
+    *)
+        echo ".profile: Unknown OS"
+        exit 1
+        ;;
+esac
 
 # change default location of the Xauthority file
 export XAUTHORITY=/tmp/xauthority-${USER}
 
+export MANPATH PATH
