@@ -44,15 +44,17 @@ confirm "hushlogin?" \
     && ${LN} ${HOME}/dotfiles/hushlogin ${HOME}/.hushlogin
 
 confirm "i3?" \
-    && ${MKDIR} ${HOME}/.i3 \
-    && ${LN} ${HOME}/dotfiles/i3config ${HOME}/.i3/config \
-    && ${LN} ${HOME}/dotfiles/i3status.conf ${HOME}/.i3status.conf
+    && ${MKDIR} ${HOME}/.config/i3 \
+    && ${MKDIR} ${HOME}/.config/i3status \
+    && ${LN} ${HOME}/dotfiles/i3config ${HOME}/.config/i3/config \
+    && ${LN} ${HOME}/dotfiles/i3status.conf ${HOME}/.config/i3status/config
 
 confirm "locate?" \
     && ${MKDIR} ${HOME}/local/cache/mlocate
 
 confirm "lftp?" \
-    && ${LN} ${HOME}/dotfiles/lftprc ${HOME}/.lftprc
+    && ${MKDIR} ${HOME}/.config/lftp \
+    && ${LN} ${HOME}/dotfiles/lftprc ${HOME}/.config/lftp/rc
 
 confirm "tmux?" \
     && ${MKDIR} ${HOME}/dotfiles/tmux/plugins \
