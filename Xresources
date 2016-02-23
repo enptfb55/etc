@@ -1,32 +1,33 @@
-! Filename:         ~/dotfiles/xresources
-! Last modified:    2014.06.02
+! Filename:      ~/dotfiles/Xresources
+! Last modified: 2016.02.23
 
-! Default size of new xterm window
-*xterm*geometry: 165x59
+! default size of new xterm window
+Xterm*VT100.geometry: 165x59
 
-! Allow for lots of colors
-*xterm*termName: xterm-256color
+! store 10,000 lines of buffer history
+XTerm*saveLines: 10000
 
-! Scrollback buffer
-*xterm*saveLines: 10000
+! set default background and foreground colors
+XTerm*foreground: grey90
+XTerm*background: grey25
 
-! Silence bell by making it visible only.
-! *xterm*visualBell: true
+! make cursor white
+Xterm*cursorColor: white
 
-! Use the urgent-flag on a bell-event to alert when an xterm has new data.
-*xterm*bellIsUrgent: true
+! turn off scrollbars
+XTerm*scrollBar: false
+XTerm*rightScrollBar: false
 
-! Background and foreground colors.
-*xterm*foreground: grey90
-*xterm*background: grey25
+! Xcursor.size: 0
+! Xcursor.theme: neutral
+! Xcursor.theme_core: 1
+! Xft.antialias: 1
+! Xft.dpi: 96
+! Xft.hintstyle: hintfull
+! Xft.rgba: rgb
 
-! Make cursor white
-*xterm*cursorColor: white
+! support all incoming data as utf-8
+XTerm*locale: true
 
-Xcursor.size:       0
-Xcursor.theme:      neutral
-Xcursor.theme_core: 1
-Xft.antialias:      1
-Xft.dpi:            96
-Xft.hintstyle:      hintfull
-Xft.rgba:           rgb
+! enable utf-8 support in xterm
+XTerm*utf8: true
