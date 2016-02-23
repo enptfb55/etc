@@ -7,12 +7,8 @@ function confirm()
     read -n 1 -r -p "${1:-Are you sure? [y/N]} " response
     echo
     case ${response} in
-        y)
-            true
-            ;;
-        *)
-            false
-            ;;
+        y) true ;;
+        *) false ;;
     esac
 }
 
@@ -21,6 +17,7 @@ LN="ln --force --symbolic"
 LN_DIR="ln --force --no-dereference --symbolic"
 
 ${MKDIR} ${HOME}/.history
+${MKDIR} ${HOME}/.logs
 
 confirm "bash?" \
     && ${LN} ${HOME}/dotfiles/bash_profile ${HOME}/.bash_profile \

@@ -1,14 +1,12 @@
-#!/usr/bin/env bash
+# Filename:      ~/dotfiles/xinitrc
+# Last modified: 2016.02.22
 
-# Filename:          ~/dotfiles/xinitrc
-# Last modified:     2015.12.05
+# disable bell
+xset -b
 
-user_resources=${HOME}/.Xresources
-user_modmap=${HOME}/.xmodmap
-sys_resources=/etc/X11/xinit/.Xresources
-sys_modmap=/etc/X11/xinit/.Xmodmap
+xrdb -merge ${HOME}/.Xresources
+xmodmap ${HOME}/.Xmodmap
 
-xrdb -merge ${user_resources}
-xmodmap ${user_modmap}
-
-exec i3
+# start i3 and capture logs
+echo "starting at $(date)" >> ${HOME}/.logs/i3.log
+exec i3 -V -d all >> ${HOME}/.logs/i3.log
