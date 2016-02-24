@@ -1,7 +1,6 @@
 # Filename:         ~/dotfiles/bashrc
-# Last modified:    2013 12 04
+# Last modified:    2016.02.23
 
-echo "+++ .bashrc"
 
 case $(uname -s) in
     "Linux")

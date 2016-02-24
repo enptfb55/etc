@@ -1,10 +1,7 @@
-#!/usr/bin/env sh
-
 # Filename:      ~/dotfiles/profile
-# Last modified: 2016.02.21
+# Last modified: 2016.02.23
 # This should contain environment variables not specific to any shell.
 
-echo "+++ .profile"
 
 # set vim as default editor
 export EDITOR=vim
