@@ -2,21 +2,21 @@
 ! Last modified: 2016.02.23
 
 ! default size of new xterm window
-Xterm*VT100.geometry: 165x59
+xterm*VT100.geometry: 165x59
 
 ! store 10,000 lines of buffer history
-XTerm*saveLines: 10000
+xterm*saveLines: 10000
 
 ! set default background and foreground colors
-XTerm*foreground: grey90
-XTerm*background: grey25
+xterm*foreground: grey90
+xterm*background: grey25
 
 ! make cursor white
-Xterm*cursorColor: white
+xterm*cursorColor: white
 
 ! turn off scrollbars
-XTerm*scrollBar: false
-XTerm*rightScrollBar: false
+xterm*scrollBar: false
+xterm*rightScrollBar: false
 
 ! Xcursor.size: 0
 ! Xcursor.theme: neutral
@@ -26,8 +26,5 @@ XTerm*rightScrollBar: false
 ! Xft.hintstyle: hintfull
 ! Xft.rgba: rgb
 
-! support all incoming data as utf-8
-XTerm*locale: true
-
-! enable utf-8 support in xterm
-XTerm*utf8: true
+! enable utf-8 support in xterm ('2' is always utf mode)
+xterm*utf8: 2
