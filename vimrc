@@ -1,16 +1,16 @@
 " Filename:      ~/dotfiles/vimrc
-" Last modified: 2016.02.17
+" Last modified: 2016.02.23
 
 set runtimepath+=~/dotfiles/vim
 
-" Set up utf-8 encoding so that certain characters in listchars can be used.
+" set up utf-8 encoding so that certain characters in listchars can be used.
 "
 "
 scriptencoding utf-8
 set encoding=utf-8
 
 
-" Vundle shit.
+" vundle shit
 "
 "
 set nocompatible                  " This must be first because it changes other options as side effect
@@ -29,6 +29,9 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " easy commenting
 Plugin 'tpope/vim-commentary'
+
+" solarized color scheme
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
@@ -113,18 +116,13 @@ set splitright                  " New vertical-split window appears on right.
 " Turn off netrw history
 let g:netrw_dirhistmax = 0
 
-syntax enable
+" for solarized plugin (color scheme)
+" https://github.com/altercation/vim-colors-solarized
 syntax on
-
-colorscheme my_inkpot
-
-" adjust "TODO" colors
-highlight Todo guifg=#40ffff guibg=#606060
-
-" (experimental) allow color schemes to do bright colors without forcing bold
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-    set t_Co=16
-endif
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 
 " Shortcuts
