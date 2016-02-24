@@ -1,5 +1,5 @@
 # Filename:      ~/dotfiles/bash.linux.d/00_aliases
-# Last modified: 2016.02.16
+# Last modified: 2016.02.23
 
 alias acc='awk '\''{s+=$1} END {print s}'\'''   # Add up all numbers in a column
 alias cp='cp --interactive'
@@ -15,11 +15,11 @@ alias free='free --mega'
 alias g='grep --binary-files=without-match --color=always --directories=skip --line-number'
 alias gerp='grep --binary-files=without-match --color=always --directories=skip --line-number'
 alias grep='grep --binary-files=without-match --color=always --directories=skip --line-number'
-alias ll='ls -la --classify --color=auto --group-directories-first --human-readable'
-alias l='ls --color=auto --group-directories-first'
+alias ll='ls -la --classify --color=auto --group-directories-first --human-readable --quoting-style=literal'
+alias l='ls --color=auto --group-directories-first --quoting-style=literal'
 alias loc='locate --database ${HOME}/local/cache/mlocate/mlocate.db'
-alias lr='ls -lat --color=auto --group-directories-first --human-readable --reverse'
-alias ls='ls --color=auto --group-directories-first'
+alias lr='ls -lat --color=auto --group-directories-first --human-readable --quoting-style=literal --reverse'
+alias ls='ls --color=auto --group-directories-first --quoting-style=literal'
 alias lsof_net='lsof -P -i 4 -n'
 alias m='make'
 alias mc='make clean'
@@ -34,7 +34,7 @@ alias nsg='sudo netstat --all --numeric --program | grep --color=always --line-n
 alias psg='ps -Lef | grep --invert-match grep | grep --color=always --line-number'
 alias psc='ps xawf -eo pid,user,cgroup,args'
 alias rmdirr='find . -type d -empty -delete'
-alias sl='ls --color=auto --group-directories-first'
+alias sl='ls --color=auto --group-directories-first --quoting-style=literal'
 alias udb='updatedb --require-visibility 0 --output ${HOME}/local/cache/mlocate/mlocate.db --database-root ${HOME}'
 alias vi='vim -O'
 alias vim='vim -O'
