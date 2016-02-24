@@ -1,5 +1,5 @@
 # Filename:      ~/dotfiles/bashrc.linux
-# Last modified: 2016.02.21
+# Last modified: 2016.02.23
 
 
 # change location of bash_history file
@@ -51,11 +51,6 @@ fi
 
 # store python interpreter history
 export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
-
-# only load xresources if we have an X display defined
-if [[ -n ${DISPLAY} && -x /usr/bin/xrdb ]]; then
-    /usr/bin/xrdb -merge ${HOME}/.Xresources
-fi
 
 # enable core dumps (if not enabled already)
 ulimit -c unlimited
