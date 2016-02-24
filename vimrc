@@ -118,7 +118,6 @@ let g:netrw_dirhistmax = 0
 
 " for solarized plugin (color scheme)
 " https://github.com/altercation/vim-colors-solarized
-syntax on
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
