@@ -1,5 +1,5 @@
 " Filename:      ~/dotfiles/vimrc
-" Last modified: 2016.02.23
+" Last modified: 2016.02.24
 
 set runtimepath+=~/dotfiles/vim
 
@@ -91,7 +91,6 @@ nnoremap <C-y> 2<C-y>
 
 " Editor layout
 set termencoding=utf-8
-set encoding=utf-8
 set laststatus=2                " Tell vim to always put a status line in, even if there is only one window.
 set showtabline=2               " Show a tabbar on top, always
 
@@ -118,7 +117,7 @@ let g:netrw_dirhistmax = 0
 
 " for solarized plugin (color scheme)
 " https://github.com/altercation/vim-colors-solarized
-syntax enable
+syntax enable " allow for syntax highlighting (NOT 'syntax on' which turns on default highlighting)
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
