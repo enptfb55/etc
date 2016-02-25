@@ -1,6 +1,5 @@
 # Filename:      ~/dotfiles/bashrc.linux
-# Last modified: 2016.02.23
-
+# Last modified: 2016.02.24
 
 # change location of bash_history file
 export HISTFILE=${HOME}/.history/bash_history
@@ -32,9 +31,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-###############################################################################
-
-export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.gz=00;31:*.bz2=00;31:*.jpg=00;35:*.bmp=00;35:*.png=00;35:*.tz=00;31:"
+export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.gz=00;31:*.bz2=00;31:*.jpg=00;35:*.bmp=00;35:*.png=00;35:*.tz=00;31:*.xz=00;31:"
 
 # ignore certain file types in tab-completion
 FIGNORE='.o:.pyc'
@@ -71,4 +68,3 @@ export MANPAGER='less -X'
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
 PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
-
