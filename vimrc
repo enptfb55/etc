@@ -1,7 +1,7 @@
 " Filename:      ~/dotfiles/vimrc
 " Last modified: 2016.02.24
 
-set runtimepath+=~/dotfiles/vim
+set runtimepath+=${HOME}/.vim
 
 " set up utf-8 encoding so that certain characters in listchars can be used.
 "
