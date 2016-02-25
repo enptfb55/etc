@@ -1,7 +1,6 @@
 # Filename:      ~/dotfiles/bash.linux.d/01_functions
 # Last modified: 2016.02.17
 
-
 # calculator
 function ?()
 {
