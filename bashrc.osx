@@ -60,4 +60,4 @@ export MANPAGER='less -X'
 
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
-PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
+PS1='[\u@\h \W$(__git_ps1 " (\[\033[0;32m\]%s\[\033[0m\])")]\$ '
