@@ -10,12 +10,12 @@ export EDITOR=vim
 export LC_COLLATE="C"
 
 # set up default path and manpath
-case $(uname -s) in
-    "Linux")
+case ${OSTYPE} in
+    "linux-gnu")
         PATH=${HOME}/local/bin:${PATH}:/sbin
         MANPATH=${HOME}/local/man:${MANPATH}
         ;;
-    "Darwin")
+    "darwin"*)
         PATH=${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:${PATH}
         MANPATH=${HOME}/local/man:/usr/local/opt/coreutils/libexec/gnuman:/usr/local/share/man:${MANPATH}
         ;;
