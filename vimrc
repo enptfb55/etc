@@ -192,6 +192,13 @@ if &term =~ '^xterm' || &term =~ '^screen'
 endif
 
 
-" Fix for weird iskeyword settings.
+" fix for weird iskeyword settings.
 set iskeyword-=-
 set iskeyword-=+
+
+" allow clicking past 220 columns in tmux
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
