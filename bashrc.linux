@@ -1,5 +1,5 @@
 # Filename:      ~/dotfiles/bashrc.linux
-# Last modified: 2016.02.24
+# Last modified: 2016.02.27
 
 # change location of bash_history file
 export HISTFILE=${HOME}/.history/bash_history
@@ -55,6 +55,8 @@ export GCC_COLORS='error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:loc
 # don't clear the screen after quitting a man page
 export MANPAGER='less -X'
 
+# generate color git PS1
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
-PS1='[\u@\h \W$(__git_ps1 " (\[\e[00;32m\]%s\[\e[0;37m\])")]\$ '
+GIT_PS1_SHOWUNTRACKEDFILES=true
+PROMPT_COMMAND='__git_ps1 "[\u@\h:\w" ]"\\\$ "'
