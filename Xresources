@@ -1,5 +1,8 @@
 ! Filename:      ~/dotfiles/Xresources
-! Last modified: 2016.02.23
+! Last modified: 2016.02.27
+
+! xterm should identify the terminal as supporting 256 colors
+xterm*termName: xterm-256color
 
 ! default size of new xterm window
 xterm*VT100.geometry: 165x59
