@@ -6,8 +6,12 @@ function confirm()
 {
     read -n 1 -r -p "${1:-Are you sure? [y/N]} " response
     case ${response} in
-        y) true ;;
-        *) false; echo ;;
+    y) true ;;
+    *)
+        if [[ ${response} ]]; then
+            echo
+        fi
+        false ;;
     esac
 }
 
