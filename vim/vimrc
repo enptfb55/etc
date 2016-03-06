@@ -3,7 +3,7 @@
 
 set runtimepath+=${HOME}/.vim
 
-" Automatic reloading of .vimrc
+" automatic reloading of .vimrc
 autocmd! bufwritepost ${HOME}/.vim/vimrc source %
 
 " set up utf-8 encoding so that certain characters in listchars can be used.
@@ -108,7 +108,7 @@ set showcmd                     " Show partial command in the last line of the s
 set title                       " Show the filename in the window title.
 set undolevels=1000             " Lots of undo history.
 set viminfo='20,\"80            " Read/write a .viminfo file, but don't store more than 80 lines of registers.
-set viminfo+=n${HOME}/.history/viminfo " Change location of the viminfo file.
+set viminfo+=n${HOME}/var/vim/viminfo " change location of the viminfo file.
 set wildmenu                    " Use enhanced command line completion.
 set wildignore=*.a,*.o,*.pyc,*.so " Ignore these files in file completion.
 set wildmode=longest,list       " Make tab completion for files/buffers act like bash.

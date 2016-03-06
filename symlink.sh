@@ -62,6 +62,7 @@ function main()
     confirm "vim?" \
         && ${cmd_ln_dir} ${HOME}/etc/vim ${HOME}/.vim \
         && ${cmd_mkdir} ${HOME}/.vim/bundle \
+        && ${cmd_mkdir} ${HOME}/var/vim \
         && echo " [installed]"
 
     confirm "xinit?" \
