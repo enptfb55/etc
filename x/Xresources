@@ -24,3 +24,6 @@ xterm*rightScrollBar: false
 
 ! enable utf-8 support in xterm ('2' is always utf mode)
 xterm*utf8: 3
+
+! don't use bold, just make the text brighter
+xterm*boldMode: false

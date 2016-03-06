@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+jijadfasdf#!/usr/bin/env bash
 # Filename:      etc/symlink.sh
 # Last modified: 2016.03.05
 
