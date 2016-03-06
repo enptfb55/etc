@@ -27,7 +27,7 @@ case "${OSTYPE}" in
         ;;
 esac
 
-# keep location of Xauthority file consisten with dir structure
+# keep location of Xauthority file consistent with dir structure
 export XAUTHORITY="${HOME}/var/xauthority/xauthority"
 
 # load the user's custom bashrc

@@ -65,11 +65,6 @@ function main()
         && ${cmd_mkdir} ${HOME}/var/vim \
         && echo " [installed]"
 
-    confirm "xinit?" \
-        && ${cmd_mkdir} ${HOME}/var/log \
-        && ${cmd_ln} ${HOME}/etc/x/xinitrc ${HOME}/.xinitrc \
-        && echo " [installed]"
-
 } # main()
 
 

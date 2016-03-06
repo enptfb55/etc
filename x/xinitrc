@@ -2,28 +2,38 @@
 # Last modified: 2016.03.05
 
 
+log_path=${HOME}/var/log
+log_file=xinitrc.log
+log=${log_path}/${log_file}
+
+mkdir -p ${HOME}/var/log
+
+echo invoked on $(date) >> ${log}
+echo shell: $(readlink /proc/$$/exe) >> ${log}
+
 # load system-level xinitrc scripts
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
     for file in /etc/X11/xinit/xinitrc.d/?*.sh; do
-        [ -x "$file" ] && . "$file"
+        [ -x "$file" ] && . "$file" >> ${log}
     done
     unset file
 fi
 
 # disable bell
-xset -b
+xset -b >> ${log}
 
 if [ -s "${HOME}/etc/x/Xresources" ]; then
-    xrdb -merge ${HOME}/etc/x/Xresources
+    xrdb -merge ${HOME}/etc/x/Xresources >> ${log}
 fi
 
 if [ -s "${HOME}/etc/x/Xmodmap" ]; then
-    xmodmap ${HOME}/etc/x/Xmodmap
+    xmodmap ${HOME}/etc/x/Xmodmap >> ${log}
 fi
 
 # allow su to root to use ${DISPLAY}
-xhost local:root > /dev/null
+xhost local:root >> ${log}
 
 # start i3 and capture logs
-echo "starting at $(date)" >> ${HOME}/var/log/i3.log
-exec i3 -V -d all >> ${HOME}/var/log/i3.log
+env | sort | tee --append ${log} ${log_path}/i3.log
+echo "starting i3 at $(date)" | tee --append ${log} ${log_path}/i3.log
+exec i3 -c ${HOME}/etc/i3/config -V -d all >> ${log_path}/i3.log
