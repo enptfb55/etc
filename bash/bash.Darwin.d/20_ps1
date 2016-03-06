@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Filename:      etc/bash/bash.Darwin.d/20_ps1
+# Last modified: 2016.03.05
+
+
+export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'

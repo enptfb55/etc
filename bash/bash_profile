@@ -30,6 +30,58 @@ esac
 # keep location of Xauthority file consistent with dir structure
 export XAUTHORITY="${HOME}/var/xauthority/xauthority"
 
+# change location of bash_history file
+export HISTFILE="${HOME}/var/bash/bash_history"
+
+# don't put duplicate lines in the history
+export HISTCONTROL="${HISTCONTROL}${HISTCONTROL+:}ignoredups:erasedups"
+
+# ... or force ignoredups and ignorespace
+export HISTCONTROL=ignoreboth
+
+# massively increase the size of the history file
+export HISTSIZE=20000
+export HISTFILESIZE=100000
+
+# change location of less history file
+export LESSHISTFILE="${HOME}/var/less/less_history"
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary, update the values
+# of LINES and COLUMNS
+shopt -s checkwinsize
+
+# make bash options (set by shopt) propagate to all child shell processes
+export BASHOPTS
+
+# add some colors to ls
+export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.gz=00;31:*.bz2=00;31:*.jpg=00;35:*.bmp=00;35:*.png=00;35:*.tz=00;31:*.xz=00;31:"
+
+# ignore certain file types in tab-completion
+export FIGNORE=".o:.pyc"
+
+# run this script each time an interactive python session starts
+export PYTHONSTARTUP="${HOME}/etc/python/python_startup.py"
+
+# enable core dumps (if not enabled already)
+ulimit -c unlimited
+
+# enable colors in gcc
+export GCC_COLORS='error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10'
+
+# don't clear the screen after quitting a man page
+export MANPAGER='less -X'
+
+# turn off flow control (ctrl-s, ctrl-q)
+stty -ixon
+
+# __git_ps1 shell prompt settings
+GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+
 # load the user's custom bashrc
 if [[ -f "${HOME}/.bashrc" ]]; then
     source "${HOME}/.bashrc"

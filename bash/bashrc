@@ -4,4 +4,9 @@
 # This file is only sourced for interactive non-login shells.
 
 
-source "${HOME}/etc/bash/bashrc.$(uname -s)"
+# if the bash.d directory exists, source everything in there
+if [[ -d "${HOME}/etc/bash/bash.$(uname -s).d" ]]; then
+    for file in ${HOME}/etc/bash/bash.$(uname -s).d/*; do
+        source ${file}
+    done
+fi
