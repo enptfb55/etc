@@ -27,8 +27,8 @@ function main()
         && echo " [installed]"
 
     confirm "htop?" \
-        && ${MKDIR} ${HOME}/.config/htop \
-        && ${LN} ${HOME}/etc/htop/htoprc ${HOME}/.config/htop/htoprc \
+        && ${cmd_mkdir} ${HOME}/.config/htop \
+        && ${cmd_ln} ${HOME}/etc/htop/htoprc ${HOME}/.config/htop/htoprc \
         && echo " [installed]"
 
     confirm "inputrc?" \
