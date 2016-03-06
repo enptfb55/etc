@@ -47,8 +47,8 @@ function main()
         && echo " [installed]"
 
     confirm "lftp?" \
-        && ${MKDIR} ${HOME}/.config/lftp \
-        && ${LN} ${HOME}/dotfiles/lftprc ${HOME}/.config/lftp/rc \
+        && ${cmd_mkdir} ${HOME}/.config/lftp \
+        && ${cmd_ln} ${HOME}/etc/lftp/config ${HOME}/.config/lftp/rc \
         && echo " [installed]"
 
     confirm "tmux?" \
