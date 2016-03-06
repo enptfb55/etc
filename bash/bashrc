@@ -30,7 +30,6 @@ alias nsg='sudo netstat --all --numeric --program | grep --color=always --line-n
 alias psc='ps xawf -eo pid,user,cgroup,args'
 alias rmdirr='find . -type d -empty -delete'
 alias sl='ls --color=auto --group-directories-first --quoting-style=literal'
-alias tmux="tmux -f ${HOME}/etc/tmux/tmux.conf"
 alias udb='updatedb --require-visibility 0 --output ${HOME}/var/mlocate/mlocate.db --database-root ${HOME}'
 alias vi='vim -O'
 alias vim='vim -O'
