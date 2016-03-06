@@ -52,7 +52,7 @@ function main()
         && echo " [installed]"
 
     confirm "tmux?" \
-        && ${cmd_mkdir} ${HOME}/.config/tmux
+        && ${cmd_mkdir} ${HOME}/.config/tmux \
         && ${cmd_ln} ${HOME}/etc/tmux/config ${HOME}/.config/tmux/config \
         && echo " [installed]"
 
