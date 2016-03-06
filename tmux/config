@@ -76,7 +76,7 @@ bind _ split-window -v -c '#{pane_current_path}'
 bind-key = select-layout even-horizontal
 
 # 'R' sources new config
-bind-key R sourcefile ~/etc/tmux/tmux.conf \; display-message "~/etc/tmux/tmux.conf loaded"
+bind-key R source-file ~/.config/tmux/config \; display-message "~/.config/tmux/config loaded"
 
 # move x clipboard into tmux paste buffer
 bind C-p run "tmux set-buffer \"$(xclip -o)\"; tmux paste-buffer"
