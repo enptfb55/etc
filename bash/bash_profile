@@ -1,12 +1,36 @@
 #!/usr/bin/env bash
-# Filename:      etc/bash/bash_profile
+# Filename:      etc/bash/profile
 # Last modified: 2016.03.05
-# This is only executed for bash login shells.
+# This file is only sourced for interactive login shells. This should set
+# environment variables specifically for the bash shell.
 
 
-echo "+++ etc/bash/bash_profile"
+# set vim as default editor
+export EDITOR=vim
 
+# sort file listings with directories and dotfiles first.
+export LC_COLLATE="C"
 
-if [[ -f "${HOME}/etc/bash/bashrc" ]]; then
-    source "${HOME}/etc/bash/bashrc"
+# set up default path and manpath
+case "${OSTYPE}" in
+    "linux-gnu")
+        export PATH="${HOME}/local/bin:${PATH}:/sbin"
+        export MANPATH="${HOME}/local/man:${MANPATH}"
+        ;;
+    "darwin"*)
+        export PATH="${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:${PATH}"
+        export MANPATH="${HOME}/local/man:/usr/local/opt/coreutils/libexec/gnuman:/usr/local/share/man:${MANPATH}"
+        ;;
+    *)
+        echo ".bash_profile: Unknown OS"
+        exit 1
+        ;;
+esac
+
+# keep location of Xauthority file consisten with dir structure
+export XAUTHORITY="${HOME}/var/xauthority/xauthority"
+
+# load the user's custom bashrc
+if [[ -f "${HOME}/.bashrc" ]]; then
+    source "${HOME}/.bashrc"
 fi

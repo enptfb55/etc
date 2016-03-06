@@ -1,5 +1,7 @@
-# Filename:      ~/dotfiles/bash.linux.d/00_aliases
-# Last modified: 2016.02.24
+#!/usrb/in/env bash
+# Filename:      etc/bash/bash.Linux.d/00_aliases
+# Last modified: 2016.03.05
+
 
 alias cp='cp --interactive'
 alias dc='cd'

@@ -3,8 +3,6 @@
 # Last modified: 2016.03.05
 
 
-echo "+++ etc/bash/bashrc.Darwin"
-
 # change location of bash_history file
 HISTFILE=${HOME}/var/bash/bash_history
 
@@ -18,12 +16,12 @@ HISTCONTROL=ignoreboth
 HISTSIZE=20000
 HISTFILESIZE=100000
 
-# load system-level bash completion scripts
-if [[ -d "/usr/local/etc/bash_completion.d" ]]; then
-    for file in "/usr/local/etc/bash_completion.d/*"; do
-        source ${file}
-    done
-fi
+# # load system-level bash completion scripts
+# if [[ -d "/usr/local/etc/bash_completion.d" ]]; then
+#     for file in "/usr/local/etc/bash_completion.d/*"; do
+#         source ${file}
+#     done
+# fi
 
 # change location of less history file
 export LESSHISTFILE=${HOME}/var/less/less_history
@@ -49,13 +47,6 @@ export HOMEBREW_GITHUB_API_TOKEN=f5c8d00364fe1f9208df4aeba3c2dad1a8cd7899
 # bash completion for homebrew
 source $(brew --repository)/Library/Contributions/brew_bash_completion.sh
 
-# if the bash.d directory exists, source everything in there
-if [[ -d "etc/bash/bash.$(uname -s).d" ]]; then
-    for file in "etc/bash/bash.$(uname -s).d/*"; do
-        source ${file}
-    done
-fi
-
 # enable colors in gcc
 export GCC_COLORS='error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10'
 
@@ -65,3 +56,10 @@ export MANPAGER='less -X'
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
 PS1='\u@\h \W$(__git_ps1 " (\[\033[0;32m\]%s\[\033[0m\])")\$ '
+
+# if the bash.d directory exists, source everything in there
+if [[ -d "${HOME}/etc/bash/bash.$(uname -s).d" ]]; then
+    for file in ${HOME}/etc/bash/bash.$(uname -s).d/*; do
+        source ${file}
+    done
+fi

@@ -2,25 +2,8 @@
 # Filename:      etc/symlink.sh
 # Last modified: 2016.03.05
 
-# After cloning the etc.git repo into ${HOME}, this script can be used to create necessary
-# directories and symlinks.
-
-set -o errexit -o nounset -o pipefail
-
-
-function confirm()
-{
-    read -n 1 -r -p "${1:-Are you sure? [y/N]} " response
-    case ${response} in
-    y) true ;;
-    *)
-        if [[ ${response} ]]; then
-            echo
-        fi
-        false ;;
-    esac
-}
-
+# After cloning the etc.git repo into ${HOME}, this script will create the
+# necessary directory structure and symlinks.
 
 function main()
 {
@@ -31,7 +14,7 @@ function main()
     ${cmd_mkdir} ${HOME}/var/xauthority
 
     confirm "bash?" \
-        && ${cmd_ln} ${HOME}/etc/profile ${HOME}/.profile \
+        && ${cmd_ln} ${HOME}/etc/bash/bash_profile ${HOME}/.bash_profile \
         && ${cmd_ln} ${HOME}/etc/bash/bashrc ${HOME}/.bashrc \
         && ${cmd_mkdir} ${HOME}/var/bash \
         && ${cmd_mkdir} ${HOME}/var/less \
@@ -103,6 +86,21 @@ function main()
         && ${LN} ${HOME}/dotfiles/Xresources ${HOME}/.Xresources \
         && echo " [installed]"
 } # main()
+
+
+function confirm()
+{
+    read -n 1 -r -p "${1:-Are you sure? [y/N]} " response
+    case ${response} in
+    y) true ;;
+    *)
+        if [[ ${response} ]]; then
+            echo
+        fi
+        false ;;
+    esac
+}
+
 
 
 main

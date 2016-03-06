@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Filename:      etc/bash/bashrc
 # Last modified: 2016.03.05
+# This file is only sourced for interactive non-login shells.
 
 
-echo "+++ etc/bash/bashrc"
-
-source ${HOME}/etc/bash/bashrc.$(uname -s)
+source "${HOME}/etc/bash/bashrc.$(uname -s)"

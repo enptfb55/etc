@@ -1,5 +1,6 @@
 # Filename:      ~/dotfiles/bash.osx.d/00_aliases
-# Last modified: 2016.02.23
+# Last modified: 2016.03.05
+
 
 alias acc='awk '\''{s+=$1} END {print s}'\'''   # Add up all numbers in a column
 alias cp='cp --interactive'

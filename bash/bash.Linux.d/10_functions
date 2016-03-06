@@ -1,5 +1,7 @@
-# Filename:      ~/dotfiles/bash.linux.d/01_functions
-# Last modified: 2016.02.17
+#!/usr/bin/env bash
+# Filename:      etc/bash/bash.Linux.d/10_functions
+# Last modified: 2016.03.05
+
 
 # calculator
 function ?()
@@ -30,6 +32,7 @@ function man()
         LESS_TERMCAP_us=$'\e[1;32m' \
         man "$@"
 }
+
 
 # prints the largest debs installed
 function installed()
