@@ -48,16 +48,11 @@ function main()
 
     confirm "lftp?" \
         && ${cmd_mkdir} ${HOME}/.config/lftp \
-        && ${cmd_ln} ${HOME}/etc/lftp/config ${HOME}/.config/lftp/rc \
-        && echo " [installed]"
-
-    confirm "tmux?" \
-        && ${cmd_mkdir} ${HOME}/.config/tmux \
-        && ${cmd_ln} ${HOME}/etc/tmux/config ${HOME}/.config/tmux/config \
+        && ${cmd_ln} ${HOME}/etc/lftp/rc ${HOME}/.config/lftp/rc \
         && echo " [installed]"
 
     confirm "top?" \
-        && ${LN} ${HOME}/dotfiles/toprc ${HOME}/.toprc \
+        && ${mkdir_ln} ${HOME}/etc/top/toprc ${HOME}/.toprc \
         && echo " [installed]"
 
     confirm "vim?" \
