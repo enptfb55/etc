@@ -61,9 +61,8 @@ function main()
         && echo " [installed]"
 
     confirm "vim?" \
-        && ${MKDIR} ${HOME}/dotfiles/vim/bundle \
-        && ${LN_DIR} ${HOME}/dotfiles/vim ${HOME}/.vim \
-        && ${LN} ${HOME}/dotfiles/vimrc ${HOME}/.vimrc \
+        && ${cmd_mkdir} ${HOME}/.vim/bundle \
+        && ${cmd_ln_dir} ${HOME}/etc/vim ${HOME}/.vim \
         && echo " [installed]"
 
     confirm "xinit?" \

@@ -1,10 +1,10 @@
-" Filename:      ~/dotfiles/vimrc
-" Last modified: 2016.02.26
+" Filename:      etc/vim/vimrc
+" Last modified: 2016.03.05
 
 set runtimepath+=${HOME}/.vim
 
 " Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
+autocmd! bufwritepost ${HOME}/.vim/vimrc source %
 
 " set up utf-8 encoding so that certain characters in listchars can be used.
 "
