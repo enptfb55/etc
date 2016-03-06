@@ -81,7 +81,6 @@ stty -ixon
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
-export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 
 # load the user's custom bashrc
 if [[ -f "${HOME}/.bashrc" ]]; then
