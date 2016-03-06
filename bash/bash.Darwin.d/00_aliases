@@ -1,4 +1,5 @@
-# Filename:      ~/dotfiles/bash.osx.d/00_aliases
+#!/usr/bin/env bash
+# Filename:      etc/bash.Darwin.d/00_aliases
 # Last modified: 2016.03.05
 
 
@@ -36,6 +37,7 @@ alias psg='ps -Lef | ggrep --invert-match ggrep | ggrep --color=always --line-nu
 alias psc='ps xawf -eo pid,user,cgroup,args'
 alias rmdirr='find . -type d -empty -delete'
 alias sl='ls --color=auto --group-directories-first --quoting-style=literal'
+alias tmux="tmux -f ${HOME}/.config/tmux/config"
 alias udb='updatedb --require-visibility 0 --output ${HOME}/local/cache/mlocate/mlocate.db --database-root ${HOME}'
 alias vi='vim -O'
 alias vim='vim -O'

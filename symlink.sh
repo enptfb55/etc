@@ -28,7 +28,7 @@ function main()
 
     confirm "htop?" \
         && ${cmd_mkdir} ${HOME}/.config/htop \
-        && ${cmd_ln} ${HOME}/etc/htop/htoprc ${HOME}/.config/htop/htoprc \
+        && ${cmd_ln} ${HOME}/etc/htop/htoprc ${HOME}/.config/htop/config \
         && echo " [installed]"
 
     # confirm "hushlogin?" \
@@ -52,9 +52,8 @@ function main()
         && echo " [installed]"
 
     confirm "tmux?" \
-        && ${MKDIR} ${HOME}/dotfiles/tmux/plugins \
-        && ${LN} ${HOME}/dotfiles/tmux.conf ${HOME}/.tmux.conf \
-        && ${LN_DIR} ${HOME}/dotfiles/tmux ${HOME}/.tmux \
+        && ${cmd_mkdir} ${HOME}/.config/tmux
+        && ${cmd_ln} ${HOME}/etc/tmux/config ${HOME}/.config/tmux/config \
         && echo " [installed]"
 
     confirm "top?" \
