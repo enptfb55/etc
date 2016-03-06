@@ -31,10 +31,6 @@ function main()
         && ${cmd_ln} ${HOME}/etc/htop/htoprc ${HOME}/.config/htop/htoprc \
         && echo " [installed]"
 
-    confirm "inputrc?" \
-        && ${LN} ${HOME}/dotfiles/inputrc ${HOME}/.inputrc \
-        && echo " [installed]"
-
     confirm "hushlogin?" \
         && ${LN} ${HOME}/dotfiles/hushlogin ${HOME}/.hushlogin \
         && echo " [installed]"
