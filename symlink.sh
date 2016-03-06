@@ -63,6 +63,7 @@ function main()
         && ${cmd_ln_dir} ${HOME}/etc/vim ${HOME}/.vim \
         && ${cmd_mkdir} ${HOME}/.vim/bundle \
         && ${cmd_mkdir} ${HOME}/var/vim \
+        && install_vundle \
         && echo " [installed]"
 
 } # main()
@@ -72,15 +73,23 @@ function confirm()
 {
     read -n 1 -r -p "${1:-Are you sure? [y/N]} " response
     case ${response} in
-    y) true ;;
+    y) return 0 ;;
     *)
         if [[ ${response} ]]; then
             echo
         fi
-        false ;;
+        return -1 ;;
     esac
+
 }
 
+
+function install_vundle()
+{
+    git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim &> /dev/null
+    vim -e +PluginInstall +qall &> /dev/null
+    return 0
+}
 
 
 main
