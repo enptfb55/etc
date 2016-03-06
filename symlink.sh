@@ -31,9 +31,9 @@ function main()
         && ${cmd_ln} ${HOME}/etc/htop/htoprc ${HOME}/.config/htop/config \
         && echo " [installed]"
 
-    # confirm "hushlogin?" \
-    #     && ${cmd_ln} ${HOME}/dotfiles/hushlogin ${HOME}/.hushlogin \
-    #     && echo " [installed]"
+    confirm "hushlogin?" \
+        && touch ${HOME}/.hushlogin \
+        && echo " [installed]"
 
     confirm "i3?" \
         && ${cmd_mkdir} ${HOME}/.config/i3 \
