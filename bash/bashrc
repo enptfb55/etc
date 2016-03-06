@@ -5,4 +5,4 @@
 
 echo "+++ etc/bash/bashrc"
 
-source bash/bashrc.$(uname -s)
+source ${HOME}/etc/bash/bashrc.$(uname -s)

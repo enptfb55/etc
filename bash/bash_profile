@@ -4,9 +4,9 @@
 # This is only executed for bash login shells.
 
 
-echo "+++ bash/bash_profile"
+echo "+++ etc/bash/bash_profile"
 
 
-if [[ -f "${HOME}/.bashrc" ]]; then
-    . "${HOME}/.bashrc"
+if [[ -f "${HOME}/etc/bash/bashrc" ]]; then
+    source "${HOME}/etc/bash/bashrc"
 fi

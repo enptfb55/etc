@@ -25,13 +25,13 @@ function confirm()
 function main()
 {
     local cmd_mkdir="mkdir --mode=0700 --parents"
-    local cmd_ln="ln --force --symbolic"
-    local cmd_ln_dir="ln --force --no-dereference --symbolic"
+    local cmd_ln="ln --force --relative --symbolic"
+    local cmd_ln_dir="ln --force --no-dereference --relative --symbolic"
 
     ${cmd_mkdir} ${HOME}/var/xauthority
 
     confirm "bash?" \
-        && ${cmd_ln} profile ${HOME}/.profile \
+        && ${cmd_ln} ${HOME}/etc/profile ${HOME}/.profile \
         && ${cmd_mkdir} ${HOME}/var/bash \
         && ${cmd_mkdir} ${HOME}/var/less \
         && ${cmd_mkdir} ${HOME}/var/python \
@@ -103,4 +103,5 @@ function main()
         && echo " [installed]"
 } # main()
 
-main()
+
+main
