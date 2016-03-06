@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Filename:      etc/symlink.sh
-# Last modified: 2016.03.05
+# Last modified: 2016.03.06
 
 # After cloning the etc.git repo into ${HOME}, this script will create the
 # necessary directory structure and symlinks.
@@ -14,6 +14,10 @@ function main()
     local cmd_ln="ln --force --relative --symbolic"
     local cmd_ln_dir="ln --force --no-dereference --relative --symbolic"
 
+    ${cmd_mkdir} ${HOME}/bin
+    ${cmd_mkdir} ${HOME}/src
+    ${cmd_mkdir} ${HOME}/var
+    ${cmd_mkdir} ${HOME}/var/log
     ${cmd_mkdir} ${HOME}/var/xauthority
 
     confirm "bash?" \
@@ -59,6 +63,11 @@ function main()
         && ${cmd_ln} ${HOME}/etc/top/toprc ${HOME}/.toprc \
         && echo " [installed]"
 
+    confirm "tmux?" \
+        && ${cmd_mkdir} ${HOME}/etc/tmux/plugins \
+        && install_tpm \
+        && echo " [installed]"
+
     confirm "vim?" \
         && ${cmd_ln_dir} ${HOME}/etc/vim ${HOME}/.vim \
         && ${cmd_mkdir} ${HOME}/.vim/bundle \
@@ -89,6 +98,12 @@ function install_vundle()
     git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim &> /dev/null
     vim -e +PluginInstall +qall &> /dev/null
     return 0
+}
+
+
+function install_tpm()
+{
+    git clone https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm &> /dev/null
 }
 
 
