@@ -77,11 +77,6 @@ export MANPAGER='less -X'
 # turn off flow control (ctrl-s, ctrl-q)
 stty -ixon
 
-# __git_ps1 shell prompt settings
-GIT_PS1_SHOWCOLORHINTS=true
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-
 # load the user's custom bashrc
 if [[ -f "${HOME}/.bashrc" ]]; then
     source "${HOME}/.bashrc"

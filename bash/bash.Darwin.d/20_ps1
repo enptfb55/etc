@@ -3,4 +3,8 @@
 # Last modified: 2016.03.05
 
 
+# __git_ps1 shell prompt settings
+GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
 export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
