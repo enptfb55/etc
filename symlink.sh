@@ -43,7 +43,7 @@ function main()
         && echo " [installed]"
 
     confirm "locate?" \
-        && ${MKDIR} ${HOME}/local/cache/mlocate \
+        && ${cmd_mkdir} ${HOME}/var/cache/mlocate \
         && echo " [installed]"
 
     confirm "lftp?" \
