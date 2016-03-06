@@ -52,12 +52,12 @@ function main()
         && echo " [installed]"
 
     confirm "top?" \
-        && ${mkdir_ln} ${HOME}/etc/top/toprc ${HOME}/.toprc \
+        && ${cmd_ln} ${HOME}/etc/top/toprc ${HOME}/.toprc \
         && echo " [installed]"
 
     confirm "vim?" \
-        && ${cmd_mkdir} ${HOME}/.vim/bundle \
         && ${cmd_ln_dir} ${HOME}/etc/vim ${HOME}/.vim \
+        && ${cmd_mkdir} ${HOME}/.vim/bundle \
         && echo " [installed]"
 
     confirm "xinit?" \
