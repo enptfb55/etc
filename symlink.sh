@@ -31,15 +31,15 @@ function main()
         && ${cmd_ln} ${HOME}/etc/htop/htoprc ${HOME}/.config/htop/htoprc \
         && echo " [installed]"
 
-    confirm "hushlogin?" \
-        && ${LN} ${HOME}/dotfiles/hushlogin ${HOME}/.hushlogin \
-        && echo " [installed]"
+    # confirm "hushlogin?" \
+    #     && ${cmd_ln} ${HOME}/dotfiles/hushlogin ${HOME}/.hushlogin \
+    #     && echo " [installed]"
 
     confirm "i3?" \
-        && ${MKDIR} ${HOME}/.config/i3 \
-        && ${MKDIR} ${HOME}/.config/i3status \
-        && ${LN} ${HOME}/dotfiles/i3config ${HOME}/.config/i3/config \
-        && ${LN} ${HOME}/dotfiles/i3status.conf ${HOME}/.config/i3status/config \
+        && ${cmd_mkdir} ${HOME}/.config/i3 \
+        && ${cmd_mkdir} ${HOME}/.config/i3status \
+        && ${cmd_ln} ${HOME}/etc/i3/config ${HOME}/.config/i3/config \
+        && ${cmd_ln} ${HOME}/etc/i3status/config ${HOME}/.config/i3status/config \
         && echo " [installed]"
 
     confirm "locate?" \
