@@ -32,6 +32,7 @@ function main()
 
     confirm "bash?" \
         && ${cmd_ln} ${HOME}/etc/profile ${HOME}/.profile \
+        && ${cmd_ln} ${HOME}/etc/bash/bashrc ${HOME}/.bashrc \
         && ${cmd_mkdir} ${HOME}/var/bash \
         && ${cmd_mkdir} ${HOME}/var/less \
         && ${cmd_mkdir} ${HOME}/var/python \
