@@ -1,0 +1,8 @@
+! Filename:      etc/x/Xmodmap
+! Last modified: 2016.03.05
+
+
+! remap the caps-lock key to left control
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L

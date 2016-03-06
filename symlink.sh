@@ -5,6 +5,9 @@
 # After cloning the etc.git repo into ${HOME}, this script will create the
 # necessary directory structure and symlinks.
 
+set -o errexit -o nounset -o pipefail
+
+
 function main()
 {
     local cmd_mkdir="mkdir --mode=0700 --parents"
@@ -36,6 +39,7 @@ function main()
         && echo " [installed]"
 
     confirm "i3?" \
+        && ${cmd_mkdir} ${HOME}/var/log \
         && ${cmd_mkdir} ${HOME}/.config/i3 \
         && ${cmd_mkdir} ${HOME}/.config/i3status \
         && ${cmd_ln} ${HOME}/etc/i3/config ${HOME}/.config/i3/config \
@@ -61,16 +65,10 @@ function main()
         && echo " [installed]"
 
     confirm "xinit?" \
-        && ${LN} ${HOME}/dotfiles/xinitrc ${HOME}/.xinitrc \
+        && ${cmd_mkdir} ${HOME}/var/log \
+        && ${cmd_ln} ${HOME}/etc/x/xinitrc ${HOME}/.xinitrc \
         && echo " [installed]"
 
-    confirm "xmodmap?" \
-        && ${LN} ${HOME}/dotfiles/Xmodmap ${HOME}/.Xmodmap \
-        && echo " [installed]"
-
-    confirm "xresources?" \
-        && ${LN} ${HOME}/dotfiles/Xresources ${HOME}/.Xresources \
-        && echo " [installed]"
 } # main()
 
 

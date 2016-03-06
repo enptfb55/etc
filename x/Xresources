@@ -1,5 +1,6 @@
-! Filename:      ~/dotfiles/Xresources
-! Last modified: 2016.02.27
+! Filename:      etc/x/Xresources
+! Last modified: 2016.03.05
+
 
 ! xterm should identify the terminal as supporting 256 colors
 xterm*termName: xterm-256color
@@ -17,17 +18,9 @@ xterm*background: grey25
 ! make cursor white
 xterm*cursorColor: white
 
-! turn off scrollbars
+! turn off scrollbars on both sides
 xterm*scrollBar: false
 xterm*rightScrollBar: false
 
-! Xcursor.size: 0
-! Xcursor.theme: neutral
-! Xcursor.theme_core: 1
-! Xft.antialias: 1
-! Xft.dpi: 96
-! Xft.hintstyle: hintfull
-! Xft.rgba: rgb
-
 ! enable utf-8 support in xterm ('2' is always utf mode)
-xterm*utf8: 2
+xterm*utf8: 3
