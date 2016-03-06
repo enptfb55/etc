@@ -21,10 +21,6 @@ function main()
         && ${cmd_mkdir} ${HOME}/var/python \
         && echo " [installed]"
 
-    confirm "gdb?" \
-        && ${LN} ${HOME}/dotfiles/gdbinit ${HOME}/.gdbinit \
-        && echo " [installed]"
-
     confirm "git?" \
         && ${LN} ${HOME}/dotfiles/gitconfig ${HOME}/.gitconfig \
         && echo " [installed]"
