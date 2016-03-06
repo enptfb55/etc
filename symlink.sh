@@ -22,7 +22,8 @@ function main()
         && echo " [installed]"
 
     confirm "git?" \
-        && ${LN} ${HOME}/dotfiles/gitconfig ${HOME}/.gitconfig \
+        && ${cmd_mkdir} ${HOME}/.config/git \
+        && ${cmd_ln} ${HOME}/etc/git/config ${HOME}/.config/git/config \
         && echo " [installed]"
 
     confirm "htop?" \
