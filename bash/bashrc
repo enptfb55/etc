@@ -1,8 +1,39 @@
 #!/usr/bin/env bash
 # Filename:      etc/bash/bashrc
 # Last modified: 2016.03.05
-# This file is only sourced for interactive non-login shells.
+# This file is only sourced by interactive non-login shells.
 
+
+# common aliases
+alias cp='cp --interactive'
+alias dc='cd'
+alias df='df --human-readable'
+alias dul='du --human-readable --summarize * | sort --human-numeric-sort --reverse'
+alias free='free --mega'
+alias ll='ls -la --classify --color=auto --group-directories-first --human-readable --quoting-style=literal'
+alias l='ls --color=auto --group-directories-first --quoting-style=literal'
+alias loc='locate --database ${HOME}/var/mlocate/mlocate.db'
+alias lr='ls -lat --color=auto --group-directories-first --human-readable --quoting-style=literal --reverse'
+alias ls='ls --color=auto --group-directories-first --quoting-style=literal'
+alias lsof_net='lsof -P -i 4 -n'
+alias m='make'
+alias mc='make clean'
+alias mcm='make clean && make'
+alias mi='make install'
+alias mount='mount | column -t'
+alias mp3_info='mediainfo --Output=file:///home/brian/bin/mp3_info'
+alias mp3_infov='mediainfo --Output=file:///home/brian/bin/mp3_info_verbose'
+alias mv='mv --interactive'
+alias ns='netstat --numeric --tcp --all --udp --program --listening'
+alias nsg='sudo netstat --all --numeric --program | grep --color=always --line-number'
+alias psc='ps xawf -eo pid,user,cgroup,args'
+alias rmdirr='find . -type d -empty -delete'
+alias sl='ls --color=auto --group-directories-first --quoting-style=literal'
+alias tmux="tmux -f ${HOME}/etc/tmux/tmux.conf"
+alias udb='updatedb --require-visibility 0 --output ${HOME}/var/mlocate/mlocate.db --database-root ${HOME}'
+alias vi='vim -O'
+alias vim='vim -O'
+alias vmi='vim -O'
 
 # if the bash.d directory exists, source everything in there
 if [[ -d "${HOME}/etc/bash/bash.$(uname -s).d" ]]; then
