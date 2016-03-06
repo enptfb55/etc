@@ -1,5 +1,6 @@
-# Filename:      ~/dotfiles/bash.osx.d/01_functions
-# Last modified: 2016.02.16
+#!/usr/bin/env bash
+# Filename:      etc/bash/bash.Darwin.d/10_functions
+# Last modified: 2016.03.05
 
 
 # calculator
