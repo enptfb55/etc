@@ -1,8 +1,12 @@
-# Filename:      ~/dotfiles/bashrc.linux
-# Last modified: 2016.03.03
+#!/usr/bin/env bash
+# Filename:      etc/bash/bashrc.Linux
+# Last modified: 2016.03.05
+
+
+echo "+++ etc/bash/bashrc.Linux"
 
 # change location of bash_history file
-export HISTFILE=${HOME}/.history/bash_history
+export HISTFILE=${HOME}/var/bash/bash_history
 
 # don't put duplicate lines in the history
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups:erasedups
@@ -15,7 +19,7 @@ export HISTSIZE=20000
 export HISTFILESIZE=100000
 
 # change location of less history file
-export LESSHISTFILE=${HOME}/.history/less_history
+export LESSHISTFILE=${HOME}/var/less/less_history
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -24,11 +28,9 @@ shopt -s histappend
 # of LINES and COLUMNS
 shopt -s checkwinsize
 
-# enable programmable completion features (you don't need to enable this, if
-# it's already enabled in /etc/bash.bashrc and /etc/profile sources
-# /etc/bash.bashrc)
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+# load system-level bash completion scripts
+if [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
+    source /etc/bash_completion
 fi
 
 export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.gz=00;31:*.bz2=00;31:*.jpg=00;35:*.bmp=00;35:*.png=00;35:*.tz=00;31:*.xz=00;31:"
@@ -36,15 +38,15 @@ export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd
 # ignore certain file types in tab-completion
 FIGNORE='.o:.pyc'
 
-# store python interpreter history
-export PYTHONSTARTUP=${HOME}/dotfiles/pystartup
+# run this script each time an interactive python session starts
+export PYTHONSTARTUP=${HOME}/etc/python/python_startup.py
 
 # enable core dumps (if not enabled already)
 ulimit -c unlimited
 
-# if the dotfiles/bash.d directory exists, source everything in there
-if [[ -d "${HOME}/dotfiles/bash.linux.d" ]]; then
-    for file in ${HOME}/dotfiles/bash.linux.d/*; do
+# if the bash.d directory exists, source everything in there
+if [[ -d "etc/bash/bash.$(uname -s).d" ]]; then
+    for file in "etc/bash/bash.$(uname -s).d/*"; do
         source ${file}
     done
 fi

@@ -1,11 +1,14 @@
 #!/usr/bin/env python
+# Filename:      etc/python/python_startup.py
+# Last modified: 2016.03.05
+
 
 import atexit
 import os
 import readline
 import rlcompleter
 
-historyPath = os.path.expanduser("~/.history/pyhistory")
+historyPath = os.path.expanduser("~/var/python/python_history")
 
 def save_history(historyPath=historyPath):
     import readline

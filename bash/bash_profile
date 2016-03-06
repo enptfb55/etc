@@ -1,11 +1,10 @@
-# Filename:      ~/dotfiles/bash_profile
-# Last modified: 2016.02.23
-# This is only executed for login shells. Simply load .profile and .bashrc.
+#!/usr/bin/env bash
+# Filename:      etc/bash/bash_profile
+# Last modified: 2016.03.05
+# This is only executed for bash login shells.
 
 
-if [[ -f "${HOME}/.profile" ]]; then
-    . "${HOME}/.profile"
-fi
+echo "+++ bash/bash_profile"
 
 
 if [[ -f "${HOME}/.bashrc" ]]; then

@@ -1,18 +1,8 @@
-# Filename:      ~/dotfiles/bashrc
-# Last modified: 2016.02.24
+#!/usr/bin/env bash
+# Filename:      etc/bash/bashrc
+# Last modified: 2016.03.05
 
 
-case ${OSTYPE} in
-    "linux-gnu")
-        source ${HOME}/dotfiles/bashrc.linux
-        ;;
+echo "+++ etc/bash/bashrc"
 
-    "darwin"*)
-        source ${HOME}/dotfiles/bashrc.osx
-        ;;
-
-    *)
-        echo ".bashrc: Unknown kernel"
-        exit 1
-        ;;
-esac
+source bash/bashrc.$(uname -s)

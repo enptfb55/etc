@@ -1,6 +1,9 @@
-# Filename:      ~/dotfiles/profile
-# Last modified: 2016.02.24
-# This should contain environment variables not specific to any shell.
+# Filename:      etc/profile
+# Last modified: 2016.03.05
+# This should set environment variables not specific to any shell. And then
+# call the shell-specific profiles.
+
+echo "+++ .profile"
 
 
 # set vim as default editor
@@ -10,7 +13,7 @@ export EDITOR=vim
 export LC_COLLATE="C"
 
 # set up default path and manpath
-case ${OSTYPE} in
+case "${OSTYPE}" in
     "linux-gnu")
         PATH=${HOME}/local/bin:${PATH}:/sbin
         MANPATH=${HOME}/local/man:${MANPATH}
@@ -25,7 +28,11 @@ case ${OSTYPE} in
         ;;
 esac
 
+if [ -f etc/bash/bash_profile ]; then
+    source etc/bash/bash_profile
+fi
+
 # change default location of the Xauthority file
-export XAUTHORITY=/tmp/xauthority-${USER}
+export XAUTHORITY=var/xauthority/xauthority
 
 export MANPATH PATH
