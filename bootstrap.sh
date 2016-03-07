@@ -202,7 +202,7 @@ function install_vim_plugins()
 
 
     # run vim command to install other plugins
-    local cmd="vim -e +PluginInstall +qall"
+    local cmd="vim -e +PluginInstall +qall &> /dev/null"
     log_debug "{install_vim_plugins} calling [${cmd}]"
 
     local output=$(${cmd} 2>&1)

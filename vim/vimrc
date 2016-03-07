@@ -123,7 +123,7 @@ let g:netrw_dirhistmax = 0
 syntax enable " allow for syntax highlighting (NOT 'syntax on' which turns on default highlighting)
 set background=dark
 let g:solarized_termcolors=256
-colorscheme solarized
+silent! colorscheme solarized
 
 
 " Shortcuts
