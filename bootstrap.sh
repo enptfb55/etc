@@ -11,13 +11,188 @@ set -o nounset -o pipefail
 readonly LOG="${HOME}/var/log/bootstrap.log"
 exec 3>&1 1>>${LOG} 2>&1
 
-function log_debug() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [DEBUG] $@" >&2 ; }
-function log_info()  { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [INFO ] $@" >&2 ; }
-function log_error() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [ERROR] $@" | tee /dev/fd/3 ; }
-function log_fatal() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [FATAL] $@" | tee /dev/fd/3 ; exit 1 ; }
+log_debug() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [DEBUG] $@" >&2 ; }
+log_info()  { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [INFO ] $@" >&2 ; }
+log_error() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [ERROR] $@" | tee /dev/fd/3 ; }
+log_fatal() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [FATAL] $@" | tee /dev/fd/3 ; exit 1 ; }
 
 
-function main()
+confirm()
+{
+    (( "$#" != 1 )) && log_fatal "{confirm} missing argument to function"
+
+    # prompt user for y/n
+    echo -n "$1? " >&3
+
+    # capture response
+    read -n 1 -r response
+
+    case ${response} in
+        y)                                       return 0 ;;
+        *) [[ ! -z ${response} ]] && echo >&3 && return 1 ;;
+    esac
+}
+
+
+create_symlink()
+{
+    (( "$#" != 2 )) && log_fatal "{create_symlink} missing argument to function"
+
+    case $(uname -s) in
+
+        Linux)
+            cmd="ln --force --no-dereference --relative --symbolic"
+        ;;
+
+        Darwin)
+            # if ln supports the --version option, it's GNU ln
+            if ln --version &> /dev/null; then
+                cmd="ln --force --no-dereference --relative --symbolic"
+            else
+                cmd="ln -fhs"
+            fi
+        ;;
+
+        *)
+            log_fatal "{create_symlink} unknown os [$(uname -s)]"
+            return 1
+        ;;
+
+    esac
+
+    log_info "{create_symlink} calling [${cmd} "$@"]"
+
+    output=$(${cmd} "$@" 2>&1)
+    local readonly exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{create_symlink} output [${output}]"
+        log_fatal "{create_symlink} exit_status [${exit_status}]"
+        return 1
+    fi
+
+    log_debug "{create_symlink} output [${output}]"
+    log_debug "{create_symlink} exit_status [${exit_status}]"
+}
+
+
+create_dir()
+{
+    (( "$#" != 1 )) && log_fatal "{create_dir} missing argument to function" && return 1
+
+    # if directory already exists, we have nothing to do
+    [[ -d $1 ]] && log_debug "{create_dir} dir [$1] already exists" && return 0
+
+    case $(uname -s) in
+        Linux)
+            cmd="mkdir --mode=0700"
+        ;;
+
+        Darwin)
+            # if mkdir supports the --version option, it's GNU mkdir
+            if mkdir --version &> /dev/null; then
+                cmd="mkdir --mode=0700"
+            else
+                cmd="mkdir -m 0700"
+            fi
+        ;;
+
+        *)
+            log_fatal "{create_dir} unknown os [$(uname -s)]"
+            return 1
+        ;;
+    esac
+
+    log_info "{create_dir} calling [${cmd} $1]"
+
+    output=$(${cmd} $1 2>&1)
+    local readonly exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{create_dir} output [${output}]"
+        log_fatal "{create_dir} exit_status [${exit_status}]"
+        return 1
+    fi
+
+    log_debug "{create_dir} output [${output}]"
+    log_debug "{create_dir} exit_status [${exit_status}]"
+}
+
+
+install_vim_plugins()
+{
+    # clone the repo
+    local cmd="git clone --quiet https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim"
+    log_debug "{install_vim_plugins} calling [${cmd}]"
+
+    local output=$(${cmd} 2>&1)
+    local exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{install_vim_plugins} output [${output}]"
+        log_fatal "{install_vim_plugins} exit_status [${exit_status}]"
+        return 1
+    fi
+
+    log_debug "{install_vim_plugins} output [${output}]"
+    log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+
+    # run vim command to install other plugins
+    local cmd="vim -e +PluginInstall +qall"
+    log_debug "{install_vim_plugins} calling [${cmd}]"
+
+    local output=$(${cmd} &> /dev/null)
+    local exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{install_vim_plugins} output [${output}]"
+        log_fatal "{install_vim_plugins} exit_status [${exit_status}]"
+        return 1
+    fi
+
+    log_debug "{install_vim_plugins} output [${output}]"
+    log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+}
+
+
+install_tmux_plugins()
+{
+    # clone the repo
+    local cmd="git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm"
+    log_debug "{install_tmux_plugins} calling [${cmd}]"
+
+    local output=$(${cmd} 2>&1)
+    local exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{install_tmux_plugins} output [${output}]"
+        log_fatal "{install_tmux_plugins} exit_status [${exit_status}]"
+        return 1
+    fi
+
+    log_debug "{install_tmux_plugins} output [${output}]"
+    log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+
+
+    # run specific script to install other plugins
+    local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
+    log_debug "{install_tmux_plugins} calling [${cmd}]"
+
+    local output=$(${cmd} 2>&1)
+    local exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{install_tmux_plugins} output [${output}]"
+        log_fatal "{install_tmux_plugins} exit_status [${exit_status}]"
+        return 1
+    fi
+
+    log_debug "{install_tmux_plugins} output [${output}]"
+    log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+}
+
+
+main()
 {
     mkdir -p ${HOME}/var/log
 
@@ -84,180 +259,8 @@ function main()
             && install_vim_plugins \
             && echo " [installed]" >&3
 
+    return 0
 } # main()
-
-
-function confirm()
-{
-    (( "$#" != 1 )) && log_fatal "{confirm} missing argument"
-
-    # prompt user for y/n
-    echo -n "$1? " >&3
-
-    # capture response
-    read -n 1 -r response
-
-    case ${response} in
-        y)                                       return 0 ;;
-        *) [[ ! -z ${response} ]] && echo >&3 && return 1 ;;
-    esac
-}
-
-
-function create_symlink()
-{
-    (( "$#" != 2 )) && log_fatal "{create_symlink} missing argument to function"
-
-    case $(uname -s) in
-
-        Linux)
-            cmd="ln --force --no-dereference --relative --symbolic"
-        ;;
-
-        Darwin)
-            # if ln supports the --version option, it's GNU ln
-            if ln --version &> /dev/null; then
-                cmd="ln --force --no-dereference --relative --symbolic"
-            else
-                cmd="ln -fhs"
-            fi
-        ;;
-
-        *)
-            log_fatal "{create_symlink} unknown os [$(uname -s)]"
-            return 1
-        ;;
-
-    esac
-
-    log_info "{create_symlink} calling [${cmd} "$@"]"
-
-    output=$(${cmd} "$@" 2>&1)
-    local readonly exit_status=$?
-
-    if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{create_symlink} exit_status [${exit_status}]"
-        log_fatal "{create_symlink} ${output}"
-    else
-        log_debug "{create_symlink} exit_status [${exit_status}]"
-    fi
-}
-
-
-function create_dir()
-{
-    (( "$#" != 1 )) && log_fatal "{create_dir} missing argument to function"
-
-    # if directory already exists, we have nothing to do
-    [[ -d $1 ]] && log_debug "{create_dir} dir [$1] already exists" && return 0
-
-    case $(uname -s) in
-        Linux)
-            cmd="mkdir --mode=0700"
-        ;;
-
-        Darwin)
-            # if mkdir supports the --version option, it's GNU mkdir
-            if mkdir --version &> /dev/null; then
-                cmd="mkdir --mode=0700"
-            else
-                cmd="mkdir -m 0700"
-            fi
-        ;;
-
-        *)
-            log_fatal "{create_dir} unknown os [$(uname -s)]"
-            return 1
-        ;;
-    esac
-
-    log_info "{create_dir} calling [${cmd} $1]"
-
-    output=$(${cmd} $1 2>&1)
-    local readonly exit_status=$?
-
-    if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{create_dir} exit_status [${exit_status}]"
-        log_fatal "{create_dir} ${output}"
-        return 1
-    fi
-
-    log_debug "{create_dir} exit_status [${exit_status}]"
-    log_debug "{create_dir} ${output}"
-}
-
-
-function install_vim_plugins()
-{
-    # clone the repo
-    local cmd="git clone --quiet https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim"
-    log_debug "{install_vim_plugins} calling [${cmd}]"
-
-    local output=$(${cmd} 2>&1)
-    local exit_status=$?
-
-    if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_vim_plugins} exit_status [${exit_status}]"
-        log_fatal "{install_vim_plugins} ${output}"
-        return 1
-    fi
-
-    log_debug "{install_vim_plugins} output [${output}]"
-    log_debug "{install_vim_plugins} exit_status [${exit_status}]"
-
-    # run vim command to install other plugins
-    local cmd="vim -e +PluginInstall +qall"
-    log_debug "{install_vim_plugins} calling [${cmd}]"
-
-    local output=$(${cmd} &> /dev/null)
-    local exit_status=$?
-
-    if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_vim_plugins} exit_status [${exit_status}]"
-        log_fatal "{install_vim_plugins} ${output}"
-        return 1
-    fi
-
-    log_debug "{install_vim_plugins} output [${output}]"
-    log_debug "{install_vim_plugins} exit_status [${exit_status}]"
-}
-
-
-function install_tmux_plugins()
-{
-    # clone the repo
-    local cmd="git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm"
-    log_debug "{install_tmux_plugins} calling [${cmd}]"
-
-    local output=$(${cmd} 2>&1)
-    local exit_status=$?
-
-    if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_tmux_plugins} exit_status [${exit_status}]"
-        log_fatal "{install_tmux_plugins} ${output}"
-        return 1
-    fi
-
-    log_debug "{install_tmux_plugins} output [${output}]"
-    log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
-
-
-    # run specific script to install other plugins
-    local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
-    log_debug "{install_tmux_plugins} calling [${cmd}]"
-
-    local output=$(${cmd} 2>&1)
-    local exit_status=$?
-
-    if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_tmux_plugins} exit_status [${exit_status}]"
-        log_fatal "{install_tmux_plugins} ${output}"
-        return 1
-    fi
-
-    log_debug "{install_tmux_plugins} output [${output}]"
-    log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
-}
 
 
 # main entry point
