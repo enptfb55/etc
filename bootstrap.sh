@@ -185,15 +185,71 @@ function create_dir()
 
 function install_vim_plugins()
 {
-    git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim &> /dev/null
-    vim -e +PluginInstall +qall &> /dev/null
+    # clone the repo
+    local cmd="git clone --quiet https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim"
+    log_debug "{install_vim_plugins} calling [${cmd}]"
+
+    local output=$(${cmd} 2>&1)
+    local exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{install_vim_plugins} exit_status [${exit_status}]"
+        log_fatal "{install_vim_plugins} ${output}"
+    else
+        log_debug "{install_vim_plugins} output [${output}]"
+        log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+    fi
+
+
+    # run vim command to install other plugins
+    local cmd="vim -e +PluginInstall +qall"
+    log_debug "{install_vim_plugins} calling [${cmd}]"
+
+    local output=$(${cmd} 2>&1)
+    local exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{install_vim_plugins} exit_status [${exit_status}]"
+        log_fatal "{install_vim_plugins} ${output}"
+    else
+        log_debug "{install_vim_plugins} output [${output}]"
+        log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+    fi
 }
 
 
 function install_tmux_plugins()
 {
-    git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm &>> ${HOME}/var/log/bootstrap.log
-    ${HOME}/etc/tmux/plugins/tpm/bin/install_plugins all &>> ${HOME}/var/log/bootstrap.log
+    # clone the repo
+    local cmd="git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm"
+    log_debug "{install_tmux_plugins} calling [${cmd}]"
+
+    local output=$(${cmd} 2>&1)
+    local exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{install_tmux_plugins} exit_status [${exit_status}]"
+        log_fatal "{install_tmux_plugins} ${output}"
+    else
+        log_debug "{install_tmux_plugins} output [${output}]"
+        log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+    fi
+
+
+    # run specific script to install other plugins
+    local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins all"
+    log_debug "{install_tmux_plugins} calling [${cmd}]"
+
+    local output=$(${cmd} 2>&1)
+    local exit_status=$?
+
+    if [[ "${exit_status}" -ne 0 ]]; then
+        log_error "{install_tmux_plugins} exit_status [${exit_status}]"
+        log_fatal "{install_tmux_plugins} ${output}"
+    else
+        log_debug "{install_tmux_plugins} output [${output}]"
+        log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+    fi
 }
 
 
