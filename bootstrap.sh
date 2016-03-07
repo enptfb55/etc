@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Filename:      etc/symlink.sh
+# Filename:      etc/bootstrap.sh
 # Last modified: 2016.03.06
 
 # After cloning the etc.git repo into ${HOME}, this script will create the
