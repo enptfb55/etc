@@ -19,6 +19,8 @@ function log_fatal() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [FATAL] $@" |
 
 function main()
 {
+    mkdir -p ${HOME}/var/log
+
     log_info "$0"
 
     [[ -z ${HOME:-} ]] && log_error "error: HOME is not set" && exit 1
@@ -26,7 +28,6 @@ function main()
     create_dir "${HOME}/bin"
     create_dir "${HOME}/src"
     create_dir "${HOME}/var"
-    create_dir "${HOME}/var/log"
     create_dir "${HOME}/var/xauthority"
 
     confirm "bash" \
@@ -52,7 +53,6 @@ function main()
         && echo " [installed]" >&3
 
     confirm "i3" \
-        && create_dir "${HOME}/var/log" \
         && create_dir "${HOME}/.config/i3" \
         && create_dir "${HOME}/.config/i3status" \
         && create_symlink "${HOME}/etc/i3/config" "${HOME}/.config/i3/config" \
@@ -79,7 +79,7 @@ function main()
 
     confirm "vim" \
         && create_symlink "${HOME}/etc/vim" "${HOME}/.vim" \
-        && create_dir "${HOME}/.vim/bundle" \
+        && create_dir "${HOME}/etc/vim/bundle" \
         && create_dir "${HOME}/var/vim" \
         && install_vim_plugins \
         && echo " [installed]" >&3
