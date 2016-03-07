@@ -237,7 +237,7 @@ function install_tmux_plugins()
 
 
     # run specific script to install other plugins
-    local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins all"
+    local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
     log_debug "{install_tmux_plugins} calling [${cmd}]"
 
     local output=$(${cmd} 2>&1)
