@@ -31,58 +31,58 @@ function main()
     create_dir "${HOME}/var/xauthority"
 
     confirm "bash" \
-        && create_symlink "${HOME}/etc/bash/bash_profile" "${HOME}/.bash_profile" \
-        && create_symlink "${HOME}/etc/bash/bashrc" "${HOME}/.bashrc" \
-        && create_dir "${HOME}/var/bash" \
-        && create_dir "${HOME}/var/less" \
-        && create_dir "${HOME}/var/python" \
-        && echo " [installed]" >&3
+            && create_symlink "${HOME}/etc/bash/bash_profile" "${HOME}/.bash_profile" \
+            && create_symlink "${HOME}/etc/bash/bashrc" "${HOME}/.bashrc" \
+            && create_dir "${HOME}/var/bash" \
+            && create_dir "${HOME}/var/less" \
+            && create_dir "${HOME}/var/python" \
+            && echo " [installed]" >&3
 
     confirm "git" \
-        && create_dir "${HOME}/.config/git" \
-        && create_symlink "${HOME}/etc/git/config" "${HOME}/.config/git/config" \
-        && echo " [installed]" >&3
+            && create_dir "${HOME}/.config/git" \
+            && create_symlink "${HOME}/etc/git/config" "${HOME}/.config/git/config" \
+            && echo " [installed]" >&3
 
     confirm "htop" \
-        && create_dir "${HOME}/.config/htop" \
-        && create_symlink "${HOME}/etc/htop/htoprc" "${HOME}/.config/htop/config" \
-        && echo " [installed]" >&3
+            && create_dir "${HOME}/.config/htop" \
+            && create_symlink "${HOME}/etc/htop/htoprc" "${HOME}/.config/htop/config" \
+            && echo " [installed]" >&3
 
     confirm "hushlogin" \
-        && touch "${HOME}/.hushlogin" \
-        && echo " [installed]" >&3
+            && touch "${HOME}/.hushlogin" \
+            && echo " [installed]" >&3
 
     confirm "i3" \
-        && create_dir "${HOME}/.config/i3" \
-        && create_dir "${HOME}/.config/i3status" \
-        && create_symlink "${HOME}/etc/i3/config" "${HOME}/.config/i3/config" \
-        && create_symlink "${HOME}/etc/i3status/config" "${HOME}/.config/i3status/config" \
-        && echo " [installed]" >&3
+            && create_dir "${HOME}/.config/i3" \
+            && create_dir "${HOME}/.config/i3status" \
+            && create_symlink "${HOME}/etc/i3/config" "${HOME}/.config/i3/config" \
+            && create_symlink "${HOME}/etc/i3status/config" "${HOME}/.config/i3status/config" \
+            && echo " [installed]" >&3
 
     confirm "locate" \
-        && create_dir "${HOME}/var/cache/mlocate" \
-        && echo " [installed]" >&3
+            && create_dir "${HOME}/var/cache/mlocate" \
+            && echo " [installed]" >&3
 
     confirm "lftp" \
-        && create_dir "${HOME}/.config/lftp" \
-        && create_symlink "${HOME}/etc/lftp/rc" "${HOME}/.config/lftp/rc" \
-        && echo " [installed]" >&3
+            && create_dir "${HOME}/.config/lftp" \
+            && create_symlink "${HOME}/etc/lftp/rc" "${HOME}/.config/lftp/rc" \
+            && echo " [installed]" >&3
 
     confirm "top" \
-        && create_symlink "${HOME}/etc/top/toprc" "${HOME}/.toprc" \
-        && echo " [installed]" >&3
+            && create_symlink "${HOME}/etc/top/toprc" "${HOME}/.toprc" \
+            && echo " [installed]" >&3
 
     confirm "tmux" \
-        && create_dir "${HOME}/etc/tmux/plugins" \
-        && install_tmux_plugins \
-        && echo " [installed]" >&3
+            && create_dir "${HOME}/etc/tmux/plugins" \
+            && install_tmux_plugins \
+            && echo " [installed]" >&3
 
     confirm "vim" \
-        && create_symlink "${HOME}/etc/vim" "${HOME}/.vim" \
-        && create_dir "${HOME}/etc/vim/bundle" \
-        && create_dir "${HOME}/var/vim" \
-        && install_vim_plugins \
-        && echo " [installed]" >&3
+            && create_symlink "${HOME}/etc/vim" "${HOME}/.vim" \
+            && create_dir "${HOME}/etc/vim/bundle" \
+            && create_dir "${HOME}/var/vim" \
+            && install_vim_plugins \
+            && echo " [installed]" >&3
 
 } # main()
 
@@ -98,8 +98,8 @@ function confirm()
     read -n 1 -r response
 
     case ${response} in
-    y)                                       return 0 ;;
-    *) [[ ! -z ${response} ]] && echo >&3 && return 1 ;;
+        y)                                       return 0 ;;
+        *) [[ ! -z ${response} ]] && echo >&3 && return 1 ;;
     esac
 }
 
@@ -110,21 +110,22 @@ function create_symlink()
 
     case $(uname -s) in
 
-    Linux)
-        cmd="ln --force --no-dereference --relative --symbolic"
-        ;;
-
-    Darwin)
-        # if ln supports the --version option, it's GNU ln
-        if ln --version &> /dev/null; then
+        Linux)
             cmd="ln --force --no-dereference --relative --symbolic"
-        else
-            cmd="ln -fhs"
-        fi
         ;;
 
-    *)
-        log_fatal "{create_symlink} unknown os [$(uname -s)]"
+        Darwin)
+            # if ln supports the --version option, it's GNU ln
+            if ln --version &> /dev/null; then
+                cmd="ln --force --no-dereference --relative --symbolic"
+            else
+                cmd="ln -fhs"
+            fi
+        ;;
+
+        *)
+            log_fatal "{create_symlink} unknown os [$(uname -s)]"
+            return 1
         ;;
 
     esac
@@ -151,21 +152,22 @@ function create_dir()
     [[ -d $1 ]] && log_debug "{create_dir} dir [$1] already exists" && return 0
 
     case $(uname -s) in
-    Linux)
-        cmd="mkdir --mode=0700"
-        ;;
-
-    Darwin)
-        # if mkdir supports the --version option, it's GNU mkdir
-        if mkdir --version &> /dev/null; then
+        Linux)
             cmd="mkdir --mode=0700"
-        else
-            cmd="mkdir -m 0700"
-        fi
         ;;
 
-    *)
-        log_fatal "{create_dir} unknown os [$(uname -s)]"
+        Darwin)
+            # if mkdir supports the --version option, it's GNU mkdir
+            if mkdir --version &> /dev/null; then
+                cmd="mkdir --mode=0700"
+            else
+                cmd="mkdir -m 0700"
+            fi
+        ;;
+
+        *)
+            log_fatal "{create_dir} unknown os [$(uname -s)]"
+            return 1
         ;;
     esac
 
@@ -177,9 +179,11 @@ function create_dir()
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{create_dir} exit_status [${exit_status}]"
         log_fatal "{create_dir} ${output}"
-    else
-        log_debug "{create_dir} exit_status [${exit_status}]"
+        return 1
     fi
+
+    log_debug "{create_dir} exit_status [${exit_status}]"
+    log_debug "{create_dir} ${output}"
 }
 
 
@@ -195,11 +199,11 @@ function install_vim_plugins()
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{install_vim_plugins} exit_status [${exit_status}]"
         log_fatal "{install_vim_plugins} ${output}"
-    else
-        log_debug "{install_vim_plugins} output [${output}]"
-        log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+        return 1
     fi
 
+    log_debug "{install_vim_plugins} output [${output}]"
+    log_debug "{install_vim_plugins} exit_status [${exit_status}]"
 
     # run vim command to install other plugins
     local cmd="vim -e +PluginInstall +qall"
@@ -211,10 +215,11 @@ function install_vim_plugins()
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{install_vim_plugins} exit_status [${exit_status}]"
         log_fatal "{install_vim_plugins} ${output}"
-    else
-        log_debug "{install_vim_plugins} output [${output}]"
-        log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+        return 1
     fi
+
+    log_debug "{install_vim_plugins} output [${output}]"
+    log_debug "{install_vim_plugins} exit_status [${exit_status}]"
 }
 
 
@@ -230,10 +235,11 @@ function install_tmux_plugins()
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{install_tmux_plugins} exit_status [${exit_status}]"
         log_fatal "{install_tmux_plugins} ${output}"
-    else
-        log_debug "{install_tmux_plugins} output [${output}]"
-        log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+        return 1
     fi
+
+    log_debug "{install_tmux_plugins} output [${output}]"
+    log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
 
 
     # run specific script to install other plugins
@@ -246,10 +252,11 @@ function install_tmux_plugins()
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{install_tmux_plugins} exit_status [${exit_status}]"
         log_fatal "{install_tmux_plugins} ${output}"
-    else
-        log_debug "{install_tmux_plugins} output [${output}]"
-        log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+        return 1
     fi
+
+    log_debug "{install_tmux_plugins} output [${output}]"
+    log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
 }
 
 
