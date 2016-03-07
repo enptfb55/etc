@@ -10,9 +10,12 @@ set -o errexit -o nounset -o pipefail
 
 function main()
 {
-    local cmd_mkdir="mkdir --mode=0700 --parents"
-    local cmd_ln="ln --force --relative --symbolic"
-    local cmd_ln_dir="ln --force --no-dereference --relative --symbolic"
+    local cmd_mkdir=$(get_cmd_mkdir $(uname -s))
+    local cmd_ln=$(get_cmd_ln $(uname -s))
+
+    [[ -z ${HOME} ]]      && echo error: HOME is not set && exit 1
+    [[ -z ${cmd_mkdir} ]] && echo error: Could not determine appropriate mkdir command && exit 1
+    [[ -z ${cmd_ln} ]]    && echo error: Could not determine appropriate ln command && exit 1
 
     ${cmd_mkdir} ${HOME}/bin
     ${cmd_mkdir} ${HOME}/src
@@ -65,14 +68,14 @@ function main()
 
     confirm "tmux?" \
         && ${cmd_mkdir} ${HOME}/etc/tmux/plugins \
-        && install_tpm \
+        && install_tmux_plugins \
         && echo " [installed]"
 
     confirm "vim?" \
-        && ${cmd_ln_dir} ${HOME}/etc/vim ${HOME}/.vim \
+        && ${cmd_ln} ${HOME}/etc/vim ${HOME}/.vim \
         && ${cmd_mkdir} ${HOME}/.vim/bundle \
         && ${cmd_mkdir} ${HOME}/var/vim \
-        && install_vundle \
+        && install_vim_plugins \
         && echo " [installed]"
 
 } # main()
@@ -93,7 +96,65 @@ function confirm()
 }
 
 
-function install_vundle()
+function get_cmd_mkdir()
+{
+    (( "$#" != 1 )) && return 1
+
+    case $1 in
+
+    Linux)
+        echo "mkdir --mode=0700 --parents"
+        ;;
+
+    Darwin)
+        # if mkdir supports the --version option, it's GNU mkdir
+        if mkdir --version &> /dev/null; then
+            echo "mkdir --mode=0700 --parents"
+        else
+            echo "mkdir -m 0700 -p"
+        fi
+        ;;
+
+    *)
+        return 1
+        ;;
+
+    esac
+
+    return 0
+}
+
+
+function get_cmd_ln()
+{
+    (( "$#" != 1 )) && return 1
+
+    case $1 in
+
+    Linux)
+        echo "ln --force --no-dereference --relative --symbolic"
+        ;;
+
+    Darwin)
+        # if ln supports the --version option, it's GNU ln
+        if ln --version &> /dev/null; then
+            echo "ln --force --no-dereference --relative --symbolic"
+        else
+            echo "ln -fhs"
+        fi
+        ;;
+
+    *)
+        return 1
+        ;;
+
+    esac
+
+    return 0
+}
+
+
+function install_vim_plugins()
 {
     git clone https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim &> /dev/null
     vim -e +PluginInstall +qall &> /dev/null
@@ -101,9 +162,10 @@ function install_vundle()
 }
 
 
-function install_tpm()
+function install_tmux_plugins()
 {
     git clone https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm &> /dev/null
+    ${HOME}/etc/tmux/plugins/tpm/bin/update_plugins all &> /dev/null
 }
 
 
