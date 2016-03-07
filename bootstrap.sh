@@ -202,10 +202,10 @@ function install_vim_plugins()
 
 
     # run vim command to install other plugins
-    local cmd="vim -e +PluginInstall +qall &> /dev/null"
+    local cmd="vim -e +PluginInstall +qall"
     log_debug "{install_vim_plugins} calling [${cmd}]"
 
-    local output=$(${cmd} 2>&1)
+    local output=$(${cmd} &> /dev/null)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
