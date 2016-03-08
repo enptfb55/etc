@@ -159,31 +159,35 @@ install_vim_plugins()
 }
 
 
-install_tmux_plugins()
+install_tmux_plugin_mgr()
 {
     # clone the repo
     local cmd="git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm"
-    log_debug "{install_tmux_plugins} calling [${cmd}]"
+    log_debug "{install_tmux_plugin_mgr} calling [${cmd}]"
 
     local output=$(${cmd} 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_tmux_plugins} output [${output}]"
-        log_fatal "{install_tmux_plugins} exit_status [${exit_status}]"
+        log_error "{install_tmux_plugin_mgr} output [${output}]"
+        log_fatal "{install_tmux_plugin_mgr} exit_status [${exit_status}]"
         return 1
     fi
 
-    log_debug "{install_tmux_plugins} output [${output}]"
-    log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+    log_debug "{install_tmux_plugin_mgr} output [${output}]"
+    log_debug "{install_tmux_plugin_mgr} exit_status [${exit_status}]"
+    return 0
+}
 
 
+install_tmux_plugins()
+{
     # run specific script to install other plugins
-    local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
+    local readonly cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
     log_debug "{install_tmux_plugins} calling [${cmd}]"
 
-    local output=$(${cmd} 2>&1)
-    local exit_status=$?
+    local readonly output=$(${cmd} 2>&1)
+    local readonly exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{install_tmux_plugins} output [${output}]"
@@ -218,14 +222,17 @@ main()
             && create_dir "${HOME}/var/bash" \
             && create_dir "${HOME}/var/less" \
             && create_dir "${HOME}/var/python" \
+            && source "${HOME}/.bash_profile" \
             && echo " [installed]" >&3
 
     confirm "git" \
+            && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/git" \
             && create_symlink "${HOME}/etc/git/config" "${HOME}/.config/git/config" \
             && echo " [installed]" >&3
 
     confirm "htop" \
+            && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/htop" \
             && create_symlink "${HOME}/etc/htop/htoprc" "${HOME}/.config/htop/config" \
             && echo " [installed]" >&3
@@ -235,6 +242,7 @@ main()
             && echo " [installed]" >&3
 
     confirm "i3" \
+            && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/i3" \
             && create_dir "${HOME}/.config/i3status" \
             && create_symlink "${HOME}/etc/i3/config" "${HOME}/.config/i3/config" \
@@ -246,6 +254,7 @@ main()
             && echo " [installed]" >&3
 
     confirm "lftp" \
+            && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/lftp" \
             && create_symlink "${HOME}/etc/lftp/rc" "${HOME}/.config/lftp/rc" \
             && echo " [installed]" >&3
@@ -256,6 +265,7 @@ main()
 
     confirm "tmux" \
             && create_dir "${HOME}/etc/tmux/plugins" \
+            && install_tmux_plugin_mgr \
             && install_tmux_plugins \
             && echo " [installed]" >&3
 
