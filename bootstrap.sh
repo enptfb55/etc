@@ -39,6 +39,7 @@ create_symlink()
 {
     (( "$#" != 2 )) && log_fatal "{create_symlink} missing argument to function"
 
+    local cmd
     case $(uname -s) in
 
         Linux)
@@ -63,8 +64,8 @@ create_symlink()
 
     log_info "{create_symlink} calling [${cmd} "$@"]"
 
-    output=$(${cmd} "$@" 2>&1)
-    local readonly exit_status=$?
+    local output=$(${cmd} "$@" 2>&1)
+    local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{create_symlink} output [${output}]"
@@ -85,6 +86,7 @@ create_dir()
     # if directory already exists, we have nothing to do
     [[ -d $1 ]] && log_debug "{create_dir} dir [$1] already exists" && return 0
 
+    local cmd
     case $(uname -s) in
         Linux)
             cmd="mkdir --mode=0700"
@@ -107,8 +109,8 @@ create_dir()
 
     log_info "{create_dir} calling [${cmd} $1]"
 
-    output=$(${cmd} $1 2>&1)
-    local readonly exit_status=$?
+    local output=$(${cmd} $1 2>&1)
+    local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{create_dir} output [${output}]"
@@ -134,24 +136,29 @@ load_bash_profile()
 }
 
 
-install_vim_plugins()
+install_vundle()
 {
     # clone the repo
     local cmd="git clone --quiet https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim"
-    log_debug "{install_vim_plugins} calling [${cmd}]"
+    log_debug "{install_vundle} calling [${cmd}]"
 
     local output=$(${cmd} 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_vim_plugins} output [${output}]"
-        log_fatal "{install_vim_plugins} exit_status [${exit_status}]"
+        log_error "{install_vundle} output [${output}]"
+        log_fatal "{install_vundle} exit_status [${exit_status}]"
         return 1
     fi
 
-    log_debug "{install_vim_plugins} output [${output}]"
-    log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+    log_debug "{install_vundle} output [${output}]"
+    log_debug "{install_vundle} exit_status [${exit_status}]"
+    return 0
+}
 
+
+install_vim_plugins()
+{
     # run vim command to install other plugins
     local cmd="vim -e +PluginInstall +qall"
     log_debug "{install_vim_plugins} calling [${cmd}]"
@@ -195,11 +202,11 @@ install_tmux_plugin_mgr()
 install_tmux_plugins()
 {
     # run specific script to install other plugins
-    local readonly cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
+    local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
     log_debug "{install_tmux_plugins} calling [${cmd}]"
 
-    local readonly output=$(${cmd} 2>&1)
-    local readonly exit_status=$?
+    local output=$(${cmd} 2>&1)
+    local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
         log_error "{install_tmux_plugins} output [${output}]"
@@ -285,6 +292,7 @@ main()
             && create_symlink "${HOME}/etc/vim" "${HOME}/.vim" \
             && create_dir "${HOME}/etc/vim/bundle" \
             && create_dir "${HOME}/var/vim" \
+            && install_vundle \
             && install_vim_plugins \
             && echo " [installed]" >&3
 
