@@ -209,8 +209,8 @@ main()
 
     create_dir "${HOME}/bin"
     create_dir "${HOME}/src"
-    create_dir "${HOME}/var"
     create_dir "${HOME}/tmp"
+    create_dir "${HOME}/var"
 
     confirm "bash" \
             && create_symlink "${HOME}/etc/bash/bash_profile" "${HOME}/.bash_profile" \
@@ -242,7 +242,7 @@ main()
             && echo " [installed]" >&3
 
     confirm "locate" \
-            && create_dir "${HOME}/var/cache/mlocate" \
+            && create_dir "${HOME}/var/mlocate" \
             && echo " [installed]" >&3
 
     confirm "lftp" \
