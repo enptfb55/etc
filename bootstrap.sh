@@ -122,6 +122,18 @@ create_dir()
 }
 
 
+load_bash_profile()
+{
+    # turn off options while we source the profile
+    set +o nounset +o pipefail
+
+    source ${HOME}/.bash_profile
+
+    # restore options
+    set -o nounset -o pipefail
+}
+
+
 install_vim_plugins()
 {
     # clone the repo
@@ -222,7 +234,7 @@ main()
             && create_dir "${HOME}/var/bash" \
             && create_dir "${HOME}/var/less" \
             && create_dir "${HOME}/var/python" \
-            && source "${HOME}/.bash_profile" \
+            && load_bash_profile \
             && echo " [installed]" >&3
 
     confirm "git" \
