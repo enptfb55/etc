@@ -267,7 +267,8 @@ main()
             && echo " [installed]" >&3
 
     confirm "xauthority" \
-            && create_dir "${HOME}/var/xauthority"
+            && create_dir "${HOME}/var/xauthority" \
+            && create_symlink "${HOME}/etc/x/50_xauthority" "${HOME}/etc/bash/bash_profile.$(uname -s).d/50_xauthority" \
             && echo " [installed]" >&3
 
     return 0

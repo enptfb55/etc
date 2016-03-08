@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Filename:      etc/bash.Darwin.d/00_aliases
+# Filename:      etc/bashrc.Darwin.d/00_aliases
 # Last modified: 2016.03.07
 
 

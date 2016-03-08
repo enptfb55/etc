@@ -5,8 +5,6 @@
 # This file is only sourced by interactive non-login shells.
 
 
-# common aliases
-
 alias cp='cp --interactive'
 alias dc='cd'
 alias df='df --human-readable'
@@ -36,8 +34,6 @@ alias vim='vim -O'
 alias vmi='vim -O'
 
 
-# common functions
-
 # calculator
 function ?()
 {
@@ -59,9 +55,9 @@ function man()
 }
 
 
-# if the bash.d directory exists, source everything in there
-if [[ -d "${HOME}/etc/bash/bash.$(uname -s).d" ]]; then
-    for file in ${HOME}/etc/bash/bash.$(uname -s).d/*; do
-        source ${file}
+# if the bashrc.d directory exists, source everything in there
+if [[ -d "${HOME}/etc/bash/bashrc.$(uname -s).d" ]]; then
+    for file in ${HOME}/etc/bash/bashrc.$(uname -s).d/*; do
+        source "${file}"
     done
 fi

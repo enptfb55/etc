@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Filename:      etc/x/50_xauthority
+# Last modified: 2016.03.07
+
+# keep location of Xauthority file consistent with dir structure
+# note: this is in it's own file because it may not be possible to use in all
+# environments
+export XAUTHORITY="${HOME}/var/xauthority/xauthority"
