@@ -5,7 +5,7 @@
 # After cloning the etc.git repo into ${HOME}, this script will create the
 # necessary directory structure and symlinks.
 
-set -o nounset -o pipefail
+set -o errexit -o nounset -o pipefail
 
 # set up logging so that stdout and stderr go to a log file
 # note: to print only to console (original stdout), use echo "hello" 1>&3
@@ -127,12 +127,12 @@ create_dir()
 load_bash_profile()
 {
     # turn off options while we source the profile
-    set +o nounset +o pipefail
+    set +o errexit +o nounset +o pipefail
 
     source ${HOME}/.bash_profile
 
     # restore options
-    set -o nounset -o pipefail
+    set -o errexit -o nounset -o pipefail
 }
 
 
