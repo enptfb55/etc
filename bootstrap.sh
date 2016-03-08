@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Filename:      etc/bootstrap.sh
-# Last modified: 2016.03.06
+# Last modified: 2016.03.07
+#
 # After cloning the etc.git repo into ${HOME}, this script will create the
 # necessary directory structure and symlinks.
 
@@ -41,13 +42,13 @@ create_symlink()
     case $(uname -s) in
 
         Linux)
-            cmd="ln --force --no-dereference --relative --symbolic"
+            cmd="ln --force --no-dereference --symbolic"
         ;;
 
         Darwin)
             # if ln supports the --version option, it's GNU ln
             if ln --version &> /dev/null; then
-                cmd="ln --force --no-dereference --relative --symbolic"
+                cmd="ln --force --no-dereference --symbolic"
             else
                 cmd="ln -fhs"
             fi
@@ -73,6 +74,7 @@ create_symlink()
 
     log_debug "{create_symlink} output [${output}]"
     log_debug "{create_symlink} exit_status [${exit_status}]"
+    return 0
 }
 
 
@@ -116,6 +118,7 @@ create_dir()
 
     log_debug "{create_dir} output [${output}]"
     log_debug "{create_dir} exit_status [${exit_status}]"
+    return 0
 }
 
 
@@ -152,6 +155,7 @@ install_vim_plugins()
 
     log_debug "{install_vim_plugins} output [${output}]"
     log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+    return 0
 }
 
 
@@ -189,11 +193,14 @@ install_tmux_plugins()
 
     log_debug "{install_tmux_plugins} output [${output}]"
     log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+    return 0
 }
 
 
 main()
 {
+    # since this script writes to a log, we need to at least try to create the
+    # logs directory
     mkdir -p ${HOME}/var/log
 
     log_info "$0"
@@ -203,7 +210,7 @@ main()
     create_dir "${HOME}/bin"
     create_dir "${HOME}/src"
     create_dir "${HOME}/var"
-    create_dir "${HOME}/var/xauthority"
+    create_dir "${HOME}/tmp"
 
     confirm "bash" \
             && create_symlink "${HOME}/etc/bash/bash_profile" "${HOME}/.bash_profile" \
@@ -257,6 +264,10 @@ main()
             && create_dir "${HOME}/etc/vim/bundle" \
             && create_dir "${HOME}/var/vim" \
             && install_vim_plugins \
+            && echo " [installed]" >&3
+
+    confirm "xauthority" \
+            && create_dir "${HOME}/var/xauthority"
             && echo " [installed]" >&3
 
     return 0
