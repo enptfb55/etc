@@ -64,7 +64,8 @@ create_symlink()
 
     log_info "{create_symlink} calling [${cmd} "$@"]"
 
-    local output=$(${cmd} "$@" 2>&1)
+    local output
+    output=$(${cmd} "$@" 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
@@ -109,7 +110,8 @@ create_dir()
 
     log_info "{create_dir} calling [${cmd} $1]"
 
-    local output=$(${cmd} $1 2>&1)
+    local output
+    output=$(${cmd} $1 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
@@ -142,7 +144,8 @@ install_vundle()
     local cmd="git clone --quiet https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim"
     log_debug "{install_vundle} calling [${cmd}]"
 
-    local output=$(${cmd} 2>&1)
+    local output
+    output=$(${cmd} 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
@@ -163,7 +166,8 @@ install_vim_plugins()
     local cmd="vim -e +PluginInstall +qall"
     log_debug "{install_vim_plugins} calling [${cmd}]"
 
-    local output=$(${cmd} &> /dev/null)
+    local output
+    output=$(${cmd} &> /dev/null)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
@@ -184,7 +188,8 @@ install_tmux_plugin_mgr()
     local cmd="git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm"
     log_debug "{install_tmux_plugin_mgr} calling [${cmd}]"
 
-    local output=$(${cmd} 2>&1)
+    local output
+    output=$(${cmd} 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
@@ -205,7 +210,8 @@ install_tmux_plugins()
     local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
     log_debug "{install_tmux_plugins} calling [${cmd}]"
 
-    local output=$(${cmd} 2>&1)
+    local output
+    output=$(${cmd} 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
