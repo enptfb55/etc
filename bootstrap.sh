@@ -10,12 +10,12 @@ set -o errexit -o nounset -o pipefail
 # set up logging so that stdout and stderr go to a log file
 # note: to print only to console (original stdout), use echo "hello" 1>&3
 readonly LOG="${HOME}/var/log/bootstrap.log"
-exec 3>&1 1>>${LOG} 2>&1
+exec 3>&1 1>>"${LOG}" 2>&1
 
-log_debug() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [DEBUG] $@" >&2 ; }
-log_info()  { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [INFO ] $@" >&2 ; }
-log_error() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [ERROR] $@" | tee /dev/fd/3 ; }
-log_fatal() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [FATAL] $@" | tee /dev/fd/3 ; exit 1 ; }
+log_debug() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [DEBUG] $*" >&2 ; }
+log_info()  { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [INFO ] $*" >&2 ; }
+log_error() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [ERROR] $*" | tee /dev/fd/3 ; }
+log_fatal() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [FATAL] $*" | tee /dev/fd/3 ; exit 1 ; }
 
 
 confirm()
@@ -62,7 +62,7 @@ create_symlink()
 
     esac
 
-    log_info "{create_symlink} calling [${cmd} "$@"]"
+    log_info "{create_symlink} calling [${cmd} $*]"
 
     local output
     output=$(${cmd} "$@" 2>&1)
@@ -111,7 +111,7 @@ create_dir()
     log_info "{create_dir} calling [${cmd} $1]"
 
     local output
-    output=$(${cmd} $1 2>&1)
+    output=$(${cmd} "$1" 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
@@ -131,7 +131,7 @@ load_bash_profile()
     # turn off options while we source the profile
     set +o errexit +o nounset +o pipefail
 
-    source ${HOME}/.bash_profile
+    source "${HOME}/.bash_profile"
 
     # restore options
     set -o errexit -o nounset -o pipefail
@@ -230,7 +230,7 @@ main()
 {
     # since this script writes to a log, we need to at least try to create the
     # logs directory
-    mkdir -p ${HOME}/var/log
+    mkdir -p "${HOME}/var/log"
 
     log_info "$0"
 
