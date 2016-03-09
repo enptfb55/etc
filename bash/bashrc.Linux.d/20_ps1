@@ -1,1 +1,9 @@
-PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
+#!/usr/bin/env bash
+# Filename:      etc/bashrc.Linux.d/20_ps1
+# Last modified: 2016.03.08
+
+
+GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'

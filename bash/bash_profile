@@ -60,11 +60,6 @@ export MANPAGER='less -X'
 # turn off flow control (ctrl-s, ctrl-q)
 stty -ixon
 
-# __git_ps1 shell prompt settings
-GIT_PS1_SHOWCOLORHINTS=true
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-
 # load OS-specific profile customizations
 if [[ -d "${HOME}/etc/bash/bash_profile.$(uname -s).d" ]]; then
     for file in ${HOME}/etc/bash/bash_profile.$(uname -s).d/*; do

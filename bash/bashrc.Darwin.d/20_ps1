@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-# Filename:      etc/bashrc.Darwin.d/00_aliases
-# Last modified: 2016.03.07
+# Filename:      etc/bashrc.Darwin.d/20_ps1
+# Last modified: 2016.03.08
 
 
+GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
 export PS1='\u@\h \W$(__git_ps1 " (\[\033[0;32m\]%s\[\033[0m\])")\$ '
