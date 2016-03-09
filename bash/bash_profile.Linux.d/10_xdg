@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Filename:      etc/bash_profile.Linux.d/10_xdg
+# Last modified: 2016.03.08
+
+export XDG_CACHE_HOME=${HOME}/var/cache
+export XDG_CONFIG_HOME=${HOME}/etc
+export XDG_DATA_HOME=${HOME}/var
