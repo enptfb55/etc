@@ -58,6 +58,7 @@ function man()
 # if the bashrc.d directory exists, source everything in there
 if [[ -d "${HOME}/etc/bash/bashrc.$(uname -s).d" ]]; then
     for file in ${HOME}/etc/bash/bashrc.$(uname -s).d/*; do
-        source "${file}"
+        [[ -x "${file}" ]] && source "${file}"
     done
+    unset file
 fi

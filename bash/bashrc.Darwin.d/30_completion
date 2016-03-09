@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # Filename:      etc/bashrc.Darwin.d/00_aliases
-# Last modified: 2016.03.07
+# Last modified: 2016.03.08
+
 
 # load the bash completion scripts if they're available
-if [[ -d "/usr/local/etc/bash_completion.d" ]]; then
+if [[ -d /usr/local/etc/bash_completion.d ]]; then
     for file in /usr/local/etc/bash_completion.d/*; do
-        source ${file}
+        [[ -x "${file}" ]] && source "${file}"
     done
+    unset file
 fi

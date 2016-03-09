@@ -1,27 +1,28 @@
 #!/usr/bin/env bash
 # Filename:      etc/bash/bash.Linux.d/10_functions
-# Last modified: 2016.03.05
+# Last modified: 2016.03.08
 
 
 # calculator
-function ?()
+?()
 {
     echo "$*" | bc --mathlib
 }
 
 
 # show bash colors
-function colors()
+colors()
 {
     for i in {0..255}; do
         echo -e "\e[38;05;${i}m${i}"
     done | column -c 80 -s "  "
     echo -e "\e[m"
+    unset i
 }
 
 
 # configure less to show man pages in color
-function man()
+man()
 {
     env LESS_TERMCAP_mb=$'\e[1;31m' \
         LESS_TERMCAP_md=$'\e[1;31m' \
@@ -35,7 +36,7 @@ function man()
 
 
 # prints the largest debs installed
-function installed()
+installed()
 {
     dpkg-query --show --showformat='${Installed-Size}\t${Package}\n' | sort --numeric-sort
 }

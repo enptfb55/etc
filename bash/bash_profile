@@ -68,8 +68,9 @@ GIT_PS1_SHOWUNTRACKEDFILES=true
 # load OS-specific profile customizations
 if [[ -d "${HOME}/etc/bash/bash_profile.$(uname -s).d" ]]; then
     for file in ${HOME}/etc/bash/bash_profile.$(uname -s).d/*; do
-        source "${file}"
+        [[ -x "${file}" ]] && source "${file}"
     done
+    unset file
 fi
 
 # load the user's custom bashrc
