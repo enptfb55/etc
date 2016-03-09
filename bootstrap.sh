@@ -12,18 +12,18 @@ set -o errexit -o nounset -o pipefail
 readonly LOG="${HOME}/var/log/bootstrap.log"
 exec 3>&1 1>>"${LOG}" 2>&1
 
-log_debug() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [DEBUG] $*" >&2 ; }
-log_info()  { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [INFO ] $*" >&2 ; }
-log_error() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [ERROR] $*" | tee /dev/fd/3 ; }
-log_fatal() { echo "[$(date +'%Y.%m.%d %H:%M:%S%z')] [$$] [FATAL] $*" | tee /dev/fd/3 ; exit 1 ; }
+log_debug() { printf "[%s] [%s] [DEBUG] %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" "$$" "$@" >&2 ; }
+log_info()  { printf "[%s] [%s] [INFO ] %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" "$$" "$@" >&2 ; }
+log_error() { printf "[%s] [%s] [ERROR] %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" "$$" "$@" | tee /dev/fd/3 ; }
+log_fatal() { printf "[%s] [%s] [FATAL] %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" "$$" "$@" | tee /dev/fd/3 ; exit 1 ; }
 
 
 confirm()
 {
     (( "$#" != 1 )) && log_fatal "{confirm} missing argument to function"
 
-    # prompt user for y/n
-    echo -n "$1? " >&3
+    # prompt user
+    printf "%s? " "$1" >&3
 
     # capture response
     read -n 1 -r response
@@ -248,23 +248,23 @@ main()
             && create_dir "${HOME}/var/less" \
             && create_dir "${HOME}/var/python" \
             && load_bash_profile \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "git" \
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/git" \
             && create_symlink "${HOME}/etc/git/config" "${HOME}/.config/git/config" \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "htop" \
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/htop" \
             && create_symlink "${HOME}/etc/htop/htoprc" "${HOME}/.config/htop/htoprc" \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "hushlogin" \
             && touch "${HOME}/.hushlogin" \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "i3" \
             && create_dir "${HOME}/.config" \
@@ -272,27 +272,27 @@ main()
             && create_dir "${HOME}/.config/i3status" \
             && create_symlink "${HOME}/etc/i3/config" "${HOME}/.config/i3/config" \
             && create_symlink "${HOME}/etc/i3status/config" "${HOME}/.config/i3status/config" \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "locate" \
             && create_dir "${HOME}/var/mlocate" \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "lftp" \
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/lftp" \
             && create_symlink "${HOME}/etc/lftp/rc" "${HOME}/.config/lftp/rc" \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "top" \
             && create_symlink "${HOME}/etc/top/toprc" "${HOME}/.toprc" \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "tmux" \
             && create_dir "${HOME}/etc/tmux/plugins" \
             && install_tmux_plugin_mgr \
             && install_tmux_plugins \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "vim" \
             && create_symlink "${HOME}/etc/vim" "${HOME}/.vim" \
@@ -300,12 +300,12 @@ main()
             && create_dir "${HOME}/var/vim" \
             && install_vundle \
             && install_vim_plugins \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     confirm "xauthority" \
             && create_dir "${HOME}/var/xauthority" \
             && create_symlink "${HOME}/etc/x/50_xauthority" "${HOME}/etc/bash/bash_profile.$(uname -s).d/50_xauthority" \
-            && echo " [installed]" >&3
+            && printf " [installed]\n" >&3
 
     return 0
 } # main()
