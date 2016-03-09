@@ -254,6 +254,7 @@ main()
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/git" \
             && create_symlink "${HOME}/etc/git/config" "${HOME}/.config/git/config" \
+            && chmod +x "${HOME}/etc/bash/bashrc.$(uname -s).d/20_gitps1" &>/dev/null \
             && printf " [installed]\n" >&3
 
     confirm "htop" \
