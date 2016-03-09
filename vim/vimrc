@@ -57,21 +57,21 @@ set tabstop=4                   " tabs are replaced by 4 spaces.
 
 " c-indent config
 set cindent
-set cinoptions=:0,              " put case labels in same column as switch
-set cinoptions+=l1,             " align } with case label
-set cinoptions+=b1,             " align break with case label
-set cinoptions+=g0,             " align c++ scope specifiers at same column as block
-set cinoptions+=N-s,            " don't indent inside namespaces
-set cinoptions+=+2s,            " indent a continuation line 2 * shiftwidth
-set cinoptions+=#1,             " allow indenting of preprocessor lines
-set cinkeys+=,0=break           " assist in lining up break with case statements
+set cinoptions=:0               " put case labels in same column as switch
+set cinoptions+=l1              " align } with case label
+set cinoptions+=b1              " align break with case label
+set cinoptions+=g0              " align c++ scope specifiers at same column as block
+set cinoptions+=N-s             " don't indent inside namespaces
+set cinoptions+=+2s             " indent a continuation line 2 * shiftwidth
+set cinoptions+=#1              " allow indenting of preprocessor lines
+set cinkeys+=0=break            " assist in lining up break with case statements
 
 
-" Searching
-set hlsearch                    " Highlight search terms.
-set ignorecase                  " Ignore case when searching.
-set smartcase                   " Ignore case if search pattern is all lowercase, case-sensitive otherwise.
-set incsearch                   " Show search matches as you type.
+" searching
+set hlsearch                    " highlight search terms.
+set ignorecase                  " ignore case when searching.
+set incsearch                   " show search matches as you type.
+set smartcase                   " ignore case if search pattern is all lowercase, case-sensitive otherwise.
 
 set list                        " display unprintable characters
 set listchars=tab:»·
@@ -81,19 +81,19 @@ set listchars+=precedes:<
 set listchars+=nbsp:·
 
 if exists('+relativenumber')
-    set relativenumber          " Always show (relative) line numbers.
+    set relativenumber          " always show (relative) line numbers.
 endif
 
 if exists('+colorcolumn')
-    set colorcolumn=100         " Draw a line down a specific column
+    set colorcolumn=100         " draw a line down a specific column
 endif
 
-set numberwidth=3               " Reduce the size of the gutter column (where line numbers show up).
-set scrolloff=4                 " Keep 4 lines off the edges of the screen when scrolling.
+set numberwidth=3               " reduce the size of the gutter column (where line numbers show up).
+set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling.
 
-set showmatch                   " Show matching parentheses.
-set pastetoggle=<F2>            " When in insert mode, press <F2> to go to paste mode, where you can paste mass data that won't be autoindented.
-set mouse=a                     " Enable the mouse if the terminal supports it.
+set showmatch                   " show matching parentheses.
+set pastetoggle=<F2>            " when in insert mode, press <F2> to go to paste mode, where you can paste mass data that won't be autoindented.
+set mouse=a                     " enable the mouse if the terminal supports it.
 
 set formatoptions+=j            " delete comment character when joining commented lines
 set nojoinspaces                " only insert single space after joining lines
