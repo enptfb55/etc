@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Filename:      etc/bootstrap.sh
-# Last modified: 2016.03.07
+# Last modified: 2016.03.08
 #
 # After cloning the etc.git repo into ${HOME}, this script will create the
 # necessary directory structure and symlinks.
@@ -140,8 +140,13 @@ load_bash_profile()
 
 install_vundle()
 {
+    if [[ -d "${HOME}/etc/vim/bundle/Vundle.vim" ]]; then
+        log_info "{install_vundle} ${HOME}/etc/vim/bundle/Vundle.vim already exists"
+        return 0
+    fi
+
     # clone the repo
-    local cmd="git clone --quiet https://github.com/VundleVim/Vundle.vim.git ${HOME}/.vim/bundle/Vundle.vim"
+    local cmd="git clone --quiet https://github.com/VundleVim/Vundle.vim.git ${HOME}/etc/vim/bundle/Vundle.vim"
     log_debug "{install_vundle} calling [${cmd}]"
 
     local output
@@ -184,6 +189,11 @@ install_vim_plugins()
 
 install_tmux_plugin_mgr()
 {
+    if [[ -d "${HOME}/etc/tmux/plugins/tpm" ]]; then
+        log_info "{install_tmux_plugin_mgr} ${HOME}/etc/tmux/plugins/tpm already exists"
+        return 0
+    fi
+
     # clone the repo
     local cmd="git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm"
     log_debug "{install_tmux_plugin_mgr} calling [${cmd}]"
@@ -254,7 +264,6 @@ main()
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/git" \
             && create_symlink "${HOME}/etc/git/config" "${HOME}/.config/git/config" \
-            && chmod +x "${HOME}/etc/bash/bashrc.$(uname -s).d/20_gitps1" &>/dev/null \
             && printf " [installed]\n" >&3
 
     confirm "htop" \
