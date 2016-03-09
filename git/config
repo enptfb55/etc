@@ -4,7 +4,7 @@
 [color]
     ui = true
 [credential]
-    helper = cache --timeout=3600
+    helper = cache --timeout=3600 --socket=${HOME}/var/git-credential-cache/socket
 [diff]
     tool = vimdiff
 [push]
@@ -14,3 +14,5 @@
     name = btmcg
 [svn]
     rmdir = true
+[core]
+	ignorecase = false
