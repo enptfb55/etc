@@ -6,7 +6,7 @@
 # load the bash completion scripts if they're available
 if [[ -d /usr/local/etc/bash_completion.d ]]; then
     for file in /usr/local/etc/bash_completion.d/*; do
-        [[ -x "${file}" ]] && source "${file}"
+        source "${file}"
     done
     unset file
 fi
