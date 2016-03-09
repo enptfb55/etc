@@ -252,8 +252,8 @@ main()
     create_dir "${HOME}/var"
 
     confirm "bash" \
-            && create_symlink "${HOME}/etc/bash/bash_profile" "${HOME}/.bash_profile" \
-            && create_symlink "${HOME}/etc/bash/bashrc" "${HOME}/.bashrc" \
+            && create_symlink etc/bash/bash_profile "${HOME}/.bash_profile" \
+            && create_symlink etc/bash/bashrc "${HOME}/.bashrc" \
             && create_dir "${HOME}/var/bash" \
             && create_dir "${HOME}/var/less" \
             && create_dir "${HOME}/var/python" \
@@ -263,13 +263,13 @@ main()
     confirm "git" \
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/git" \
-            && create_symlink "${HOME}/etc/git/config" "${HOME}/.config/git/config" \
+            && create_symlink ../../etc/git/config "${HOME}/.config/git/config" \
             && printf " [installed]\n" >&3
 
     confirm "htop" \
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/htop" \
-            && create_symlink "${HOME}/etc/htop/htoprc" "${HOME}/.config/htop/htoprc" \
+            && create_symlink ../../etc/htop/htoprc "${HOME}/.config/htop/htoprc" \
             && printf " [installed]\n" >&3
 
     confirm "hushlogin" \
@@ -280,8 +280,8 @@ main()
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/i3" \
             && create_dir "${HOME}/.config/i3status" \
-            && create_symlink "${HOME}/etc/i3/config" "${HOME}/.config/i3/config" \
-            && create_symlink "${HOME}/etc/i3status/config" "${HOME}/.config/i3status/config" \
+            && create_symlink ../../etc/i3/config "${HOME}/.config/i3/config" \
+            && create_symlink ../../etc/i3status/config "${HOME}/.config/i3status/config" \
             && printf " [installed]\n" >&3
 
     confirm "locate" \
@@ -291,11 +291,11 @@ main()
     confirm "lftp" \
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/lftp" \
-            && create_symlink "${HOME}/etc/lftp/rc" "${HOME}/.config/lftp/rc" \
+            && create_symlink ../../etc/lftp/rc "${HOME}/.config/lftp/rc" \
             && printf " [installed]\n" >&3
 
     confirm "top" \
-            && create_symlink "${HOME}/etc/top/toprc" "${HOME}/.toprc" \
+            && create_symlink etc/top/toprc "${HOME}/.toprc" \
             && printf " [installed]\n" >&3
 
     confirm "tmux" \
@@ -305,7 +305,7 @@ main()
             && printf " [installed]\n" >&3
 
     confirm "vim" \
-            && create_symlink "${HOME}/etc/vim" "${HOME}/.vim" \
+            && create_symlink etc/vim "${HOME}/.vim" \
             && create_dir "${HOME}/etc/vim/bundle" \
             && create_dir "${HOME}/var/vim" \
             && install_vundle \
@@ -314,7 +314,7 @@ main()
 
     confirm "xauthority" \
             && create_dir "${HOME}/var/xauthority" \
-            && create_symlink "${HOME}/etc/x/50_xauthority" "${HOME}/etc/bash/bash_profile.$(uname -s).d/50_xauthority" \
+            && create_symlink ../../x/50_xauthority "${HOME}/etc/bash/bash_profile.$(uname -s).d/50_xauthority" \
             && printf " [installed]\n" >&3
 
     return 0
