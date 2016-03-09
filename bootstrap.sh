@@ -253,7 +253,7 @@ main()
     confirm "htop" \
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/htop" \
-            && create_symlink "${HOME}/etc/htop/htoprc" "${HOME}/.config/htop/config" \
+            && create_symlink "${HOME}/etc/htop/htoprc" "${HOME}/.config/htop/htoprc" \
             && echo " [installed]" >&3
 
     confirm "hushlogin" \
