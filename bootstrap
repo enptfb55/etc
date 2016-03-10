@@ -1,26 +1,27 @@
 #!/usr/bin/env bash
-# Filename:      etc/bootstrap.sh
-# Last modified: 2016.03.08
+# Filename:      etc/bootstrap
+# Last modified: 2016.03.09
 #
 # After cloning the etc.git repo into ${HOME}, this script will create the
 # necessary directory structure and symlinks.
 
-set -o errexit -o nounset -o pipefail
+set -o nounset -o pipefail
 
 # set up logging so that stdout and stderr go to a log file
 # note: to print only to console (original stdout), use echo "hello" 1>&3
 readonly LOG="${HOME}/var/log/bootstrap.log"
 exec 3>&1 1>>"${LOG}" 2>&1
 
-log_debug() { printf "[%s] [%s] [DEBUG] %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" "$$" "$@" >&2 ; }
-log_info()  { printf "[%s] [%s] [INFO ] %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" "$$" "$@" >&2 ; }
-log_error() { printf "[%s] [%s] [ERROR] %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" "$$" "$@" | tee /dev/fd/3 ; }
-log_fatal() { printf "[%s] [%s] [FATAL] %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" "$$" "$@" | tee /dev/fd/3 ; exit 1 ; }
+_log() { printf "[%s] [%s] [%s] {%s} %s\n" "$(date +'%Y.%m.%d %H:%M:%S%z')" $$ "$1" ${FUNCNAME[2]} "${*:2}" ; }
+log_debug() { _log "DEBUG" "$@" ; }
+log_info()  { _log "INFO " "$@" ; }
+log_error() { _log "ERROR" "$@" | tee /dev/fd/3 ; }
+log_fatal() { _log "FATAL" "$@" | tee /dev/fd/3 ; exit 1 ; }
 
 
 confirm()
 {
-    (( "$#" != 1 )) && log_fatal "{confirm} missing argument to function"
+    (( "$#" != 1 )) && log_fatal "missing argument to function"
 
     # prompt user
     printf "%s? " "$1" >&3
@@ -37,7 +38,7 @@ confirm()
 
 create_symlink()
 {
-    (( "$#" != 2 )) && log_fatal "{create_symlink} missing argument to function"
+    (( "$#" != 2 )) && log_fatal "missing argument to function"
 
     local cmd
     case $(uname -s) in
@@ -56,36 +57,36 @@ create_symlink()
         ;;
 
         *)
-            log_fatal "{create_symlink} unknown os [$(uname -s)]"
+            log_fatal "unknown os [$(uname -s)]"
             return 1
         ;;
 
     esac
 
-    log_info "{create_symlink} calling [${cmd} $*]"
+    log_info "calling [${cmd} $*]"
 
     local output
     output=$(${cmd} "$@" 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{create_symlink} output [${output}]"
-        log_fatal "{create_symlink} exit_status [${exit_status}]"
+        log_error "output [${output}]"
+        log_fatal "exit_status [${exit_status}]"
         return 1
     fi
 
-    log_debug "{create_symlink} output [${output}]"
-    log_debug "{create_symlink} exit_status [${exit_status}]"
+    log_debug "output [${output}]"
+    log_debug "exit_status [${exit_status}]"
     return 0
 }
 
 
 create_dir()
 {
-    (( "$#" != 1 )) && log_fatal "{create_dir} missing argument to function" && return 1
+    (( "$#" != 1 )) && log_fatal "missing argument to function" && return 1
 
     # if directory already exists, we have nothing to do
-    [[ -d $1 ]] && log_debug "{create_dir} dir [$1] already exists" && return 0
+    [[ -d $1 ]] && log_debug "dir [$1] already exists" && return 0
 
     local cmd
     case $(uname -s) in
@@ -103,25 +104,25 @@ create_dir()
         ;;
 
         *)
-            log_fatal "{create_dir} unknown os [$(uname -s)]"
+            log_fatal "unknown os [$(uname -s)]"
             return 1
         ;;
     esac
 
-    log_info "{create_dir} calling [${cmd} $1]"
+    log_info "calling [${cmd} $1]"
 
     local output
     output=$(${cmd} "$1" 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{create_dir} output [${output}]"
-        log_fatal "{create_dir} exit_status [${exit_status}]"
+        log_error "output [${output}]"
+        log_fatal "exit_status [${exit_status}]"
         return 1
     fi
 
-    log_debug "{create_dir} output [${output}]"
-    log_debug "{create_dir} exit_status [${exit_status}]"
+    log_debug "output [${output}]"
+    log_debug "exit_status [${exit_status}]"
     return 0
 }
 
@@ -141,26 +142,26 @@ load_bash_profile()
 install_vundle()
 {
     if [[ -d "${HOME}/etc/vim/bundle/Vundle.vim" ]]; then
-        log_info "{install_vundle} ${HOME}/etc/vim/bundle/Vundle.vim already exists"
+        log_info "${HOME}/etc/vim/bundle/Vundle.vim already exists"
         return 0
     fi
 
     # clone the repo
     local cmd="git clone --quiet https://github.com/VundleVim/Vundle.vim.git ${HOME}/etc/vim/bundle/Vundle.vim"
-    log_debug "{install_vundle} calling [${cmd}]"
+    log_debug "calling [${cmd}]"
 
     local output
     output=$(${cmd} 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_vundle} output [${output}]"
-        log_fatal "{install_vundle} exit_status [${exit_status}]"
+        log_error "output [${output}]"
+        log_fatal "exit_status [${exit_status}]"
         return 1
     fi
 
-    log_debug "{install_vundle} output [${output}]"
-    log_debug "{install_vundle} exit_status [${exit_status}]"
+    log_debug "output [${output}]"
+    log_debug "exit_status [${exit_status}]"
     return 0
 }
 
@@ -169,20 +170,20 @@ install_vim_plugins()
 {
     # run vim command to install other plugins
     local cmd="vim -e +PluginInstall +qall"
-    log_debug "{install_vim_plugins} calling [${cmd}]"
+    log_debug "calling [${cmd}]"
 
     local output
     output=$(${cmd} &> /dev/null)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_vim_plugins} output [${output}]"
-        log_fatal "{install_vim_plugins} exit_status [${exit_status}]"
+        log_error "output [${output}]"
+        log_fatal "exit_status [${exit_status}]"
         return 1
     fi
 
-    log_debug "{install_vim_plugins} output [${output}]"
-    log_debug "{install_vim_plugins} exit_status [${exit_status}]"
+    log_debug "output [${output}]"
+    log_debug "exit_status [${exit_status}]"
     return 0
 }
 
@@ -190,26 +191,26 @@ install_vim_plugins()
 install_tmux_plugin_mgr()
 {
     if [[ -d "${HOME}/etc/tmux/plugins/tpm" ]]; then
-        log_info "{install_tmux_plugin_mgr} ${HOME}/etc/tmux/plugins/tpm already exists"
+        log_info "${HOME}/etc/tmux/plugins/tpm already exists"
         return 0
     fi
 
     # clone the repo
     local cmd="git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm"
-    log_debug "{install_tmux_plugin_mgr} calling [${cmd}]"
+    log_debug "calling [${cmd}]"
 
     local output
     output=$(${cmd} 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_tmux_plugin_mgr} output [${output}]"
-        log_fatal "{install_tmux_plugin_mgr} exit_status [${exit_status}]"
+        log_error "output [${output}]"
+        log_fatal "exit_status [${exit_status}]"
         return 1
     fi
 
-    log_debug "{install_tmux_plugin_mgr} output [${output}]"
-    log_debug "{install_tmux_plugin_mgr} exit_status [${exit_status}]"
+    log_debug "output [${output}]"
+    log_debug "exit_status [${exit_status}]"
     return 0
 }
 
@@ -218,20 +219,20 @@ install_tmux_plugins()
 {
     # run specific script to install other plugins
     local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
-    log_debug "{install_tmux_plugins} calling [${cmd}]"
+    log_debug "calling [${cmd}]"
 
     local output
     output=$(${cmd} 2>&1)
     local exit_status=$?
 
     if [[ "${exit_status}" -ne 0 ]]; then
-        log_error "{install_tmux_plugins} output [${output}]"
-        log_fatal "{install_tmux_plugins} exit_status [${exit_status}]"
+        log_error "output [${output}]"
+        log_fatal "exit_status [${exit_status}]"
         return 1
     fi
 
-    log_debug "{install_tmux_plugins} output [${output}]"
-    log_debug "{install_tmux_plugins} exit_status [${exit_status}]"
+    log_debug "output [${output}]"
+    log_debug "exit_status [${exit_status}]"
     return 0
 }
 
@@ -244,7 +245,7 @@ main()
 
     log_info "$0"
 
-    [[ -z ${HOME:-} ]] && log_error "error: HOME is not set" && exit 1
+    [[ -z ${HOME:-} ]] && log_fatal "error: HOME is not set"
 
     create_dir "${HOME}/bin"
     create_dir "${HOME}/src"
