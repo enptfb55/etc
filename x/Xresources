@@ -1,5 +1,5 @@
 ! Filename:      etc/x/Xresources
-! Last modified: 2016.03.05
+! Last modified: 2016.03.09
 
 
 ! xterm should identify the terminal as supporting 256 colors
@@ -22,8 +22,8 @@ xterm*cursorColor: white
 xterm*scrollBar: false
 xterm*rightScrollBar: false
 
-! enable utf-8 support in xterm ('2' is always utf mode)
+! enable utf-8 support in xterm (2 is always utf mode)
 xterm*utf8: 3
 
-! don't use bold, just make the text brighter
+! dont use bold, just make the text brighter
 xterm*boldMode: false
