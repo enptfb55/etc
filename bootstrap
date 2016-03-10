@@ -262,12 +262,6 @@ main()
             && load_bash_profile \
             && printf " [installed]\n" >&3
 
-    confirm "git" \
-            && create_dir "${HOME}/.config" \
-            && create_dir "${HOME}/.config/git" \
-            && create_symlink ../../etc/git/config "${HOME}/.config/git/config" \
-            && printf " [installed]\n" >&3
-
     confirm "htop" \
             && create_dir "${HOME}/.config" \
             && create_dir "${HOME}/.config/htop" \
