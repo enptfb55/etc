@@ -69,7 +69,7 @@ create_symlink()
     output=$(${cmd} "$@" 2>&1)
     local exit_status=$?
 
-    if [[ "${exit_status}" -ne 0 ]]; then
+    if (( ${exit_status} != 0 )); then
         log_error "output [${output}]"
         log_fatal "exit_status [${exit_status}]"
         return 1
@@ -115,7 +115,7 @@ create_dir()
     output=$(${cmd} "$1" 2>&1)
     local exit_status=$?
 
-    if [[ "${exit_status}" -ne 0 ]]; then
+    if (( ${exit_status} != 0 )); then
         log_error "output [${output}]"
         log_fatal "exit_status [${exit_status}]"
         return 1
@@ -154,7 +154,7 @@ install_vundle()
     output=$(${cmd} 2>&1)
     local exit_status=$?
 
-    if [[ "${exit_status}" -ne 0 ]]; then
+    if (( ${exit_status} != 0 )); then
         log_error "output [${output}]"
         log_fatal "exit_status [${exit_status}]"
         return 1
@@ -176,10 +176,11 @@ install_vim_plugins()
     output=$(${cmd} &> /dev/null)
     local exit_status=$?
 
-    if [[ "${exit_status}" -ne 0 ]]; then
+    # FIXME: for some reason this command always seems to return 1
+    if (( ${exit_status} != 0 )); then
         log_error "output [${output}]"
-        log_fatal "exit_status [${exit_status}]"
-        return 1
+        log_error "exit_status [${exit_status}]"
+        return 0
     fi
 
     log_debug "output [${output}]"
@@ -203,7 +204,7 @@ install_tmux_plugin_mgr()
     output=$(${cmd} 2>&1)
     local exit_status=$?
 
-    if [[ "${exit_status}" -ne 0 ]]; then
+    if (( ${exit_status} != 0 )); then
         log_error "output [${output}]"
         log_fatal "exit_status [${exit_status}]"
         return 1
@@ -225,7 +226,7 @@ install_tmux_plugins()
     output=$(${cmd} 2>&1)
     local exit_status=$?
 
-    if [[ "${exit_status}" -ne 0 ]]; then
+    if (( ${exit_status} != 0 )); then
         log_error "output [${output}]"
         log_fatal "exit_status [${exit_status}]"
         return 1
