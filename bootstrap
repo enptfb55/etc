@@ -278,14 +278,6 @@ main()
             && touch "${HOME}/.hushlogin" \
             && printf " [installed]\n" >&3
 
-    confirm "i3" \
-            && create_dir "${HOME}/.config" \
-            && create_dir "${HOME}/.config/i3" \
-            && create_dir "${HOME}/.config/i3status" \
-            && create_symlink ../../etc/i3/config "${HOME}/.config/i3/config" \
-            && create_symlink ../../etc/i3status/config "${HOME}/.config/i3status/config" \
-            && printf " [installed]\n" >&3
-
     confirm "locate" \
             && create_dir "${HOME}/var/mlocate" \
             && printf " [installed]\n" >&3
