@@ -262,24 +262,12 @@ main()
             && load_bash_profile \
             && printf " [installed]\n" >&3
 
-    confirm "htop" \
-            && create_dir "${HOME}/.config" \
-            && create_dir "${HOME}/.config/htop" \
-            && create_symlink ../../etc/htop/htoprc "${HOME}/.config/htop/htoprc" \
-            && printf " [installed]\n" >&3
-
     confirm "hushlogin" \
             && touch "${HOME}/.hushlogin" \
             && printf " [installed]\n" >&3
 
     confirm "locate" \
             && create_dir "${HOME}/var/mlocate" \
-            && printf " [installed]\n" >&3
-
-    confirm "lftp" \
-            && create_dir "${HOME}/.config" \
-            && create_dir "${HOME}/.config/lftp" \
-            && create_symlink ../../etc/lftp/rc "${HOME}/.config/lftp/rc" \
             && printf " [installed]\n" >&3
 
     confirm "top" \
