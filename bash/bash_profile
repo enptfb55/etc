@@ -51,6 +51,11 @@ export GCC_COLORS="error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:loc
 # don't clear the screen after quitting a man page
 export MANPAGER="less --no-init"
 
+# set all XDG variables
+export XDG_CACHE_HOME=${HOME}/var/cache
+export XDG_CONFIG_HOME=${HOME}/etc
+export XDG_DATA_HOME=${HOME}/var
+
 # enable core dumps (if not enabled already)
 ulimit -c unlimited
 
