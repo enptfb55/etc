@@ -70,10 +70,11 @@ if [[ -d ${HOME}/etc/bash/bash_profile.$(uname -s).d ]]; then
 fi
 
 # only show motd if it changes
-cmp --quiet $HOME/.hushlogin /etc/motd
-if ! cmp --quiet ${HOME}/.hushlogin; then
-    tee $HOME/.hushlogin < /etc/motd
-    printf "press enter to continue: " && read ans
+if [[ -s /etc/motd ]]; then
+    if ! cmp --quiet ${HOME}/.hushlogin /etc/motd; then
+        tee $HOME/.hushlogin < /etc/motd
+        printf "press enter to continue: " && read ans
+    fi
 fi
 
 # load the user's custom bashrc

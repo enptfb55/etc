@@ -41,7 +41,7 @@ create_symlink()
     (( "$#" != 2 )) && log_fatal "missing argument to function"
 
     local cmd
-    case $(uname -s) in
+    case $(uname) in
 
         Linux)
             cmd="ln --force --no-dereference --symbolic"
@@ -57,7 +57,7 @@ create_symlink()
         ;;
 
         *)
-            log_fatal "unknown os [$(uname -s)]"
+            log_fatal "unknown os [$(uname)]"
             return 1
         ;;
 
@@ -89,7 +89,7 @@ create_dir()
     [[ -d $1 ]] && log_debug "dir [$1] already exists" && return 0
 
     local cmd
-    case $(uname -s) in
+    case $(uname) in
         Linux)
             cmd="mkdir --mode=0700"
         ;;
@@ -104,7 +104,7 @@ create_dir()
         ;;
 
         *)
-            log_fatal "unknown os [$(uname -s)]"
+            log_fatal "unknown os [$(uname)]"
             return 1
         ;;
     esac
@@ -280,7 +280,7 @@ main()
 
     confirm "tmux" \
             && create_dir ${HOME}/etc/tmux/plugins \
-            && create_symlink ../etc/tmux/tmux_wrapper ${HOME}/bin/tmux \
+            && create_symlink ../etc/tmux/tmux.wrapper.$(uname) ${HOME}/bin/tmux \
             && install_tmux_plugin_mgr \
             && install_tmux_plugins \
             && printf " [installed]\n" >&3
@@ -296,7 +296,7 @@ main()
     confirm "xauthority" \
             && create_dir ${HOME}/var/xauthority \
             && create_symlink ../etc/x/startx_wrapper ${HOME}/bin/startx \
-            && create_symlink ../../x/50_xauthority ${HOME}/etc/bash/bash_profile.$(uname -s).d/50_xauthority \
+            && create_symlink ../../x/50_xauthority ${HOME}/etc/bash/bash_profile.$(uname).d/50_xauthority \
             && printf " [installed]\n" >&3
 
     return 0
