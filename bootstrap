@@ -276,6 +276,7 @@ main()
 
     confirm "tmux" \
             && create_dir "${HOME}/etc/tmux/plugins" \
+            && create_symlink ../etc/tmux/tmux_wrapper ${HOME}/bin/tmux \
             && install_tmux_plugin_mgr \
             && install_tmux_plugins \
             && printf " [installed]\n" >&3
@@ -290,6 +291,7 @@ main()
 
     confirm "xauthority" \
             && create_dir "${HOME}/var/xauthority" \
+            && create_symlink ../etc/x/startx_wrapper ${HOME}/bin/startx \
             && create_symlink ../../x/50_xauthority "${HOME}/etc/bash/bash_profile.$(uname -s).d/50_xauthority" \
             && printf " [installed]\n" >&3
 

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/tmux -f ${HOME}/etc/tmux/tmux.conf "$@"
