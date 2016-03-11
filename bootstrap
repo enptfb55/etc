@@ -254,45 +254,49 @@ main()
     create_dir "${HOME}/var"
 
     confirm "bash" \
-            && create_symlink etc/bash/bash_profile "${HOME}/.bash_profile" \
-            && create_symlink etc/bash/bashrc "${HOME}/.bashrc" \
-            && create_dir "${HOME}/var/bash" \
-            && create_dir "${HOME}/var/less" \
-            && create_dir "${HOME}/var/python" \
+            && create_symlink etc/bash/bash_profile ${HOME}/.bash_profile \
+            && create_symlink etc/bash/bashrc ${HOME}/.bashrc \
+            && create_dir ${HOME}/var/bash \
+            && create_dir ${HOME}/var/less \
+            && create_dir ${HOME}/var/python \
             && load_bash_profile \
             && printf " [installed]\n" >&3
 
+    confirm "chromium" \
+            && create_symlink ../etc/chromium/chromium_wrapper ${HOME}/bin/chromium \
+            && printf " [installed]\n" >&3
+
     confirm "hushlogin" \
-            && touch "${HOME}/.hushlogin" \
+            && touch ${HOME}/.hushlogin \
             && printf " [installed]\n" >&3
 
     confirm "locate" \
-            && create_dir "${HOME}/var/mlocate" \
+            && create_dir ${HOME}/var/mlocate \
             && printf " [installed]\n" >&3
 
     confirm "top" \
-            && create_symlink etc/top/toprc "${HOME}/.toprc" \
+            && create_symlink etc/top/toprc ${HOME}/.toprc \
             && printf " [installed]\n" >&3
 
     confirm "tmux" \
-            && create_dir "${HOME}/etc/tmux/plugins" \
+            && create_dir ${HOME}/etc/tmux/plugins \
             && create_symlink ../etc/tmux/tmux_wrapper ${HOME}/bin/tmux \
             && install_tmux_plugin_mgr \
             && install_tmux_plugins \
             && printf " [installed]\n" >&3
 
     confirm "vim" \
-            && create_symlink etc/vim "${HOME}/.vim" \
-            && create_dir "${HOME}/etc/vim/bundle" \
-            && create_dir "${HOME}/var/vim" \
+            && create_symlink etc/vim ${HOME}/.vim \
+            && create_dir ${HOME}/etc/vim/bundle \
+            && create_dir ${HOME}/var/vim \
             && install_vundle \
             && install_vim_plugins \
             && printf " [installed]\n" >&3
 
     confirm "xauthority" \
-            && create_dir "${HOME}/var/xauthority" \
+            && create_dir ${HOME}/var/xauthority \
             && create_symlink ../etc/x/startx_wrapper ${HOME}/bin/startx \
-            && create_symlink ../../x/50_xauthority "${HOME}/etc/bash/bash_profile.$(uname -s).d/50_xauthority" \
+            && create_symlink ../../x/50_xauthority ${HOME}/etc/bash/bash_profile.$(uname -s).d/50_xauthority \
             && printf " [installed]\n" >&3
 
     return 0
