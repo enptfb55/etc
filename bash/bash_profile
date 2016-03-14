@@ -73,14 +73,6 @@ if [[ -d ${HOME}/etc/bash/bash_profile.$(uname -s).d ]]; then
     unset file
 fi
 
-# only show motd if it changes
-if [[ -s /etc/motd ]]; then
-    if ! cmp --quiet ${HOME}/.hushlogin /etc/motd; then
-        tee $HOME/.hushlogin < /etc/motd
-        printf "press enter to continue: " && read ans
-    fi
-fi
-
 # load the user's custom bashrc
 if [[ -f ${HOME}/.bashrc ]]; then
     source ${HOME}/.bashrc
