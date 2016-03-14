@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
 # Filename:      etc/bash/bashrc
-# Last modified: 2016.03.10
+# Last modified: 2016.03.13
 #
 # This file is only sourced by interactive non-login shells.
 

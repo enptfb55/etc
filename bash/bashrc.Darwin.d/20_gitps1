@@ -1,8 +1,3 @@
-#!/usr/bin/env bash
-# Filename:      etc/bashrc.Darwin.d/20_gitps1
-# Last modified: 2016.03.08
-
-
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true

@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
 # Filename:      etc/bash/bash_profile
-# Last modified: 2016.03.10
+# Last modified: 2016.03.13
 #
 # This file is only sourced by interactive login shells. This should set all
 # platform-agnostic environment variables. Leave the OS-specific environment

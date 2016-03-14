@@ -1,8 +1,3 @@
-#!/usr/bin/env bash
-# Filename:      etc/bash/bash.Linux.d/00_aliases
-# Last modified: 2016.03.08
-
-
 alias egrep="egrep --binary-files=without-match --color=auto --directories=skip"
 alias fgrep="fgrep --binary-files=without-match --color=auto --directories=skip"
 alias findx="find . -type d \( -name '.svn' -o -name '.git' \) -prune -o -type f -print0 | xargs -0 grep --binary-files=without-match --color=auto --no-messages"

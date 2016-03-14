@@ -1,6 +1,2 @@
-#!/usr/bin/env bash
-# Filename:      etc/bash_profile.Linux.d/00_path
-# Last modified: 2016.03.07
-
-export PATH="${HOME}/bin:${HOME}/local/bin:${PATH}:/sbin"
-export MANPATH="${HOME}/local/man:${MANPATH}"
+export PATH=${HOME}/bin:${HOME}/local/bin:${PATH}:/sbin
+export MANPATH=${HOME}/local/man:${MANPATH}
