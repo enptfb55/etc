@@ -4,33 +4,37 @@
 # This file is only sourced by interactive non-login shells.
 
 
+# ls aliases
+alias  l="ls --color=auto --group-directories-first --quoting-style=literal"
+alias la="ls -l --all --classify --color=auto --group-directories-first --human-readable --quoting-style=literal"
+alias ll="ls -l --classify --color=auto --group-directories-first --human-readable --quoting-style=literal"
+alias lr="ls -lt --all --color=auto --group-directories-first --human-readable --quoting-style=literal --reverse"
+alias ls="ls --color=auto --group-directories-first --quoting-style=literal"
+alias sl="ls --color=auto --group-directories-first --quoting-style=literal"
+
+# make aliases
+alias m="make"
+alias mc="make clean"
+alias mdc="make distclean"
+alias mcm="make clean && make"
+
+# vim aliases
+alias vi="vim -O"
+alias vim="vim -O"
+alias vmi="vim -O"
+
 alias cp="cp --interactive"
 alias dc="cd"
 alias df="df --human-readable"
 alias dul="du --human-readable --summarize * | sort --human-numeric-sort --reverse"
 alias free="free --mega"
-alias ll="ls -la --classify --color=auto --group-directories-first --human-readable --quoting-style=literal"
-alias l="ls --color=auto --group-directories-first --quoting-style=literal"
 alias loc="locate --database=${HOME}/var/cache/mlocate/mlocate.db"
-alias lr="ls -lat --color=auto --group-directories-first --human-readable --quoting-style=literal --reverse"
-alias ls="ls --color=auto --group-directories-first --quoting-style=literal"
 alias lsof_net="lsof -P -i 4 -n"
-alias m="make"
-alias mc="make clean"
-alias mdc="make distclean"
-alias mcm="make clean && make"
-alias mi="make install"
 alias mount="mount | column -t"
-alias mp3_info="mediainfo --Output=file:///home/brian/bin/mp3_info"
-alias mp3_infov="mediainfo --Output=file:///home/brian/bin/mp3_info_verbose"
 alias mv="mv --interactive"
 alias ns="netstat --numeric --tcp --all --udp --program --listening"
 alias psc="ps xawf -eo pid,user,cgroup,args"
 alias rmdirr="find . -type d -empty -delete"
-alias sl="ls --color=auto --group-directories-first --quoting-style=literal"
-alias vi="vim -O"
-alias vim="vim -O"
-alias vmi="vim -O"
 
 
 # calculator
