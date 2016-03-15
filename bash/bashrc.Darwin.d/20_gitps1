@@ -1,4 +1,4 @@
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
-export PS1='\u@\h \W$(__git_ps1 " (\[\033[0;32m\]%s\[\033[0m\])")\$ '
+export PS1='\u@\h \W$(__git_ps1 " (\[\033[0;32m\]%s\[\033[0m\])") \$ '
