@@ -1,0 +1,46 @@
+# Filename:      etc/readline/inputrc
+# Last modified: 2016.03.15
+#
+# Configuration for Readline
+
+# load system readline config
+$include /etc/inputrc
+
+# enable 8-bit input
+set input-meta on
+
+# display characters with 8-bit set
+set output-meta on
+
+# use vi key-bindings
+set editing-mode vi
+
+# never ring the goddamn bell
+set bell-style none
+
+# show completions in color (based on LS_COLORS)
+set colored-stats on
+
+# enable the numpad, sometimes needed to get arrow keys to work
+set enable-keypad on
+
+# don't expand the tilde when attempting completion
+set expand-tilde off
+
+# wrap long lines, don't horizontally scroll
+set horizontal-scroll-mode off
+
+# don't append a slash when completing directory names
+set mark-directories off
+
+# sort completions alphabetically horizontally
+set print-completions-horizontally on
+
+# if more than one completion, show them immediately without ringing the bell
+set show-all-if-ambiguous on
+
+# somehow similar to show-all-if-ambiguous
+set show-all-if-unmodified on
+
+# don't show ^C when hitting ctrl-c
+set echo-control-characters off
