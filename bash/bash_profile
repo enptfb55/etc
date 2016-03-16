@@ -1,5 +1,5 @@
 # Filename:      etc/bash/bash_profile
-# Last modified: 2016.03.13
+# Last modified: 2016.03.15
 #
 # This file is only sourced by interactive login shells. This should set all
 # platform-agnostic environment variables. Leave the OS-specific environment
@@ -16,10 +16,13 @@ export LC_COLLATE=C
 export HISTFILE=${HOME}/var/bash/bash_history
 
 # don't put duplicate lines in the history
-export HISTCONTROL="${HISTCONTROL}${HISTCONTROL+:}ignoredups:erasedups"
+export HISTCONTROL=ignoredups
 
-# ... or force ignoredups and ignorespace
-export HISTCONTROL=ignoreboth
+# erase all duplicate entries when storing a new command
+export HISTCONTROL=${HISTCONTROL}:erasedups
+
+# don't store commands starting with a space
+export HISTCONTROL=${HISTCONTROL}:ignorespace
 
 # massively increase the size of the history file
 export HISTSIZE=20000
@@ -27,13 +30,6 @@ export HISTFILESIZE=100000
 
 # change location of less history file
 export LESSHISTFILE=${HOME}/var/less/less_history
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# check the window size after each command and, if necessary, update the values
-# of LINES and COLUMNS
-shopt -s checkwinsize
 
 # add some colors to ls
 export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.gz=00;31:*.bz2=00;31:*.jpg=00;35:*.bmp=00;35:*.png=00;35:*.tz=00;31:*.xz=00;31:"
@@ -55,11 +51,21 @@ export XDG_CACHE_HOME=${HOME}/var/cache
 export XDG_CONFIG_HOME=${HOME}/etc
 export XDG_DATA_HOME=${HOME}/var
 
+# tell readline where to find its config file
+export INPUTRC=${HOME}/etc/readline/inputrc
+
 # enable core dumps (if not enabled already)
 ulimit -c unlimited
 
 # turn off flow control (ctrl-s, ctrl-q)
 stty -ixon
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary, update the values
+# of LINES and COLUMNS
+shopt -s checkwinsize
 
 # make bash options (set by shopt) propagate to all child shell processes
 export BASHOPTS
