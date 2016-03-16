@@ -1,5 +1,5 @@
 # Filename:      etc/readline/inputrc
-# Last modified: 2016.03.15
+# Last modified: 2016.03.16
 #
 # Configuration for Readline
 
@@ -31,10 +31,10 @@ set expand-tilde off
 set horizontal-scroll-mode off
 
 # don't append a slash when completing directory names
-set mark-directories off
+# set mark-directories off
 
 # sort completions alphabetically horizontally
-set print-completions-horizontally on
+# set print-completions-horizontally on
 
 # if more than one completion, show them immediately without ringing the bell
 set show-all-if-ambiguous on
