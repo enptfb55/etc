@@ -267,7 +267,7 @@ main()
             && printf " [installed]\n" >&3
 
     confirm "hushlogin" \
-            && touch ${HOME}/.hushlogin \
+            && > ${HOME}/.hushlogin \
             && printf " [installed]\n" >&3
 
     confirm "locate" \
