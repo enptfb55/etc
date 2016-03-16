@@ -1,6 +1,9 @@
 ! Filename:      etc/x/Xresources
-! Last modified: 2016.03.09
+! Last modified: 2016.03.16
 
+
+! xterm configuration
+! =============================================================================
 
 ! xterm should identify the terminal as supporting 256 colors
 xterm*termName: xterm-256color
@@ -27,3 +30,34 @@ xterm*utf8: 3
 
 ! dont use bold, just make the text brighter
 xterm*boldMode: false
+
+
+! urxvt configuration
+! =============================================================================
+
+! set TERM variable to this value (needed by tmux)
+URxvt*termName: screen-256color
+
+! default size of window
+URxvt*geometry: 240x84
+
+! don't show the scrollbars
+URxvt*scrollBar: false
+
+! when focus is lost, fade the text somewhat
+URxvt*fading: 30
+
+! default to black background with white text
+URxvt*background: Black
+URxvt*foreground: White
+
+! use yellow for underlining
+URxvt*colorUL: yellow
+URxvt*underlineColor: yellow
+
+! store 10,000 lines of buffer history
+URxvt*saveLines: 10000
+
+! disable all perl extensions (should speed things up a bit)
+URxvt*perl-ext-common:
+URxvt*perl-ext:
