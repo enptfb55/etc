@@ -37,10 +37,11 @@ set horizontal-scroll-mode off
 # set print-completions-horizontally on
 
 # if more than one completion, show them immediately without ringing the bell
-set show-all-if-ambiguous on
+# (default off)
+set show-all-if-ambiguous off
 
-# somehow similar to show-all-if-ambiguous
-set show-all-if-unmodified on
+# somehow similar to show-all-if-ambiguous (default off)
+set show-all-if-unmodified off
 
 # don't show ^C when hitting ctrl-c
 set echo-control-characters off
