@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Filename:      etc/bootstrap
-# Last modified: 2016.03.09
+# Last modified: 2016.03.17
 #
 # After cloning the etc.git repo into ${HOME}, this script will create the
 # necessary directory structure and symlinks.
@@ -249,6 +249,7 @@ main()
     [[ -z ${HOME:-} ]] && log_fatal "error: HOME is not set"
 
     create_dir "${HOME}/bin"
+    create_dir "${HOME}/run"
     create_dir "${HOME}/src"
     create_dir "${HOME}/tmp"
     create_dir "${HOME}/var"
