@@ -41,14 +41,23 @@ load {
 }
 
 disk "/" {
-    format = "/: %percentage_used used, %percentage_avail avail"
+    format = "/: %free free (%percentage_used used)"
+    prefix_type = binary
+    low_threshold = 25
+    threshold_type = percentage_avail
 }
 
 disk "/home" {
-    format = "/home: %percentage_used used, %percentage_avail avail"
+    format = "/home: %free free (%percentage_used used)"
+    prefix_type = binary
+    low_threshold = 25
+    threshold_type = percentage_avail
 }
 
 disk "/var" {
-    format = "/var: %percentage_used used, %percentage_avail avail"
+    format = "/var: %free free (%percentage_used used)"
+    prefix_type = binary
+    low_threshold = 25
+    threshold_type = percentage_avail
 }
 
