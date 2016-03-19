@@ -12,7 +12,7 @@ set $mod Mod4
 # use i3status as the i3bar
 bar {
     font pango:DejaVu Sans Mono 8
-    status_command exec measure-net-speed-i3status.bash
+    status_command exec /usr/share/doc/i3status/contrib/net-speed
 }
 
 # font for window titles
