@@ -1,5 +1,5 @@
 # Filename:      etc/bash/bashrc
-# Last modified: 2016.03.13
+# Last modified: 2016.03.19
 #
 # This file is only sourced by interactive non-login shells.
 
@@ -13,13 +13,13 @@ alias ls="ls --color=auto --group-directories-first --quoting-style=literal"
 alias sl="ls --color=auto --group-directories-first --quoting-style=literal"
 
 # make aliases
-alias m="make"
-alias mc="make clean"
+alias   m="make"
+alias  mc="make clean"
 alias mdc="make distclean"
 alias mcm="make clean && make"
 
 # vim aliases
-alias vi="vim -O"
+alias  vi="vim -O"
 alias vim="vim -O"
 alias vmi="vim -O"
 
@@ -28,7 +28,7 @@ alias dc="cd"
 alias df="df --human-readable"
 alias dul="du --human-readable --summarize * | sort --human-numeric-sort --reverse"
 alias free="free --mega"
-alias loc="locate --database=${HOME}/var/cache/mlocate/mlocate.db"
+alias loc="locate --database=${HOME}/var/mlocate/mlocate.db"
 alias lsof_net="lsof -P -i 4 -n"
 alias mount="mount | column -t"
 alias mv="mv --interactive"
@@ -59,8 +59,8 @@ man()
 
 
 # if the bashrc.d directory exists, source everything in there
-if [[ -d "${HOME}/etc/bash/bashrc.$(uname -s).d" ]]; then
-    for file in ${HOME}/etc/bash/bashrc.$(uname -s).d/*; do
+if [[ -d "${HOME}/etc/bash/bashrc.$(uname).d" ]]; then
+    for file in ${HOME}/etc/bash/bashrc.$(uname).d/*; do
         [[ -x "${file}" ]] && source "${file}"
     done
     unset file

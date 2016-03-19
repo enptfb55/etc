@@ -1,10 +1,13 @@
 # Filename:      etc/bash/bash_profile
-# Last modified: 2016.03.15
+# Last modified: 2016.03.19
 #
 # This file is only sourced by interactive login shells. This should set all
 # platform-agnostic environment variables. Leave the OS-specific environment
-# variables for the etc/bash/bash_profile.{OS}.d/ files.
+# variables for the etc/bash/bash_profile.<os>.d/ files.
 
+
+# shell-related environment variables
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # set vim as default editor
 export EDITOR=vim
@@ -28,31 +31,42 @@ export HISTCONTROL=${HISTCONTROL}:ignorespace
 export HISTSIZE=20000
 export HISTFILESIZE=100000
 
-# change location of less history file
-export LESSHISTFILE=${HOME}/var/less/less_history
-
-# add some colors to ls
-export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.gz=00;31:*.bz2=00;31:*.jpg=00;35:*.bmp=00;35:*.png=00;35:*.tz=00;31:*.xz=00;31:"
-
 # ignore certain file types in tab-completion
 export FIGNORE=".o:.pyc"
 
-# run this script each time an interactive python session starts
-export PYTHONSTARTUP=${HOME}/etc/python/python_startup.py
+
+# application-specific environment variables
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # enable colors in gcc
 export GCC_COLORS="error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10"
 
+# tell readline where to find its config file
+export INPUTRC=${HOME}/etc/readline/inputrc
+
+# change location of less history file
+export LESSHISTFILE=${HOME}/var/less/less_history
+
+# also search local db when using locate
+export LOCATE_PATH=${HOME}/var/mlocate/mlocate.db
+
+# add some colors to ls
+export LS_COLORS="no=00:fi=00:di=00;96:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.sh=00;32:*.tar=00;31:*.tgz=00;31:*.zip=00;31:*.gz=00;31:*.bz2=00;31:*.jpg=00;35:*.bmp=00;35:*.png=00;35:*.tz=00;31:*.xz=00;31:"
+
 # don't clear the screen after quitting a man page
 export MANPAGER="less --no-init"
+
+# run this script each time an interactive python session starts
+export PYTHONSTARTUP=${HOME}/etc/python/python_startup.py
 
 # set all XDG variables
 export XDG_CACHE_HOME=${HOME}/var/cache
 export XDG_CONFIG_HOME=${HOME}/etc
 export XDG_DATA_HOME=${HOME}/var
 
-# tell readline where to find its config file
-export INPUTRC=${HOME}/etc/readline/inputrc
+
+# bash options
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # enable core dumps (if not enabled already)
 ulimit -c unlimited
@@ -71,6 +85,9 @@ shopt -s checkwinsize
 export BASHOPTS
 
 
+# external scripts
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # load OS-specific profile customizations
 if [[ -d ${HOME}/etc/bash/bash_profile.$(uname -s).d ]]; then
     for file in ${HOME}/etc/bash/bash_profile.$(uname -s).d/*; do
@@ -80,6 +97,6 @@ if [[ -d ${HOME}/etc/bash/bash_profile.$(uname -s).d ]]; then
 fi
 
 # load the user's custom bashrc
-if [[ -f ${HOME}/.bashrc ]]; then
+if [[ -s ${HOME}/.bashrc ]]; then
     source ${HOME}/.bashrc
 fi
