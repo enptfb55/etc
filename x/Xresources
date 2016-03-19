@@ -1,5 +1,5 @@
 ! Filename:      etc/x/Xresources
-! Last modified: 2016.03.16
+! Last modified: 2016.03.19
 
 
 ! xterm configuration
@@ -47,9 +47,9 @@ URxvt*scrollBar: false
 ! when focus is lost, fade the text somewhat
 URxvt*fading: 30
 
-! default to black background with white text
-URxvt*background: Black
-URxvt*foreground: White
+! change basic colring
+URxvt*background: grey25
+URxvt*foreground: grey90
 
 ! use yellow for underlining
 URxvt*colorUL: yellow
