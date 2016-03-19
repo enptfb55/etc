@@ -189,55 +189,6 @@ install_vim_plugins()
 }
 
 
-install_tmux_plugin_mgr()
-{
-    if [[ -d "${HOME}/etc/tmux/plugins/tpm" ]]; then
-        log_info "${HOME}/etc/tmux/plugins/tpm already exists"
-        return 0
-    fi
-
-    # clone the repo
-    local cmd="git clone --quiet https://github.com/tmux-plugins/tpm ${HOME}/etc/tmux/plugins/tpm"
-    log_debug "calling [${cmd}]"
-
-    local output
-    output=$(${cmd} 2>&1)
-    local exit_status=$?
-
-    if (( ${exit_status} != 0 )); then
-        log_error "output [${output}]"
-        log_fatal "exit_status [${exit_status}]"
-        return 1
-    fi
-
-    log_debug "output [${output}]"
-    log_debug "exit_status [${exit_status}]"
-    return 0
-}
-
-
-install_tmux_plugins()
-{
-    # run specific script to install other plugins
-    local cmd="${HOME}/etc/tmux/plugins/tpm/bin/install_plugins"
-    log_debug "calling [${cmd}]"
-
-    local output
-    output=$(${cmd} 2>&1)
-    local exit_status=$?
-
-    if (( ${exit_status} != 0 )); then
-        log_error "output [${output}]"
-        log_fatal "exit_status [${exit_status}]"
-        return 1
-    fi
-
-    log_debug "output [${output}]"
-    log_debug "exit_status [${exit_status}]"
-    return 0
-}
-
-
 main()
 {
     # since this script writes to a log, we need to at least try to create the
@@ -280,10 +231,7 @@ main()
             && printf " [installed]\n" >&3
 
     confirm "tmux" \
-            && create_dir ${HOME}/etc/tmux/plugins \
             && create_symlink ../etc/tmux/tmux.wrapper.$(uname) ${HOME}/bin/tmux \
-            && install_tmux_plugin_mgr \
-            && install_tmux_plugins \
             && printf " [installed]\n" >&3
 
     confirm "vim" \
