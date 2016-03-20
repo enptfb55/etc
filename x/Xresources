@@ -1,9 +1,9 @@
 ! Filename:      etc/x/Xresources
-! Last modified: 2016.03.19
+! Last modified: 2016.03.20
 
 
 ! xterm configuration
-! =============================================================================
+! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ! xterm should identify the terminal as supporting 256 colors
 xterm*termName: xterm-256color
@@ -31,9 +31,18 @@ xterm*utf8: 3
 ! dont use bold, just make the text brighter
 xterm*boldMode: false
 
+! highlight only text that can be selected
+xterm*highlightSelection: true
+
+! trim trailing whitespace from selected text
+xterm*trimSelection: true
+
+! remove newline when triple-clicking to select a line
+xterm*cutNewline: true
+
 
 ! urxvt configuration
-! =============================================================================
+! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ! set TERM variable to this value (needed by tmux)
 URxvt*termName: screen-256color
