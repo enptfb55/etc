@@ -242,10 +242,8 @@ main()
             && install_vim_plugins \
             && printf " [installed]\n" >&3
 
-    confirm "xauthority" \
-            && create_dir ${HOME}/var/xauthority \
+    confirm "x" \
             && create_symlink ../etc/x/startx_wrapper ${HOME}/bin/startx \
-            && create_symlink ../../x/50_xauthority ${HOME}/etc/bash/bash_profile.$(uname).d/50_xauthority \
             && printf " [installed]\n" >&3
 
     return 0
