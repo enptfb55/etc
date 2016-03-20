@@ -1,5 +1,5 @@
 " Filename:      etc/vim/vimrc
-" Last modified: 2016.03.07
+" Last modified: 2016.03.20
 
 set runtimepath+=${HOME}/etc/vim
 
@@ -33,6 +33,9 @@ Plugin 'tpope/vim-commentary'
 
 " solarized color scheme
 Plugin 'altercation/vim-colors-solarized'
+
+" jellybeans color scheme
+Plugin 'nanotech/jellybeans.vim'
 
 call vundle#end()
 
@@ -132,8 +135,9 @@ let g:netrw_dirhistmax = 0
 " https://github.com/altercation/vim-colors-solarized
 syntax enable " allow for syntax highlighting (NOT 'syntax on' which turns on default highlighting)
 set background=dark
-let g:solarized_termcolors=256
-silent! colorscheme solarized
+silent! colorscheme jellybeans
+" let g:solarized_termcolors=256
+" silent! colorscheme solarized
 
 
 " Shortcuts
