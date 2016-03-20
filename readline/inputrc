@@ -1,7 +1,8 @@
 # Filename:      etc/readline/inputrc
-# Last modified: 2016.03.16
+# Last modified: 2016.03.20
 #
 # Configuration for Readline
+
 
 # load system readline config
 $include /etc/inputrc
@@ -30,18 +31,12 @@ set expand-tilde off
 # wrap long lines, don't horizontally scroll
 set horizontal-scroll-mode off
 
-# don't append a slash when completing directory names
-# set mark-directories off
-
-# sort completions alphabetically horizontally
-# set print-completions-horizontally on
-
 # if more than one completion, show them immediately without ringing the bell
 # (default off)
 set show-all-if-ambiguous off
 
-# somehow similar to show-all-if-ambiguous (default off)
-set show-all-if-unmodified off
+# immediately show matches no matter how few letters typed
+set show-all-if-unmodified on
 
 # don't show ^C when hitting ctrl-c
 set echo-control-characters off
