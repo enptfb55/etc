@@ -15,8 +15,8 @@ xterm*VT100.geometry: 165x59
 xterm*saveLines: 10000
 
 ! set default background and foreground colors
-! xterm*foreground: grey90
-! xterm*background: grey25
+xterm*background: black
+xterm*foreground: lightgrey
 
 ! make cursor white
 xterm*cursorColor: white
@@ -57,8 +57,8 @@ URxvt*scrollBar: false
 URxvt*fading: 30
 
 ! change basic colring
-! URxvt*background: grey25
-! URxvt*foreground: grey90
+URxvt*background: black
+URxvt*foreground: lightgrey
 
 ! use yellow for underlining
 URxvt*colorUL: yellow

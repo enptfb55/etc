@@ -43,6 +43,16 @@ filetype on
 filetype plugin indent on
 
 
+" for solarized plugin (color scheme)
+" https://github.com/altercation/vim-colors-solarized
+syntax enable " allow for syntax highlighting (NOT 'syntax on' which turns on default highlighting)
+set background=dark
+silent! colorscheme jellybeans
+" let g:solarized_termcolors=256
+" silent! colorscheme solarized
+
+
+
 " editing behavior
 "
 "
@@ -88,6 +98,7 @@ endif
 
 if exists('+colorcolumn')
     set colorcolumn=100         " draw a line down a specific column
+    highlight ColorColumn ctermbg=darkgray ctermfg=black
 endif
 
 set numberwidth=3               " reduce the size of the gutter column (where line numbers show up).
@@ -131,13 +142,6 @@ set splitright                  " New vertical-split window appears on right.
 " Turn off netrw history
 let g:netrw_dirhistmax = 0
 
-" for solarized plugin (color scheme)
-" https://github.com/altercation/vim-colors-solarized
-syntax enable " allow for syntax highlighting (NOT 'syntax on' which turns on default highlighting)
-set background=dark
-silent! colorscheme jellybeans
-" let g:solarized_termcolors=256
-" silent! colorscheme solarized
 
 
 " Shortcuts
