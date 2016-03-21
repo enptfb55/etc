@@ -1,9 +1,10 @@
 " Filename:      etc/vim/vimrc
 " Last modified: 2016.03.20
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 set runtimepath+=${HOME}/etc/vim
 
-" automatic reloading of .vimrc
+" automatically reload vimrc when saved
 autocmd! bufwritepost ${HOME}/etc/vim/vimrc source %
 
 " set up utf-8 encoding so that certain characters in listchars can be used.
@@ -12,17 +13,24 @@ set encoding=utf-8
 
 
 " vundle shit
-"
-"
-set nocompatible                  " This must be first because it changes other options as side effect
-filetype off                      " Disable filetype detection.
-set rtp+=~/.vim/bundle/Vundle.vim " Add Vundle to the path.
-call vundle#begin()               " Some kind of Vundle magic.
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" let Vundle manage Vundle (required).
+" this must be first because it changes other options as side-effects
+set nocompatible
+
+" disable filetype detection
+filetype off
+
+" add vundle to the path
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" list plugins with vundle begin and end
+call vundle#begin()
+
+" let Vundle manage Vundle (required)
 Plugin 'VundleVim/Vundle.vim'
 
-" alternate between h and cpp files.
+" alternate between h and cpp files
 Plugin 'a.vim'
 
 " c++11/14 syntax highlighting
@@ -39,18 +47,34 @@ Plugin 'nanotech/jellybeans.vim'
 
 call vundle#end()
 
+" re-enable filetype detection
 filetype on
-filetype plugin indent on
+
+" enable loading of plugins for specific filetypes
+filetype plugin on
+
+" enable loading indent for specific filetypes
+filetype indent on
 
 
-" for solarized plugin (color scheme)
-" https://github.com/altercation/vim-colors-solarized
-syntax enable " allow for syntax highlighting (NOT 'syntax on' which turns on default highlighting)
+" color schemes
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" allow for syntax highlighting (NOT 'syntax on' which turns on default
+" highlighting
+syntax enable
+
+" notify all schemes that we're using a dark background
 set background=dark
-silent! colorscheme jellybeans
+
+" colorscheme: solarized
+"   https://github.com/altercation/vim-colors-solarized
 " let g:solarized_termcolors=256
 " silent! colorscheme solarized
 
+" colorscheme: jellybeans
+"   https://github.com/nanotech/jellybeans.vim
+silent! colorscheme jellybeans
 
 
 " editing behavior
@@ -59,7 +83,6 @@ silent! colorscheme jellybeans
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode.
 set wrap                        " wrap lines at window edge.
 
-"set autoindent                  " copy indent size from current line to new line.
 set copyindent                  " copy previous line's indent characters.
 set expandtab                   " insert spaces instead of tabs.
 set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'.
@@ -223,3 +246,10 @@ if has("mouse_sgr")
 else
     set ttymouse=xterm2
 end
+
+
+" custom commands
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" save files using sudo with 'W'
+command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
