@@ -2,6 +2,7 @@
 " Last modified: 2016.03.20
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+
 set runtimepath+=${HOME}/etc/vim
 
 " automatically reload vimrc when saved
@@ -121,7 +122,7 @@ endif
 
 if exists('+colorcolumn')
     set colorcolumn=100         " draw a line down a specific column
-    highlight ColorColumn ctermbg=darkgray ctermfg=black
+    highlight ColorColumn ctermbg=234 ctermfg=white
 endif
 
 set numberwidth=3               " reduce the size of the gutter column (where line numbers show up).
