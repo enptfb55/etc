@@ -1,16 +1,17 @@
 # Filename:      etc/bash/bash_profile
-# Last modified: 2016.03.19
+# Last modified: 2016.03.20
 #
-# This file is only sourced by interactive login shells. This should set all
-# platform-agnostic environment variables. Leave the OS-specific environment
-# variables for the etc/bash/bash_profile.<os>.d/ files.
+# This file is only sourced by interactive login shells. This should set
+# all platform-agnostic environment variables. Leave the OS-specific
+# environment variables for the etc/bash/bash_profile.<os>.d/ files.
 
 
 # shell-related environment variables
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # set vim as default editor
 export EDITOR=vim
+export VISUAL=vim
 
 # sort file listings with directories and dotfiles first.
 export LC_COLLATE=C
@@ -36,7 +37,7 @@ export FIGNORE=".o:.pyc"
 
 
 # application-specific environment variables
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # enable colors in gcc
 export GCC_COLORS="error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10"
@@ -66,7 +67,7 @@ export XDG_DATA_HOME=${HOME}/var
 
 
 # bash options
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # enable core dumps (if not enabled already)
 ulimit -c unlimited
@@ -86,11 +87,11 @@ export BASHOPTS
 
 
 # external scripts
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # load OS-specific profile customizations
-if [[ -d ${HOME}/etc/bash/bash_profile.$(uname -s).d ]]; then
-    for file in ${HOME}/etc/bash/bash_profile.$(uname -s).d/*; do
+if [[ -d ${HOME}/etc/bash/bash_profile.$(uname).d ]]; then
+    for file in ${HOME}/etc/bash/bash_profile.$(uname).d/*; do
         [[ -x "${file}" ]] && source "${file}"
     done
     unset file
