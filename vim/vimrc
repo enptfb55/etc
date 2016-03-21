@@ -1,20 +1,13 @@
 " Filename:      etc/vim/vimrc
-" Last modified: 2016.03.20
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" Last modified: 2016.03.21
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 set runtimepath+=${HOME}/etc/vim
 
-" automatically reload vimrc when saved
-autocmd! bufwritepost ${HOME}/etc/vim/vimrc source %
-
-" set up utf-8 encoding so that certain characters in listchars can be used.
-scriptencoding utf-8
-set encoding=utf-8
-
 
 " vundle shit
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " this must be first because it changes other options as side-effects
 set nocompatible
@@ -58,31 +51,73 @@ filetype plugin on
 filetype indent on
 
 
-" color schemes
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" appearance
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" allow for syntax highlighting (NOT 'syntax on' which turns on default
-" highlighting
+" turn on utf-8 all over the place
+scriptencoding utf-8
+set encoding=utf-8
+set termencoding=utf-8
+
+" allow for syntax highlighting (NOT 'syntax on' which turns on vim's
+" default highlighting)
 syntax enable
 
 " notify all schemes that we're using a dark background
 set background=dark
 
 " colorscheme: solarized
-"   https://github.com/altercation/vim-colors-solarized
+"       https://github.com/altercation/vim-colors-solarized
 " let g:solarized_termcolors=256
 " silent! colorscheme solarized
 
 " colorscheme: jellybeans
-"   https://github.com/nanotech/jellybeans.vim
+"       https://github.com/nanotech/jellybeans.vim
 silent! colorscheme jellybeans
 
+" display unprintable characters
+set list
+set listchars=tab:»·
+set listchars+=trail:·
+set listchars+=extends:>
+set listchars+=precedes:<
+set listchars+=nbsp:·
 
-" formatting
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" always show (relative) line numbers
+if exists('+relativenumber')
+    set relativenumber
+endif
+
+" draw a line down a specific column
+if exists('+colorcolumn')
+    set colorcolumn=100
+    highlight ColorColumn ctermbg=235 ctermfg=white
+endif
+
+" reduce the size of the gutter column (where line numbers show up)
+set numberwidth=3
+
+" keep 4 lines off the edges of the screen when scrolling
+set scrolloff=4
+
+" show matching parentheses
+set showmatch
+
+" always show the status line, even if there is only one window
+set laststatus=2
+
+" show a tab bar on top at all times
+set showtabline=2
+
+" always show cursor position
+set ruler
+
+" show partial command in the last line of the screen
+set showcmd
+
 
 " c-indent config
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 set cindent
 
@@ -128,146 +163,42 @@ set smarttab
 " tabs are replaced by 4 spaces.
 set tabstop=4
 
+" change cursor in terminal vim (and under tmux)
+if &term =~ '^xterm' || &term =~ '^screen' || &term =~ '^tmux'
 
-" editing behavior
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    " 1 or 0: blinking block
+    " 2:      solid block
+    " 3:      blinking underscore
+    " 4:      solid underscore
 
-set backspace=indent,eol,start  " allow backspacing over everything in insert mode.
-set wrap                        " wrap lines at window edge.
-
-" searching
-set hlsearch                    " highlight search terms.
-set ignorecase                  " ignore case when searching.
-set incsearch                   " show search matches as you type.
-set smartcase                   " ignore case if search pattern is all lowercase, case-sensitive otherwise.
-
-set list                        " display unprintable characters
-set listchars=tab:»·
-set listchars+=trail:·
-set listchars+=extends:>
-set listchars+=precedes:<
-set listchars+=nbsp:·
-
-if exists('+relativenumber')
-    set relativenumber          " always show (relative) line numbers.
-endif
-
-if exists('+colorcolumn')
-    set colorcolumn=100         " draw a line down a specific column
-    highlight ColorColumn ctermbg=234 ctermfg=white
-endif
-
-set numberwidth=3               " reduce the size of the gutter column (where line numbers show up).
-set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling.
-
-set showmatch                   " show matching parentheses.
-set pastetoggle=<F2>            " when in insert mode, press <F2> to go to paste mode, where you can paste mass data that won't be autoindented.
-set mouse=a                     " enable the mouse if the terminal supports it.
-
-set formatoptions+=j            " delete comment character when joining commented lines
-set nojoinspaces                " only insert single space after joining lines
-
-" Speed up scrolling of the viewport slightly.
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
-
-
-" Editor layout
-set termencoding=utf-8
-set laststatus=2                " Tell vim to always put a status line in, even if there is only one window.
-set showtabline=2               " Show a tabbar on top, always
-
-
-" Vim behavior
-set history=10000               " Number of commands and search history to remember.
-set nobackup                    " Do not keep backup files.
-set noerrorbells                " Don't beep. Ever.
-set noswapfile                  " Don't produce .swp files.
-set ruler                       " Show cursor position all the time.
-set showcmd                     " Show partial command in the last line of the screen. This also shows visual selection info.
-set title                       " Show the filename in the window title.
-set undolevels=1000             " Lots of undo history.
-set viminfo='20,\"80            " Read/write a .viminfo file, but don't store more than 80 lines of registers.
-set viminfo+=n${HOME}/var/vim/viminfo " change location of the viminfo file.
-set wildmenu                    " Use enhanced command line completion.
-set wildignore=*.a,*.o,*.pyc,*.so " Ignore these files in file completion.
-set wildmode=longest,list       " Make tab completion for files/buffers act like bash.
-set splitbelow                  " New horizontal-split window appears on bottom.
-set splitright                  " New vertical-split window appears on right.
-
-" Turn off netrw history
-let g:netrw_dirhistmax = 0
-
-
-
-" Shortcuts
-"
-"
-
-" No more having to type ':', just type ';' (saves hitting the shift key)
-nnoremap ; :
-
-" Change the mapleader from \ to ,
-let g:mapleader=","
-
-" Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
-" Clears the search register by typing ',' then '/'
-nmap <silent> <leader>/ :nohlsearch<CR>
-
-" Quickly get out of insert mode by typing 'jk'
-inoremap jk <Esc>
-
-
-" Filetype specific handling.
-" (Only do this part when compiled with support for autocommands.)
-"
-"
-if has("autocmd")
-
-    " turn off 'spaces instead of tabs' for editing makefiles
-    autocmd FileType make setlocal noexpandtab
-
-    " use c++-style comments for c++ files (for vim commentary plugin)
-    autocmd FileType cpp setlocal commentstring=//\ %s
-
-endif " has("autocmd")
-
-
-" This is here so that tmux will send xterm-style keys when its xterm-keys option is on.
-if &term =~ '^screen'
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-endif
-
-
-" Alt-j/k inserts blank line below/above current line.
-nnoremap <silent><A-j> :put =''<CR>
-nnoremap <silent><A-k> :put! =''<CR>
-
-
-" Change cursor in terminal vim (and under tmux).
-if &term =~ '^xterm' || &term =~ '^screen'
-
-    " 1 or 0 -> blinking block
-    " 2 -> solid block
-    " 3 -> blinking underscore
-    " 4 -> solid underscore
-
-    " Solid underscore in insert mode
+    " solid underscore in insert mode
     let &t_SI .= "\<Esc>[4 q"
 
-    " Blinking block in command mode
+    " blinking block in command mode
     let &t_EI .= "\<Esc>[1 q"
 
 endif
 
+
+" editing behavior
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" set backspace=indent,eol,start  " allow backspacing over everything in insert mode.
+
+" wrap lines at window edge.
+set wrap
+
+" press <F2> to enter paste-mode
+set pastetoggle=<F2>
+
+" enable mouse
+set mouse=a
+
+" delete comment character when joining commented lines
+set formatoptions+=j
+
+" only insert single space after joining lines
+set nojoinspaces
 
 " fix for weird iskeyword settings.
 set iskeyword-=-
@@ -281,8 +212,123 @@ else
 end
 
 
+" searching
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" highlight search terms
+set hlsearch
+
+" ignore case when searching
+set ignorecase
+
+" show search matches as you type
+set incsearch
+
+" ignore case if pattern is all lowercase, case-sensitive otherwise
+set smartcase
+
+" clears the search register by typing ',' then '/'
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+
+" filetype-specific handling
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+if has("autocmd")
+
+    " turn off 'spaces instead of tabs' for editing makefiles
+    autocmd FileType make setlocal noexpandtab
+
+    " use c++-style comments for c++ files (for vim commentary plugin)
+    autocmd FileType cpp setlocal commentstring=//\ %s
+
+endif
+
+
 " custom commands
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " save files using sudo with 'W'
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
+" automatically reload vimrc when saved
+autocmd! bufwritepost ${HOME}/etc/vim/vimrc source %
+
+
+
+" vim behavior
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" number of commands and search history to remember
+set history=10000
+
+" do not keep backup files
+set nobackup
+
+" don't beep. ever
+set noerrorbells
+
+" don't produce .swp files
+set noswapfile
+
+" lots of undo history
+set undolevels=1000
+
+" read/write .viminfo file, but don't store more than 80 registers
+set viminfo='20,\"80
+
+" change location of the viminfo file
+set viminfo+=n${HOME}/var/vim/viminfo
+
+" use enhanced command line completion
+set wildmenu
+
+" ignore these files in file completion
+set wildignore=*.a,*.o,*.pyc,*.so
+
+" make tab completion for files/buffers act like bash
+set wildmode=longest,list
+
+" new horizontal-split window appears on bottom
+set splitbelow
+
+" new vertical-split window appears on right
+set splitright
+
+" turn off netrw history
+let g:netrw_dirhistmax = 0
+
+" speed up scrolling of the viewport
+nnoremap <C-e> 2<C-e>
+nnoremap <C-y> 2<C-y>
+
+
+" key re-mapping
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" no more having to type ':', just type ';'
+nnoremap ; :
+
+" change the mapleader from '\' to ','
+let g:mapleader=","
+
+" ctrl-h/j/k/l to navigate between windows
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" quickly get out of insert mode by typing 'jk'
+inoremap jk <Esc>
+
+" send xterm-style keys when tmux's xterm-keys option is on
+if &term =~ '^screen' || &term =~ '^tmux'
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
+" alt-j/k inserts blank line below/above current line
+nnoremap <silent><A-j> :put =''<CR>
+nnoremap <silent><A-k> :put! =''<CR>
