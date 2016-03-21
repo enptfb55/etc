@@ -78,30 +78,62 @@ set background=dark
 silent! colorscheme jellybeans
 
 
-" editing behavior
-"
-"
-set backspace=indent,eol,start  " allow backspacing over everything in insert mode.
-set wrap                        " wrap lines at window edge.
-
-set copyindent                  " copy previous line's indent characters.
-set expandtab                   " insert spaces instead of tabs.
-set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'.
-set shiftwidth=4                " number of spaces to use for autoindenting.
-set smarttab                    " treat 4 spaces as a tab when deleting.
-set tabstop=4                   " tabs are replaced by 4 spaces.
-
+" formatting
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " c-indent config
-set cindent
-set cinoptions=:0               " put case labels in same column as switch
-set cinoptions+=l1              " align } with case label
-set cinoptions+=b1              " align break with case label
-set cinoptions+=g0              " align c++ scope specifiers at same column as block
-set cinoptions+=N-s             " don't indent inside namespaces
-set cinoptions+=+2s             " indent a continuation line 2 * shiftwidth
-set cinkeys+=0=break            " assist in lining up break with case statements
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+set cindent
+
+" put case labels in same column as switch
+set cinoptions=:0
+
+" align } with case label
+set cinoptions+=l1
+
+" align break with case label
+set cinoptions+=b1
+
+" align c++ scope specifiers at same column as block
+set cinoptions+=g0
+
+" don't indent inside namespaces
+set cinoptions+=N-s
+
+" indent a continuation line 2 * shiftwidth
+set cinoptions+=+2s
+
+" assist in lining up break with case statements
+set cinkeys+=0=break
+
+" set basic text width to 72 chars
+set textwidth=72
+
+" copy previous line's indent characters.
+set copyindent
+
+" insert spaces instead of tabs.
+set expandtab
+
+" use multiple of shiftwidth when indenting with '<' and '>'.
+set shiftround
+
+" number of spaces to use for autoindenting.
+set shiftwidth=4
+
+" treat 4 spaces as a tab when deleting.
+set smarttab
+
+" tabs are replaced by 4 spaces.
+set tabstop=4
+
+
+" editing behavior
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode.
+set wrap                        " wrap lines at window edge.
 
 " searching
 set hlsearch                    " highlight search terms.
