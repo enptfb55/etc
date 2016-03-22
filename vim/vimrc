@@ -133,9 +133,6 @@ set relativenumber
 " draw a line down a specific column
 set colorcolumn=100
 
-" highlight chars past 100 columns
-match Error /\%100v.\+/
-
 " reduce the size of the gutter column (where line numbers show up)
 set numberwidth=3
 
