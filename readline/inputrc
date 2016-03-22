@@ -1,5 +1,5 @@
 # Filename:      etc/readline/inputrc
-# Last modified: 2016.03.20
+# Last modified: 2016.03.21
 #
 # Configuration for Readline
 
@@ -31,8 +31,8 @@ set expand-tilde off
 # wrap long lines, don't horizontally scroll
 set horizontal-scroll-mode off
 
-# if more than one completion, show them immediately without ringing the bell
-# (default off)
+# if more than one completion, show them immediately without ringing the
+# bell (default off)
 set show-all-if-ambiguous off
 
 # immediately show matches no matter how few letters typed
@@ -40,3 +40,9 @@ set show-all-if-unmodified on
 
 # don't show ^C when hitting ctrl-c
 set echo-control-characters off
+
+# use j and k to search history for commands starting with the current
+# characters on the line
+set keymap vi-command
+"k": history-search-backward
+"j": history-search-forward
