@@ -1,5 +1,5 @@
 " Filename:      etc/vim/vimrc
-" Last modified: 2016.03.21
+" Last modified: 2016.03.22
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -49,6 +49,47 @@ filetype plugin on
 
 " enable loading indent for specific filetypes
 filetype indent on
+
+
+" key re-mapping
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" no more having to type ':', just type ';'
+nnoremap ; :
+
+" change the mapleader from '\' to ','
+let g:mapleader=","
+
+" ctrl-h/j/k/l to navigate between windows
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" quickly get out of insert mode by typing 'jk'
+inoremap jk <Esc>
+
+" send xterm-style keys when tmux's xterm-keys option is on
+if &term =~ '^screen' || &term =~ '^tmux'
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
+" alt-j/k inserts blank line below/above current line
+nnoremap <silent><A-j> :put =''<CR>
+nnoremap <silent><A-k> :put! =''<CR>
+
+
+" custom commands
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" save files using sudo with 'W'
+command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
+" automatically reload vimrc when saved
+autocmd! bufwritepost ${HOME}/etc/vim/vimrc source %
 
 
 " appearance
@@ -184,7 +225,8 @@ endif
 " editing behavior
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" set backspace=indent,eol,start  " allow backspacing over everything in insert mode.
+" allow backspacing over everything in insert mode.
+set backspace=indent,eol,start
 
 " wrap lines at window edge.
 set wrap
@@ -246,17 +288,6 @@ if has("autocmd")
 endif
 
 
-" custom commands
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" save files using sudo with 'W'
-command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-
-" automatically reload vimrc when saved
-autocmd! bufwritepost ${HOME}/etc/vim/vimrc source %
-
-
-
 " vim behavior
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -302,34 +333,3 @@ let g:netrw_dirhistmax = 0
 " speed up scrolling of the viewport
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
-
-
-" key re-mapping
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" no more having to type ':', just type ';'
-nnoremap ; :
-
-" change the mapleader from '\' to ','
-let g:mapleader=","
-
-" ctrl-h/j/k/l to navigate between windows
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
-" quickly get out of insert mode by typing 'jk'
-inoremap jk <Esc>
-
-" send xterm-style keys when tmux's xterm-keys option is on
-if &term =~ '^screen' || &term =~ '^tmux'
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-endif
-
-" alt-j/k inserts blank line below/above current line
-nnoremap <silent><A-j> :put =''<CR>
-nnoremap <silent><A-k> :put! =''<CR>
