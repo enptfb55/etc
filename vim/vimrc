@@ -75,6 +75,9 @@ set background=dark
 "       https://github.com/nanotech/jellybeans.vim
 silent! colorscheme jellybeans
 
+" customize color of ColorColumn
+highlight ColorColumn ctermbg=235 ctermfg=white
+
 " display unprintable characters
 set list
 set listchars=tab:»·
@@ -84,15 +87,13 @@ set listchars+=precedes:<
 set listchars+=nbsp:·
 
 " always show (relative) line numbers
-if exists('+relativenumber')
-    set relativenumber
-endif
+set relativenumber
 
 " draw a line down a specific column
-if exists('+colorcolumn')
-    set colorcolumn=100
-    highlight ColorColumn ctermbg=235 ctermfg=white
-endif
+set colorcolumn=100
+
+" highlight chars past 100 columns
+match Error /\%100v.\+/
 
 " reduce the size of the gutter column (where line numbers show up)
 set numberwidth=3
