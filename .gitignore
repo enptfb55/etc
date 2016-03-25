@@ -1,6 +1,3 @@
-# this is an optional symlink to x/50_xauthority
-bash/bash_profile.*.d/50_xauthority
-
 # common desktop apps
 gtk-2.0
 pulse
