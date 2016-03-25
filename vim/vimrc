@@ -1,5 +1,5 @@
 " Filename:      etc/vim/vimrc
-" Last modified: 2016.03.22
+" Last modified: 2016.03.25
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -274,15 +274,11 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " filetype-specific handling
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-if has("autocmd")
+" turn off 'spaces instead of tabs' for editing makefiles
+autocmd FileType make setlocal noexpandtab
 
-    " turn off 'spaces instead of tabs' for editing makefiles
-    autocmd FileType make setlocal noexpandtab
-
-    " use c++-style comments for c++ files (for vim commentary plugin)
-    autocmd FileType cpp setlocal commentstring=//\ %s
-
-endif
+" use c++-style comments for c++ files (for vim commentary plugin)
+autocmd FileType cpp setlocal commentstring=//\ %s
 
 
 " vim behavior
