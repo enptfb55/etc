@@ -280,6 +280,10 @@ autocmd FileType make setlocal noexpandtab
 " use c++-style comments for c++ files (for vim commentary plugin)
 autocmd FileType cpp setlocal commentstring=//\ %s
 
+" fix 'temp file must be edited in place' problem when editing crontabs
+" in bsd and osx
+autocmd FileType crontab setlocal backupcopy=yes
+
 
 " vim behavior
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
