@@ -1,0 +1,4 @@
+# also search local db when using locate
+export LOCATE_PATH=${HOME}/var/mlocate/mlocate.db
+
+
