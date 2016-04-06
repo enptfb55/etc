@@ -1,4 +1,5 @@
 [alias]
+    graph = log --graph --oneline --decorate
     st = status
     unstage = reset HEAD --
 [color]
@@ -11,8 +12,8 @@
     tool = vimdiff
 [push]
     default = simple
+[svn]
+    rmdir = true
 [user]
     email = btmcg@users.noreply.github.com
     name = btmcg
-[svn]
-    rmdir = true
