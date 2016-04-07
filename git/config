@@ -1,5 +1,5 @@
 [alias]
-    graph = log --graph --oneline --decorate
+    graph = log --abbrev-commit --all --color --decorate --graph --oneline
     st = status
     unstage = reset HEAD --
 [color]
