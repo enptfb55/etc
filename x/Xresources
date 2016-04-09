@@ -1,9 +1,9 @@
 ! Filename:      etc/x/Xresources
-! Last modified: 2016.03.20
+! Last modified: 2016.04.09
 
 
 ! xterm configuration
-! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ! xterm should identify the terminal as supporting 256 colors
 xterm*termName: xterm-256color
@@ -40,9 +40,17 @@ xterm*trimSelection: true
 ! remove newline when triple-clicking to select a line
 xterm*cutNewline: true
 
+! remap keys (this is needed for specific keybindings in tmux)
+xterm*VT100.Translations: #override \
+    <Key>BackSpace: string(0x7F)\n\
+    <Key>Delete:    string("\033[3~")\n\
+    <Key>Home:      string("\033[1~")\n\
+    <Key>End:       string("\033[4~")
+*ttyModes: erase ^? 
+
 
 ! urxvt configuration
-! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ! set TERM variable to this value (needed by tmux)
 URxvt*termName: screen-256color
