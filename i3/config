@@ -1,5 +1,5 @@
 # Filename:      etc/i3/config
-# Last modified: 2016.03.19
+# Last modified: 2016.04.09
 
 
 # set the super key (windows) key to be the i3 mod key
@@ -12,7 +12,7 @@ set $mod Mod4
 # use i3status as the i3bar
 bar {
     font pango:DejaVu Sans Mono 8
-    status_command exec /usr/share/doc/i3status/contrib/net-speed
+    status_command exec ${HOME}/bin/measure-net-speed-i3status.bash
 }
 
 # font for window titles

@@ -1,11 +1,11 @@
 # Filename:      etc/i3status/config
-# Last modified: 2016.03.26
+# Last modified: 2016.04.07
 
 
 general {
     colors = true
     interval = 5
-    output_format = "i3bar"
+    output_format = i3bar
 }
 
 order += "disk /"
