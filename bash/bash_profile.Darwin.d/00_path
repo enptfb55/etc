@@ -19,6 +19,8 @@ PATH=${HOME}/local/bin:${PATH}
 # custom scripts and binaries
 PATH=${HOME}/bin:${PATH}
 
+export PATH
+
 
 # MANPATH
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -40,3 +42,5 @@ MANPATH=/usr/local/opt/findutils/libexec/gnuman:${MANPATH}
 
 # home dir app installations
 MANPATH=${HOME}/local/share/man:${MANPATH}
+
+export MANPATH
