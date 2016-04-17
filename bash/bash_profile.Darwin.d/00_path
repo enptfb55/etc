@@ -1,2 +1,42 @@
-export PATH=${HOME}/bin:${HOME}/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:/sbin:${PATH}
-export MANPATH=${HOME}/local/man:/usr/local/opt/coreutils/libexec/gnuman:/usr/local/share/man:${MANPATH}
+# osx system binaries
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+# x11 (xquartz) binaries
+PATH=/opt/X11/bin:${PATH}
+
+# homebrew binaries
+PATH=/usr/local/bin:/usr/local/sbin:${PATH}
+
+# prefer gnu coreutils over osx
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+
+# prefer gnu findutils over osx
+export PATH=/usr/local/opt/findutils/libexec/gnubin:${PATH}
+
+# home directory installations
+export PATH=${HOME}/local/bin:${PATH}
+
+# custom scripts and binaries
+export PATH=${HOME}/bin:${PATH}
+
+
+# MANPATH
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# osx system man pages
+MANPATH=/usr/share/man
+
+# x11 (xquartz) man pages
+MANPATH=/opt/x11/share/man:${MANPATH}
+
+# homebrew man pages
+MANPATH=/usr/local/share/man:${MANPATH}
+
+# prefer gnu coreutils over osx
+MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+
+# prefer gnu findutils over osx
+MANPATH=/usr/local/opt/findutils/libexec/gnuman:${MANPATH}
+
+# home dir app installations
+MANPATH=${HOME}/local/share/man:${MANPATH}
