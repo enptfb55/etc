@@ -8,16 +8,16 @@ PATH=/opt/X11/bin:${PATH}
 PATH=/usr/local/bin:/usr/local/sbin:${PATH}
 
 # prefer gnu coreutils over osx
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
 
 # prefer gnu findutils over osx
-export PATH=/usr/local/opt/findutils/libexec/gnubin:${PATH}
+PATH=/usr/local/opt/findutils/libexec/gnubin:${PATH}
 
 # home directory installations
-export PATH=${HOME}/local/bin:${PATH}
+PATH=${HOME}/local/bin:${PATH}
 
 # custom scripts and binaries
-export PATH=${HOME}/bin:${PATH}
+PATH=${HOME}/bin:${PATH}
 
 
 # MANPATH
