@@ -1,5 +1,5 @@
 # Filename:      etc/bash/bash_profile
-# Last modified: 2016.03.25
+# Last modified: 2016.04.16
 #
 # This file is only sourced by interactive login shells. This should set
 # all platform-agnostic environment variables. Leave the OS-specific
@@ -86,9 +86,9 @@ export BASHOPTS
 # external scripts
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load OS-specific profile customizations
-if [[ -d ${HOME}/etc/bash/bash_profile.$(uname).d ]]; then
-    for file in ${HOME}/etc/bash/bash_profile.$(uname).d/*; do
+# load os-specific profile customizations
+if [[ -d ${HOME}/etc/bash/bash_profile.$(uname -s).d ]]; then
+    for file in ${HOME}/etc/bash/bash_profile.$(uname -s).d/*; do
         [[ -x "${file}" ]] && source "${file}"
     done
     unset file
