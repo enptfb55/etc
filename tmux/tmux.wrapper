@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ -x /usr/bin/tmux ] && exec /usr/bin/tmux -f ${HOME}/etc/tmux/tmux.conf "$@"
+[ -x /usr/local/bin/tmux ] && exec /usr/local/bin/tmux -f ${HOME}/etc/tmux/tmux.conf "$@"
