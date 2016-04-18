@@ -233,7 +233,7 @@ main()
             && printf " [installed]\n" >&3
 
     confirm "tmux" \
-            && create_symlink ../etc/tmux/tmux.wrapper.$(uname) ${HOME}/bin/tmux \
+            && create_symlink ../etc/tmux/tmux.wrapper ${HOME}/bin/tmux \
             && printf " [installed]\n" >&3
 
     confirm "vim" \
