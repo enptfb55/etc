@@ -1,0 +1,34 @@
+# Filename:      etc/paths/paths.Linux
+# Last modified: 2016.04.19
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+# essential command binaries that need to be available in single user
+# mode, e.g., cat, ls, cp.
+PATH=/bin
+
+# non-essential command binaries (not needed in single user mode)
+PATH=/usr/bin:${PATH}
+
+# essential system binaries, e.g., fsck, init, route.
+PATH=/sbin:${PATH}
+
+# non-essential system binaries, e.g., daemons for various
+# network-services.
+PATH=/usr/sbin:${PATH}
+
+# system man pages
+MANPATH=/usr/share/man
+
+# manual system-wide installations
+PATH=/usr/local/bin:${PATH}
+MANPATH=/usr/local/share/man:${MANPATH}
+
+# home directory installations
+PATH=${HOME}/local/bin:${PATH}
+MANPATH=${HOME}/local/share/man:${MANPATH}
+
+# custom scripts
+PATH=${HOME}/bin:${PATH}
+
+export MANPATH PATH

@@ -1,0 +1,35 @@
+# Filename:      etc/paths/paths.Darwin
+# Last modified: 2016.04.19
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+# osx system
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+MANPATH=/usr/share/man
+
+# x11 (xquartz)
+PATH=/opt/X11/bin:${PATH}
+MANPATH=/opt/x11/share/man:${MANPATH}
+
+# homebrew
+PATH=/usr/local/bin:/usr/local/sbin:${PATH}
+MANPATH=/usr/local/share/man:${MANPATH}
+
+# prefer gnu coreutils over osx (choosing the gnubin path uses the
+# proper names e.g. grep instead of ggrep)
+PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+
+# prefer gnu findutils over osx (choosing the gnubin path uses the
+# proper names e.g. find instead of gfind)
+PATH=/usr/local/opt/findutils/libexec/gnubin:${PATH}
+MANPATH=/usr/local/opt/findutils/libexec/gnuman:${MANPATH}
+
+# home directory installations
+PATH=${HOME}/local/bin:${PATH}
+MANPATH=${HOME}/local/share/man:${MANPATH}
+
+# custom scripts
+PATH=${HOME}/bin:${PATH}
+
+export MANPATH PATH
