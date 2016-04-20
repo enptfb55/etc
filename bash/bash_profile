@@ -39,6 +39,9 @@ export FIGNORE=".o:.pyc"
 # application-specific environment variables
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# improve colors in ls (sets LS_COLORS)
+eval "$(dircolors --bourne-shell ${HOME}/etc/dircolors/dircolors)"
+
 # enable colors in gcc
 export GCC_COLORS="error=38;5;196:warning=38;5;196:note=00;36:caret=38;5;196:locus=38;5;255:quote=38;5;10"
 
