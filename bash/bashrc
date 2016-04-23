@@ -1,5 +1,5 @@
 # Filename:      etc/bash/bashrc
-# Last modified: 2016.03.19
+# Last modified: 2016.04.23
 #
 # This file is only sourced by interactive non-login shells.
 
@@ -56,6 +56,22 @@ man()
         LESS_TERMCAP_us=$'\e[1;32m' \
         man "$@"
 }
+
+
+# load system bash_completion scripts if available
+if [[ -d /etc/bash_completion.d ]]; then
+    for file in /etc/bash_completion.d/*; do
+        source ${file}
+    done
+    unset file
+fi
+
+if [[ -d /usr/local/etc/bash_completion.d ]]; then
+    for file in /usr/local/etc/bash_completion.d/*; do
+        source ${file}
+    done
+    unset file
+fi
 
 
 # if the bashrc.d directory exists, source everything in there
