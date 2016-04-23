@@ -1,5 +1,5 @@
-# Filename:      etc/x/xinitrc
-# Last modified: 2016.03.09
+# Filename:      etc/x11/xinitrc
+# Last modified: 2016.04.23
 
 
 log_path=${HOME}/var/log
@@ -22,18 +22,15 @@ fi
 # disable bell
 xset -b >> ${log} 2>&1
 
-if [ -s "${HOME}/etc/x/Xresources" ]; then
-    xrdb -merge "${HOME}/etc/x/Xresources" >> ${log} 2>&1
+if [ -s "${HOME}/etc/x11/Xresources" ]; then
+    xrdb -merge "${HOME}/etc/x11/Xresources" >> ${log} 2>&1
 fi
 
-if [ -s "${HOME}/etc/x/Xmodmap" ]; then
-    xmodmap "${HOME}/etc/x/Xmodmap" >> ${log} 2>&1
+if [ -s "${HOME}/etc/x11/Xmodmap" ]; then
+    xmodmap "${HOME}/etc/x11/Xmodmap" >> ${log} 2>&1
 fi
-
-# allow su to root to use ${DISPLAY}
-xhost local:root >> ${log} 2>&1
 
 # start i3 and capture logs
 env | sort | tee --append ${log} ${log_path}/i3.log
 echo "starting i3 at $(date)" | tee --append ${log} ${log_path}/i3.log
-exec i3 -c ${HOME}/etc/i3/config -V -d all >> ${log_path}/i3.log 2>&1
+exec i3 -c ${HOME}/etc/i3/config -V > ${log_path}/i3.log 2>&1

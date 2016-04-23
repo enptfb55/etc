@@ -245,7 +245,7 @@ main()
             && printf " [installed]\n" >&3
 
     confirm "x" \
-            && create_symlink ../etc/x/startx_wrapper ${HOME}/bin/startx \
+            && create_symlink ../etc/x11/startx_wrapper ${HOME}/bin/startx \
             && printf " [installed]\n" >&3
 
     return 0

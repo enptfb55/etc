@@ -1,2 +1,0 @@
-#!/bin/sh
-exec /usr/bin/startx ${HOME}/etc/x/xinitrc

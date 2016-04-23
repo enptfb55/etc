@@ -1,5 +1,5 @@
-! Filename:      etc/x/Xmodmap
-! Last modified: 2016.03.05
+! Filename:      etc/x11/Xmodmap
+! Last modified: 2016.04.23
 
 
 ! remap the caps-lock key to left control
