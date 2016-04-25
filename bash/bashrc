@@ -61,14 +61,14 @@ man()
 # load system bash_completion scripts if available
 if [[ -d /etc/bash_completion.d ]]; then
     for file in /etc/bash_completion.d/*; do
-        [[ -x "${file}" ]] && source "${file}"
+        source "${file}"
     done
     unset file
 fi
 
 if [[ -d /usr/local/etc/bash_completion.d ]]; then
     for file in /usr/local/etc/bash_completion.d/*; do
-        [[ -x "${file}" ]] && source "${file}"
+        source "${file}"
     done
     unset file
 fi
@@ -77,7 +77,7 @@ fi
 # if the bashrc.d directory exists, source everything in there
 if [[ -d "${HOME}/etc/bash/bashrc.$(uname).d" ]]; then
     for file in ${HOME}/etc/bash/bashrc.$(uname).d/*; do
-        [[ -x "${file}" ]] && source "${file}"
+        source "${file}"
     done
     unset file
 fi
