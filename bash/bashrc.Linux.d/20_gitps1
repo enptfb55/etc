@@ -4,4 +4,4 @@ GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWUPSTREAM=true
-export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" " \$ "'
+export PROMPT_COMMAND='__git_ps1 "\u@\h \W" " \$ "'
