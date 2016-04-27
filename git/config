@@ -3,13 +3,18 @@
     st = status
     unstage = reset HEAD --
 [color]
-    ui = true
+    ui = auto
 [core]
+    editor = vim
     ignorecase = false
+    pager = less
+    whitespace = blank-at-eol,blank-at-eof,tab-in-indent
 [credential]
     helper = cache --timeout=3600 --socket=${HOME}/var/git-credential-cache/socket
 [diff]
     tool = vimdiff
+[difftool]
+    prompt = false
 [push]
     default = simple
 [svn]
