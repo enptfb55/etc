@@ -1,5 +1,5 @@
 " Filename:      etc/vim/vimrc
-" Last modified: 2016.03.25
+" Last modified: 2016.04.26
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -27,9 +27,6 @@ Plugin 'VundleVim/Vundle.vim'
 " alternate between h and cpp files
 Plugin 'a.vim'
 
-" c++11/14 syntax highlighting
-Plugin 'octol/vim-cpp-enhanced-highlight'
-
 " easy commenting
 Plugin 'tpope/vim-commentary'
 
@@ -38,6 +35,12 @@ Plugin 'altercation/vim-colors-solarized'
 
 " jellybeans color scheme
 Plugin 'nanotech/jellybeans.vim'
+
+" tmux syntax highlighting
+Plugin 'keith/tmux.vim.git'
+
+" c++11/14 syntax highlighting
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 call vundle#end()
 
