@@ -4,15 +4,6 @@
 # This file is sourced by the bash-completion package.
 
 
-# check /usr/local for bash_completions
-if [[ -d /usr/local/etc/bash_completion.d ]]; then
-    for file in /usr/local/etc/bash_completion.d/*; do
-        source "${file}"
-    done
-    unset file
-fi
-
-
 # add local bash completions
 if [[ -d ${HOME}/etc/bash/completion ]]; then
     for file in ${HOME}/etc/bash/completion/*; do
