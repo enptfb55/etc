@@ -56,3 +56,7 @@ man()
         LESS_TERMCAP_us=$'\e[1;32m' \
         man "$@"
 }
+
+
+# in some cases (brew on osx) bash completion may be in /usr/local
+[[ -r /usr/local/etc/bash_completion ]] && source /usr/local/etc/bash_completion
