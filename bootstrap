@@ -11,6 +11,7 @@ set -o nounset -o pipefail
 # set up logging so that stdout and stderr go to a log file
 # note: to print only to console (original stdout), use 'echo "hello"
 # 1>&3'
+mkdir -p "${HOME}/var/log"
 readonly LOG="${HOME}/var/log/bootstrap.log"
 exec 3>&1 1>>"${LOG}" 2>&1
 
@@ -195,7 +196,6 @@ main()
 {
     # since this script writes to a log, we need to at least try to
     # create the logs directory
-    mkdir -p "${HOME}/var/log"
 
     log_info "$0"
 
