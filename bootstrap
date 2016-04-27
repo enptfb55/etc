@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Filename:      etc/bootstrap
-# Last modified: 2016.03.26
+# Last modified: 2016.04.26
 #
 # After cloning the etc.git repo into ${HOME}, this script will create
 # the necessary directory structure and symlinks.
@@ -210,6 +210,7 @@ main()
     confirm "bash" \
             && create_symlink etc/bash/bash_profile ${HOME}/.bash_profile \
             && create_symlink etc/bash/bashrc ${HOME}/.bashrc \
+            && create_symlink etc/bash/bash_completion ${HOME}/.bash_completion \
             && create_dir ${HOME}/var/bash \
             && create_dir ${HOME}/var/less \
             && create_dir ${HOME}/var/python \
