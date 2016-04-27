@@ -60,3 +60,12 @@ man()
 
 # in some cases (brew on osx) bash completion may be in /usr/local
 [[ -r /usr/local/etc/bash_completion ]] && source /usr/local/etc/bash_completion
+
+
+# if the bashrc.d directory exists, source everything in there
+if [[ -d "${HOME}/etc/bash/bashrc.$(uname).d" ]]; then
+    for file in ${HOME}/etc/bash/bashrc.$(uname).d/*; do
+        source "${file}"
+    done
+    unset file
+fi
