@@ -1,5 +1,5 @@
 # Filename:      etc/readline/inputrc
-# Last modified: 2016.03.21
+# Last modified: 2016.04.27
 #
 # Configuration for Readline
 
@@ -46,3 +46,6 @@ set echo-control-characters off
 set keymap vi-command
 "k": history-search-backward
 "j": history-search-forward
+
+# if completing the name of a symlinked directory, append a slash
+set mark-symlinked-directories on
