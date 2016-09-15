@@ -9,6 +9,8 @@
 # path
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+export ETC=${ETC=$HOME/etc}
+
 # before doing anything else, load custom path
 if [[ -r ${HOME}/etc/paths/paths.$(uname) ]]; then
     source ${HOME}/etc/paths/paths.$(uname)
@@ -71,6 +73,9 @@ export XDG_CACHE_HOME=${HOME}/var/cache
 export XDG_CONFIG_HOME=${HOME}/etc
 export XDG_DATA_HOME=${HOME}/var
 
+export JAVA_HOME=${HOME}/tmp/javac/jdk1.8.0_92/
+export PATH=${JAVA_HOME}/bin:${PATH}
+
 
 # bash options
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -79,7 +84,7 @@ export XDG_DATA_HOME=${HOME}/var
 ulimit -c unlimited
 
 # turn off flow control (ctrl-s, ctrl-q)
-stty -ixon
+#stty -ixon
 
 # append to the history file, don't overwrite it
 shopt -s histappend

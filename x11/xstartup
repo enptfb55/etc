@@ -1,0 +1,23 @@
+#!/bin/sh
+# Filename:      .vnc/xstartup
+# Last modified: 2016.04.04
+#
+# This script should be invoked when starting vncserver.
+
+
+log_file=${HOME}/var/log/vncserver.log
+
+/usr/bin/xsetroot -solid black >> ${log_file} 2>&1
+/usr/bin/vncconfig -nowin &
+
+# load custom x resources
+if [ -s "${HOME}/etc/x11/Xresources" ]; then
+    xrdb -merge ${HOME}/etc/x11/Xresources >> ${log_file} 2>&1
+fi
+
+# load modified keymap
+if [ -s "${HOME}/etc/x11/Xmodmap" ]; then
+    xmodmap ${HOME}/etc/x11/Xmodmap >> ${log_file} 2>&1
+fi
+
+exec /usr/bin/startxfce4

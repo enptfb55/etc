@@ -3,46 +3,79 @@
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-set runtimepath+=${HOME}/etc/vim
-
-
-" vundle shit
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 " this must be first because it changes other options as side-effects
 set nocompatible
 
-" disable filetype detection
-filetype off
+" where vim will search for customizations on start-up
+set runtimepath+=$VIMRUNTIME
+set runtimepath+=/usr/share/vim/vimfiles
+set runtimepath+=/usr/share/vim/vimfiles/after
+set runtimepath+=$ETC/vim,$ETC/vim/after
 
-" add vundle to the path
-set rtp+=~/.vim/bundle/Vundle.vim
 
-" list plugins with vundle begin and end
-call vundle#begin()
+" vim-plug shit
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-" let Vundle manage Vundle (required)
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('$ETC/vim/plugged')
 
-" alternate between h and cpp files
-Plugin 'a.vim'
+" Make sure you use single quotes
 
-" easy commenting
-Plugin 'tpope/vim-commentary'
+" Alternate between h and cpp files
+Plug 'https://github.com/vim-scripts/a.vim'
+
+" Easy commenting
+Plug 'https://github.com/tpope/vim-commentary.git'
 
 " solarized color scheme
-Plugin 'altercation/vim-colors-solarized'
+Plug 'https://github.com/altercation/solarized.git'
 
 " jellybeans color scheme
-Plugin 'nanotech/jellybeans.vim'
+Plug 'https://github.com/nanotech/jellybeans.vim.git'
 
 " tmux syntax highlighting
-Plugin 'keith/tmux.vim.git'
+Plug 'https://github.com/tmux-plugins/vim-tmux.git'
 
 " c++11/14 syntax highlighting
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 
-call vundle#end()
+" " show useful info in the tabline
+" Plugin 'mkitt/tabline.vim'
+
+" Add plugins to &runtimepath
+call plug#end()
+
+
+" add vundle to the path
+"set rtp+=~/.vim/bundle/Vundle.vim
+
+" list plugins with vundle begin and end
+"call vundle#begin()
+
+" let Vundle manage Vundle (required)
+"Plugin 'VundleVim/Vundle.vim'
+
+" alternate between h and cpp files
+"Plugin 'a.vim'
+
+" easy commenting
+"Plugin 'tpope/vim-commentary'
+
+" solarized color scheme
+"Plugin 'altercation/vim-colors-solarized'
+
+"Plugin 'lifepillar/vim-wwdc16-theme'
+
+" jellybeans color scheme
+"Plugin 'nanotech/jellybeans.vim'
+
+" tmux syntax highlighting
+"Plugin 'keith/tmux.vim.git'
+
+" c++11/14 syntax highlighting
+"Plugin 'octol/vim-cpp-enhanced-highlight'
+
+"call vundle#end()
 
 " re-enable filetype detection
 filetype on
@@ -94,6 +127,11 @@ command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 " automatically reload vimrc when saved
 autocmd! bufwritepost ${HOME}/etc/vim/vimrc source %
 
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+
 
 " appearance
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -113,11 +151,15 @@ set background=dark
 " colorscheme: solarized
 "       https://github.com/altercation/vim-colors-solarized
 " let g:solarized_termcolors=256
-" silent! colorscheme solarized
+silent! colorscheme solarized
 
 " colorscheme: jellybeans
 "       https://github.com/nanotech/jellybeans.vim
 silent! colorscheme jellybeans
+
+silent! colorscheme wwdc16
+
+silent! colorscheme desert
 
 " customize color of ColorColumn
 highlight ColorColumn ctermbg=235 ctermfg=white
@@ -131,7 +173,8 @@ set listchars+=precedes:<
 set listchars+=nbsp:·
 
 " always show (relative) line numbers
-set relativenumber
+"set relativenumber
+set nu
 
 " draw a line down a specific column
 set colorcolumn=100
@@ -185,7 +228,7 @@ set cinoptions+=+2s
 set cinkeys+=0=break
 
 " set basic text width to 72 chars
-set textwidth=72
+set textwidth=0
 
 " copy previous line's indent characters.
 set copyindent
