@@ -17,7 +17,7 @@ set runtimepath+=$ETC/vim,$ETC/vim/after
 " vim-plug shit
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-call plug#begin('$ETC/vim/plugged')
+call plug#begin('$HOME/etc/vim/plugged')
 
 " Make sure you use single quotes
 

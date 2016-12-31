@@ -73,9 +73,6 @@ export XDG_CACHE_HOME=${HOME}/var/cache
 export XDG_CONFIG_HOME=${HOME}/etc
 export XDG_DATA_HOME=${HOME}/var
 
-export JAVA_HOME=${HOME}/tmp/javac/jdk1.8.0_92/
-export PATH=${JAVA_HOME}/bin:${PATH}
-
 
 # bash options
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -1,4 +1,4 @@
-source $HOME/local/share/git-core/completion/git-prompt.sh
+#source /etc/bash_completion.d/git-prompt  
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
