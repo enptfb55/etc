@@ -39,6 +39,9 @@ Plug 'https://github.com/tmux-plugins/vim-tmux.git'
 " c++11/14 syntax highlighting
 Plug 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 
+" wombat
+Plug 'https://github.com/vim-scripts/Wombat.git'
+
 " " show useful info in the tabline
 " Plugin 'mkitt/tabline.vim'
 
