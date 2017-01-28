@@ -11,7 +11,7 @@ set nocompatible
 set runtimepath+=$VIMRUNTIME
 set runtimepath+=/usr/share/vim/vimfiles
 set runtimepath+=/usr/share/vim/vimfiles/after
-set runtimepath+=$ETC/vim,$ETC/vim/after
+set runtimepath+=~/etc/vim,~/etc/vim/after
 
 
 " vim-plug shit
