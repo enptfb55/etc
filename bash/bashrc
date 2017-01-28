@@ -128,5 +128,5 @@ if [[ -d "${HOME}/etc/bash/bashrc.$(uname).d" ]]; then
     unset file
 fi
 
-echo $PS1
+#echo $PS1
 
