@@ -1,2 +1,8 @@
 
-source /usr/share/git-core/contrib/completion/git-prompt.sh 
+if [[ -e  /etc/bash_completion.d/git-prompt ]]; then
+    source /etc/bash_completion.d/git-prompt
+fi
+
+if [[ -e /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
+    source /usr/share/git-core/contrib/completion/git-prompt.sh 
+fi
