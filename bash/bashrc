@@ -5,6 +5,9 @@
 
 #set -x
 
+# set vim bindings
+set -o vi
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -130,3 +133,4 @@ fi
 
 #echo $PS1
 
+export ACLOCAL_PATH="/usr/local/share/aclocal"

@@ -39,6 +39,17 @@ Plug 'https://github.com/tmux-plugins/vim-tmux.git'
 " c++11/14 syntax highlighting
 Plug 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 
+" NerdTree
+Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
+
+" CtrlP
+Plug 'https://github.com/kien/ctrlp.vim.git'
+
+
+" YCM
+Plug 'https://github.com/Valloric/YouCompleteMe.git'
+
 " " show useful info in the tabline
 " Plugin 'mkitt/tabline.vim'
 
@@ -133,6 +144,14 @@ autocmd BufReadPost *
   \ endif
 
 
+" NerdTree Stuff
+autocmd vimenter * if &filetype !=# 'gitcommit' | NERDTree % | endif
+autocmd BufEnter * if !argc() | NerdTreeMirror | endif
+
+" Go to previous (last accesed) window
+autocmd vimEnter * wincmd p
+
+
 " appearance
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -151,15 +170,15 @@ set background=dark
 " colorscheme: solarized
 "       https://github.com/altercation/vim-colors-solarized
 " let g:solarized_termcolors=256
-silent! colorscheme solarized
+"silent! colorscheme solarized
 
 " colorscheme: jellybeans
 "       https://github.com/nanotech/jellybeans.vim
 silent! colorscheme jellybeans
 
-silent! colorscheme wwdc16
+"silent! colorscheme wwdc16
 
-silent! colorscheme desert
+"silent! colorscheme desert
 
 " customize color of ColorColumn
 highlight ColorColumn ctermbg=235 ctermfg=white
@@ -346,8 +365,15 @@ set noerrorbells
 " don't produce .swp files
 set noswapfile
 
+" set undo directory
+set undodir=~/.vim/undodir
+
+" set undo file
+set undofile
+
 " lots of undo history
 set undolevels=1000
+set undoreload=10000
 
 " read/write .viminfo file, but don't store more than 80 registers
 set viminfo='20,\"80
