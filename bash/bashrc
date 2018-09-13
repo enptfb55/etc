@@ -79,6 +79,10 @@ alias  vi="vim -O"
 alias vim="vim -O"
 alias vmi="vim -O"
 
+# python aliases
+alias python="python3"
+alias pip="pip3"
+
 alias cp="cp --interactive"
 alias dc="cd"
 alias df="df --human-readable"

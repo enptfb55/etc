@@ -17,6 +17,8 @@
     prompt = false
 [push]
     default = simple
+[pull]
+    rebase = true
 [svn]
     rmdir = true
 [user]

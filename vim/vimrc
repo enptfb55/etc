@@ -46,6 +46,8 @@ Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
 " CtrlP
 Plug 'https://github.com/kien/ctrlp.vim.git'
 
+" clang-format
+Plug 'https://github.com/rhysd/vim-clang-format.git'
 
 " YCM
 Plug 'https://github.com/Valloric/YouCompleteMe.git'
@@ -151,6 +153,16 @@ autocmd BufEnter * if !argc() | NerdTreeMirror | endif
 " Go to previous (last accesed) window
 autocmd vimEnter * wincmd p
 
+" clang-format stuff
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 
 " appearance
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
