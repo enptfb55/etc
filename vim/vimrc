@@ -3,6 +3,10 @@
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
+" set the python3 dll path
+if !has('nvim')
+    set pythonthreedll=/mnt/backingTrees_el7_cmake/bin/miniconda3/envs/py_cmake_build/lib/libpython3.6m.so
+endif
 
 " this must be first because it changes other options as side-effects
 set nocompatible
@@ -46,14 +50,53 @@ Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
 " CtrlP
 Plug 'https://github.com/kien/ctrlp.vim.git'
 
+" CtrlSF
+Plug 'https://github.com/dyng/ctrlsf.vim.git'
+
 " clang-format
 Plug 'https://github.com/rhysd/vim-clang-format.git'
 
 " YCM
-Plug 'https://github.com/Valloric/YouCompleteMe.git'
+"Plug 'https://github.com/Valloric/YouCompleteMe.git'
+
+" Doxygen autocomplete
+Plug 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
+
+
+Plug 'https://github.com/jalvesaq/Nvim-R.git'
+Plug 'https://github.com/jalvesaq/vimcmdline.git'
 
 " " show useful info in the tabline
 " Plugin 'mkitt/tabline.vim'
+
+" nvim-cmp
+if has('nvim')
+    "Plug 'nvim-lua/completion-nvim'
+
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+
+    " For vsnip users.
+    Plug 'hrsh7th/cmp-vsnip'
+    Plug 'hrsh7th/vim-vsnip'
+
+    " For luasnip users.
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'saadparwaiz1/cmp_luasnip'
+
+    " For ultisnips users.
+    Plug 'SirVer/ultisnips'
+    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
+    " For snippy users.
+    Plug 'dcampos/nvim-snippy'
+    Plug 'dcampos/cmp-snippy'
+endif
+
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -134,6 +177,15 @@ nnoremap <silent><A-k> :put! =''<CR>
 " custom commands
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    keepp %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
 " save files using sudo with 'W'
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
@@ -153,12 +205,24 @@ autocmd BufEnter * if !argc() | NerdTreeMirror | endif
 " Go to previous (last accesed) window
 autocmd vimEnter * wincmd p
 
+" CtrlSF
+let g:ctrlsf_default_root = 'project'
+let g:ctrlsf_extra_root_markers = ['.root']
+let g:ctrlsf_extra_backend_args = {'ack': ' --ignore-dir=env --ignore-dir=venv --ignore-dir=.venv --type=cpp --type=python'}
+nmap     <C-F>f <Plug>CtrlSFPrompt                  
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+
+
 " clang-format stuff
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
+"let g:clang_format#style_options = {
+"            \ "AccessModifierOffset" : -4,
+"            \ "AllowShortIfStatementsOnASingleLine" : "true",
+"            \ "AlwaysBreakTemplateDeclarations" : "true",
+"            \ "Standard" : "C++11"}
+"
+let g:clang_format#detect_style_file = 1
+let g:clang_format#auto_formatexpr = 1
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -324,8 +388,10 @@ set iskeyword-=+
 " allow clicking past 220 columns in tmux
 if has("mouse_sgr")
     set ttymouse=sgr
-else
-    set ttymouse=xterm2
+else 
+    if !has('nvim')
+        set ttymouse=xterm2
+    endif
 end
 
 
@@ -361,6 +427,9 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 " in bsd and osx
 autocmd FileType crontab setlocal backupcopy=yes
 
+" set spell for git commits
+autocmd FileType gitcommit setlocal spell
+
 
 " vim behavior
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -379,6 +448,10 @@ set noswapfile
 
 " set undo directory
 set undodir=~/.vim/undodir
+if has('nvim')
+    set undodir=${HOME}/.local/share/nvim/undodir
+endif
+
 
 " set undo file
 set undofile
@@ -391,7 +464,11 @@ set undoreload=10000
 set viminfo='20,\"80
 
 " change location of the viminfo file
-set viminfo+=n${HOME}/var/vim/viminfo
+if has('nvim')
+    set viminfo+=n${HOME}/.local/share/nvim/viminfo
+else
+    set viminfo+=n${HOME}/var/vim/viminfo
+endif
 
 " use enhanced command line completion
 set wildmenu
@@ -411,6 +488,36 @@ set splitright
 " turn off netrw history
 let g:netrw_dirhistmax = 0
 
+if (!has('nvim'))
+    " ycm extra conf
+    let g:ycm_global_ycm_extra_conf = '$ETC/vim/.ycm_extra_conf.py'
+    map <F10> :YcmCompleter FixIt<CR>
+endif
+
+
 " speed up scrolling of the viewport
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
+
+map <F9> :NERDTreeToggle %<CR>
+
+" open ctag in tab/vertical split
+" nnoremap <C-]> :only<bar>vsplit<CR>:execute "tag" . expand('<cword>')<CR>
+" map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" map <leader><C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+
+" DoxygenToolkit
+let g:DoxygenToolkit_briefTag_pre="\\brief  "
+let g:DoxygenToolkit_paramTag_pre="\\param "
+let g:DoxygenToolkit_returnTag="\\returns   "
+let g:DoxygenToolkit_blockHeader=""
+let g:DoxygenToolkit_blockFooter=""
+let g:DoxygenToolkit_authorName="Sal Amato (samato@hap-capital.com)"
+let g:DoxygenToolkit_licenseTag=""
+
+if (has('nvim'))
+    " Use completion-nvim in every buffer
+    "autocmd BufEnter * lua require'completion'.on_attach()
+    source /home/samato/etc/vim/nvim.vim
+endif

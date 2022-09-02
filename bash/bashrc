@@ -58,6 +58,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+alias cgrep='grep --color=auto --include=\*.c --include=\*.cpp --include=\*.h --include=\*.hpp '
 
 
 # ls aliases
@@ -95,6 +96,19 @@ alias mv="mv --interactive"
 alias ns="netstat --numeric --tcp --all --udp --program --listening"
 alias psc="ps xawf -eo pid,user,cgroup,args"
 alias rmdirr="find . -type d -empty -delete"
+
+
+# gdb
+alias gdb="gdb --data-directory /mnt/backingTrees_el7_cmake/devtoolset-7/root/usr/share/gdb/"
+
+# sudo 
+alias sudo="/usr/bin/sudo"
+
+# valgrind
+export VALGRIND_LIB=/mnt/backingTrees_el7_cmake/devtoolset-7/root/usr/lib64/valgrind 
+#/mnt/backingTrees_el7_cmake/devtoolset-7/root/usr/bin/valgrind
+
+export RUBEDO_DB="DEV"
 
 
 # calculator
@@ -138,3 +152,44 @@ fi
 #echo $PS1
 
 export ACLOCAL_PATH="/usr/local/share/aclocal"
+
+# don't store tmux resurrect
+export HISTCONTROL=${HISTCONTROL}:ignoreboth
+
+
+source /mnt/backingTrees_el7_cmake/devtoolset-7/enable
+export PATH="$PATH:/opt/mssql-tools/bin"
+export PATH="$PATH:/opt/mssql-tools/bin"
+export PATH="${PATH}:/mnt/backingTrees/HAP_usr_local/Linux.x86_64/bin/"
+export PATH="${PATH}:/mnt/backingTrees/HAP_usr_local/OS.independent/bin"
+export PATH="/usr/local/bin/:${PATH}"
+
+export MY_CONDA_PATH="/mnt/qsgdata01/miniconda3/" 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/mnt/qsgdata01/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/mnt/qsgdata01/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/mnt/qsgdata01/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/mnt/qsgdata01/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+export PATH="${MY_CONDA_PATH}/bin:$PATH"   
+
+
+ #QSG
+export WORKSPACE=/mnt/histcache/home/samato/workspace/
+
+
+function setup_paths {
+export QSG_UTIL_PATH=$WORKSPACE/UTIL/trunk/;
+export QSG_DATA_PATH=$WORKSPACE/DATA/trunk/;
+export QSG_STGY_PATH=$WORKSPACE/STGY/trunk/;
+export QSG_SIGN_PATH=$WORKSPACE/SIGN/trunk/;
+};
+setup_paths

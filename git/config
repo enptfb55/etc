@@ -4,6 +4,10 @@
     unstage = reset HEAD --
 [color]
     ui = auto
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = white
 [core]
     editor = vim
     ignorecase = false
@@ -15,6 +19,7 @@
     tool = vimdiff
 [difftool]
     prompt = false
+    tool = vimdiff
 [push]
     default = simple
 [pull]
@@ -22,5 +27,5 @@
 [svn]
     rmdir = true
 [user]
-    email = enptfb55@gmail.com
+	email = samato@hap-capital.com
     name = Sal Amato
